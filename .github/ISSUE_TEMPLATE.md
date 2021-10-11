@@ -3,9 +3,9 @@ __Related issue(s)__
 
 _Add any issues here that may be dependent or must be completed before this issue can be tackled_
 
-__Notes__
+__Wireframe link__
 
-_Add any useful notes here_
+_Add link to design here_
 
 ---
 
