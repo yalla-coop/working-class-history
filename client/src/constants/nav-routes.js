@@ -1,5 +1,13 @@
 const GENERAL = {
   HOME: '/',
+  STORIES_HOME: '/stories-home',
+  INDEX: '/index',
+  MAP: '/map',
+  PODCAST: '/podcast',
+  SIGN_UP: '/signup',
+  SUPPORT_US: '/support-us',
+  SHOP: '/shop',
+  WCH_HOME: '/WCH-home',
 };
 
 const EXTERNAL = {
