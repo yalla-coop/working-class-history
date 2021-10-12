@@ -1,16 +1,18 @@
 import { css } from '@emotion/react';
 
 const style = css`
-  @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&display=swap');
+
   pre {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Zilla Slab', serif;
     font-size: 1em;
   }
 
   code,
   kbd,
   samp {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Zilla Slab', serif;
     font-size: 1em;
   }
 
@@ -21,7 +23,7 @@ const style = css`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Zilla Slab', serif;
     word-wrap: break-word;
     min-height: 100% important;
     height: 100%;
@@ -48,11 +50,11 @@ const style = css`
   p,
   a {
     margin: 0;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Zilla Slab', serif;
   }
 
   code {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Zilla Slab', serif;
   }
 
   html {
