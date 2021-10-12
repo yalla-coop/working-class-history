@@ -7,20 +7,39 @@ import setMargin from './../../helpers/set-margin';
 export const Button = styled.button`
   ${setMargin};
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  text-align: left;
   width: ${({ w }) => w || '100%'};
-  height: 58px;
-  color: ${theme.colors.white};
-  position: relative;
-  background: ${({ variant }) =>
-    variant === 'secondary'
-      ? theme.colors.tertiaryMain
-      : theme.colors.primaryMain};
+  height: 195px;
   border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 70px;
+  font-weight: 600;
+  line-height: 84px;
+  color: ${({ textColor }) =>
+    textColor ? theme.colors[textColor] || textColor : theme.colors.white};
+  position: relative;
+  background: ${({ bgColor }) =>
+    bgColor ? theme.colors[bgColor] || bgColor : theme.colors.primaryMain};
+  padding: ${({ theme }) => `14px ${theme.spacings[6]}`};
+
+  ${({ theme }) => theme.media.tablet} {
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 54px;
+    padding: ${({ theme }) => `14px ${theme.spacings[5]}`};
+    height: 150px;
+    justify-content: center;
+  }
+
+  ${({ theme }) => theme.media.mobile} {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 34px;
+    padding: ${({ theme }) => `14px ${theme.spacings[3]}`};
+    height: 100px;
+    justify-content: center;
+  }
 
   /* clicking style */
   :active {
@@ -29,7 +48,7 @@ export const Button = styled.button`
   }
 
   /* for disabled style */
-  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  opacity: ${({ disabled, isLoading }) => (disabled || isLoading ? 0.5 : 1)};
   cursor: ${({ disabled, isLoading }) =>
     disabled || isLoading ? 'not-allowed' : 'pointer'};
 `;

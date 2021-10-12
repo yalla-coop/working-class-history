@@ -18,6 +18,7 @@ const Button = ({
   disabled,
   to,
   customColor,
+  children,
   ...props
 }) => {
   const history = useHistory();
@@ -36,8 +37,14 @@ const Button = ({
       onClick={onClick}
       {...props}
     >
-      {icon && <Icon icon={icon} />}
-      {text}
+      {children ? (
+        children
+      ) : (
+        <>
+          {icon && <Icon icon={icon} />}
+          {text}
+        </>
+      )}
       {loading && <S.Loading variant={variant} indicator={antIcon} />}
     </S.Button>
   );

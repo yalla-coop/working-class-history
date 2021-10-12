@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { H1, H2, P, Link } from '.';
+import { H0, H1, H2, H3, H4, P, Link } from '.';
 
 export default {
   title: 'Common Components/Typography',
@@ -80,6 +80,13 @@ export default {
   },
 };
 
+const Heading0 = (args) => <H0 {...args}>Heading 0</H0>;
+
+export const h0 = Heading0.bind({});
+h0.args = {
+  color: 'black',
+};
+
 const Heading1 = (args) => <H1 {...args}>Heading 1</H1>;
 
 export const h1 = Heading1.bind({});
@@ -91,6 +98,20 @@ const Heading2 = (args) => <H2 {...args}>Heading 2</H2>;
 
 export const h2 = Heading2.bind({});
 h2.args = {
+  color: 'black',
+};
+
+const Heading3 = (args) => <H3 {...args}>Heading 3</H3>;
+
+export const h3 = Heading3.bind({});
+h3.args = {
+  color: 'black',
+};
+
+const Heading4 = (args) => <H4 {...args}>Heading 4</H4>;
+
+export const h4 = Heading4.bind({});
+h4.args = {
   color: 'black',
 };
 
