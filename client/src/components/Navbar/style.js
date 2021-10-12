@@ -1,35 +1,39 @@
 import styled from '@emotion/styled';
-import { H2 } from '../Typography';
 import { Link as RouterLink } from 'react-router-dom';
 import { Drawer as AntDrawer } from 'antd';
+import setMargin from '../../helpers/set-margin';
 
 export const Div = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   margin-top: 0;
   position: relative;
   z-index: 2;
-  ${({ theme }) => theme.media.tablet} {
-    flex-direction: column;
-    margin-top: 38px;
-  }
-`;
-
-export const Head4 = styled(H2)`
-  display: inline;
 `;
 
 export const Link = styled(RouterLink)`
   white-space: nowrap;
+  display: flex;
+  justify-content: flex-start;
+  ${({ theme }) => theme.media.tablet} {
+    justify-content: flex-end;
+  }
+`;
+
+export const MenuLink = styled(Link)`
+  margin-top: ${({ theme }) => theme.spacings[4]};
 `;
 
 export const Drawer = styled(AntDrawer)`
   .ant-drawer-body {
     position: relative;
-    padding: 30px 24px 0 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 12.26%;
     &:before {
       content: '';
       position: absolute;
@@ -37,19 +41,22 @@ export const Drawer = styled(AntDrawer)`
       left: 0;
       right: 0;
       height: ${({ theme }) => theme.spacings[1]};
-      background: ${({ theme }) => theme.colors.secondaryMain};
+      background: ${({ theme }) => theme.colors.secondaryMid};
     }
   }
 `;
 
-export const RainbowContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-`;
-
 export const SideContent = styled.div`
   padding: 80px;
+`;
+
+export const MobileMenuWrapper = styled.header`
+  padding: 24px;
+`;
+
+export const IconWrapper = styled.button`
+  ${setMargin};
+  background: none;
+  border: none;
+  outline: none;
 `;
