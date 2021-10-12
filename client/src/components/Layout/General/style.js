@@ -30,6 +30,10 @@ export const Wrapper = styled.div`
   position: relative;
   display: flex;
   min-height: 100vh;
+  flex-direction: row;
+  ${({ theme }) => theme.media.tablet} {
+    flex-direction: column;
+  }
 `;
 
 export const Content = styled.main`
