@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 
 const style = css`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;400;500;600;700&display=swap');
 
   pre {
     font-family: 'Zilla Slab', serif;

@@ -26,7 +26,7 @@ const bodyLineHeight = {
   large: '120% !important',
   medLarge: '120% !important',
   med: '120% !important',
-  regular: '150% !important',
+  regular: '210% !important',
   small: '150% !important',
 };
 
@@ -90,7 +90,7 @@ const Head4 = styled(Title)`
   ${commonStyle};
   font-family: 'Zilla Slab', serif;
   font-size: 20px !important;
-  line-height: 24px !important;
+  line-height: 210% !important;
   font-weight: ${({ weight }) => (weight ? weights[weight] : '600 !important')};
   text-decoration: ${({ td }) => td || 'none'};
 `;
@@ -102,8 +102,8 @@ export const P = styled((props) => <Paragraph {...props} />)`
   font-family: 'Roboto', sans-serif;
   font-size: ${({ size }) => (size ? bodyTextSizes[size] : '16px !important')};
   line-height: ${({ size }) =>
-    size ? bodyLineHeight[size] : '24px !important'};
-  font-weight: ${({ weight }) => (weight ? weights[weight] : '400 !important')};
+    size ? bodyLineHeight[size] : '210% !important'};
+  font-weight: ${({ weight }) => (weight ? weights[weight] : '300 !important')};
   pre {
     background: none;
     border: none;
@@ -125,8 +125,8 @@ export const Link = styled(AntdLink)`
   ${setMargin};
   ${commonStyle};
   font-size: 16px !important;
-  line-height: 24px !important;
-  font-weight: ${({ weight }) => (weight ? weights[weight] : '400 !important')};
+  line-height: 210% !important;
+  font-weight: ${({ weight }) => (weight ? weights[weight] : '300 !important')};
 
   text-decoration: ${({ underline }) =>
     underline ? 'underline' : 'none'} !important;
