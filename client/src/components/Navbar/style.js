@@ -41,7 +41,7 @@ export const Drawer = styled(AntDrawer)`
       left: 0;
       right: 0;
       height: ${({ theme }) => theme.spacings[1]};
-      background: ${({ theme }) => theme.colors.secondaryMid};
+      background: ${({ theme }) => theme.colors.primaryMain};
     }
   }
 `;
