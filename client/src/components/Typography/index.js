@@ -90,7 +90,7 @@ const Head4 = styled(Title)`
   ${commonStyle};
   font-family: 'Zilla Slab', serif;
   font-size: 20px !important;
-  line-height: 210% !important;
+  line-height: 24px !important;
   font-weight: ${({ weight }) => (weight ? weights[weight] : '600 !important')};
   text-decoration: ${({ td }) => td || 'none'};
 `;
