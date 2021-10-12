@@ -9,6 +9,12 @@ import GoBack from './icons/GoBack';
 import ArrowDown from './icons/ArrowDown';
 import Burger from './icons/Burger';
 import Close from './icons/Close';
+import Instagram from './icons/Instagram';
+import Facebook from './icons/Facebook';
+import Twitter from './icons/Twitter';
+import Tumblr from './icons/Tumblr';
+import Mastodon from './icons/Mastodon';
+import Youtube from './icons/Youtube';
 
 const Icon = (props) => {
   const { icon, color, text, jc, weight = 'bold' } = props;
@@ -18,6 +24,12 @@ const Icon = (props) => {
     arrowDown: ArrowDown,
     burger: Burger,
     close: Close,
+    instagram: Instagram,
+    facebook: Facebook,
+    twitter: Twitter,
+    tumblr: Tumblr,
+    mastodon: Mastodon,
+    youtube: Youtube,
   };
 
   if (!IconMap[icon]) {
