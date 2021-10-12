@@ -16,21 +16,21 @@ import Tumblr from './icons/Tumblr';
 import Mastodon from './icons/Mastodon';
 import Youtube from './icons/Youtube';
 
+export const IconMap = {
+  goBack: GoBack,
+  arrowDown: ArrowDown,
+  burger: Burger,
+  close: Close,
+  instagram: Instagram,
+  facebook: Facebook,
+  twitter: Twitter,
+  tumblr: Tumblr,
+  mastodon: Mastodon,
+  youtube: Youtube,
+};
+
 const Icon = (props) => {
   const { icon, color, text, jc, weight = 'bold' } = props;
-
-  const IconMap = {
-    goBack: GoBack,
-    arrowDown: ArrowDown,
-    burger: Burger,
-    close: Close,
-    instagram: Instagram,
-    facebook: Facebook,
-    twitter: Twitter,
-    tumblr: Tumblr,
-    mastodon: Mastodon,
-    youtube: Youtube,
-  };
 
   if (!IconMap[icon]) {
     // eslint-disable-next-line no-console
