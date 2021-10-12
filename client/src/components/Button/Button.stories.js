@@ -2,6 +2,7 @@
 import React from 'react';
 
 import Button from '.';
+import { Col, Row } from '../Grid';
 
 export default {
   title: 'Common Components/Button',
@@ -13,38 +14,78 @@ export default {
 
 const Template = (args) => {
   return (
-    <div style={{ width: '300px' }}>
-      <Button {...args} handleClick={() => console.log('Clicked')} />
-    </div>
+    <Row>
+      <Col w={[4, 4, 4]}>
+        <Button {...args} handleClick={() => console.log('Clicked')} />
+      </Col>
+    </Row>
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Button',
-  variant: 'primary',
+export const yellow = Template.bind({});
+yellow.args = {
+  bgColor: 'primaryMain',
+  textColor: 'neutral',
   disabled: false,
   loading: false,
+  text: 'Save + Approve',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
-  variant: 'secondary',
+export const Reject = Template.bind({});
+Reject.args = {
+  bgColor: 'primaryMain',
+  textColor: 'neutral',
   disabled: false,
   loading: false,
+  text: 'Reject',
+  w: '300px',
+};
+
+export const yellowNarrow = Template.bind({});
+yellowNarrow.args = {
+  bgColor: 'primaryMain',
+  textColor: 'neutral',
+  disabled: false,
+  loading: false,
+  w: '300px',
+};
+
+export const SupportUs = Template.bind({});
+SupportUs.args = {
+  bgColor: 'neutral',
+  textColor: 'primaryMain',
+  disabled: false,
+  loading: false,
+  text: 'Support us',
+};
+
+export const Edit = Template.bind({});
+Edit.args = {
+  bgColor: 'neutral',
+  textColor: 'white',
+  disabled: false,
+  loading: false,
+  text: 'Edit',
+  w: '300px',
+};
+
+export const Approve = Template.bind({});
+Approve.args = {
+  bgColor: 'tertiaryMain',
+  textColor: 'white',
+  disabled: false,
+  loading: false,
+  text: 'Approve',
 };
 
 export const Loading = Template.bind({});
 Loading.args = {
-  label: 'Button',
   disabled: false,
   loading: true,
 };
 
 export const Disable = Template.bind({});
 Disable.args = {
-  label: 'Button',
   disabled: true,
   loading: false,
 };
