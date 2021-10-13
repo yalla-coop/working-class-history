@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import setMargin from '../../helpers/set-margin';
+import setMargin from '../../../helpers/set-margin';
+import { Link } from 'react-router-dom';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Link)`
   ${setMargin};
   display: flex;
   align-items: center;
@@ -14,9 +15,7 @@ export const Triangle = styled.div`
   border-bottom: 10px solid transparent;
   border-left: ${({ theme, shapeColor }) =>
     `20px solid ${
-      shapeColor
-        ? theme.colors[shapeColor] || shapeColor
-        : theme.colors.primaryMain
+      shapeColor ? theme.colors[shapeColor] || shapeColor : theme.colors.neutral
     }`};
 `;
 
@@ -26,7 +25,7 @@ export const Circle = styled.div`
   background: ${({ theme, shapeColor }) =>
     shapeColor
       ? theme.colors[shapeColor] || shapeColor
-      : theme.colors.primaryMain};
+      : theme.colors.tertiaryMain};
   border-radius: 50%;
 `;
 

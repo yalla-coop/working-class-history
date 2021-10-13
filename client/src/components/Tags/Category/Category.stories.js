@@ -1,8 +1,8 @@
 import Category from '.';
-import { Row, Col } from '../Grid';
+import { Row, Col } from '../../Grid';
 
 export default {
-  title: 'Common Components/Category',
+  title: 'Common Components/Tags/Category',
   component: Category,
 };
 

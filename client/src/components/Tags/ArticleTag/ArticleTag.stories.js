@@ -1,8 +1,8 @@
 import ArticleTag from '.';
-import { Row, Col } from '../Grid';
+import { Row, Col } from '../../Grid';
 
 export default {
-  title: 'Common Components/ArticleTag',
+  title: 'Common Components/Tags/ArticleTag',
   component: ArticleTag,
 };
 

@@ -1,5 +1,5 @@
 import * as S from './style';
-import * as T from '../Typography';
+import * as T from '../../Typography';
 
 const Shape = ({ shape, shapeColor }) => {
   if (shape === 'circle') {
