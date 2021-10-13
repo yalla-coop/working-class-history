@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import setMargin from '../../helpers/set-margin';
+import HaitianRevolution from '../assets/HaitianRevolution.png';
 
-const imgMap = {};
+export const imgMap = {
+  haitianRevolution: HaitianRevolution,
+};
 
 const StyledImage = styled.img`
   max-width: 100%;
@@ -16,11 +19,12 @@ const Image = ({
   width,
   height,
   margin,
+  src,
   alt = 'Therapy Illustration',
   customStyle,
   ...props
 }) => {
-  if (!imgMap[image]) {
+  if (!imgMap[image] && !src) {
     // eslint-disable-next-line no-console
     console.warn(`<Image /> called with invalid image prop "${image}"`);
     return null;
@@ -28,7 +32,7 @@ const Image = ({
 
   return (
     <StyledImage
-      src={imgMap[image]}
+      src={src || imgMap[image]}
       alt={alt}
       width={width}
       height={height}
