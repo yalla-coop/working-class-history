@@ -11,14 +11,28 @@ const Shape = ({ shape, shapeColor }) => {
   return <S.Square shapeColor={shapeColor} />;
 };
 
-const Category = ({ shape, shapeColor, text, to }) => {
+const Category = ({ shape, shapeColor, title, to, relatedTags }) => {
   return (
-    <S.Wrapper to={to}>
-      <Shape shape={shape} shapeColor={shapeColor} />
-      <T.H4 color="neutral" weight="bold" ml="2">
-        {text}
-      </T.H4>
-    </S.Wrapper>
+    <S.Container>
+      <S.CategoryWrapper to={to}>
+        <S.Center>
+          <Shape shape={shape} shapeColor={shapeColor} />
+
+          <T.H4 color="neutral" weight="bold" ml="2">
+            {title}
+          </T.H4>
+        </S.Center>
+      </S.CategoryWrapper>
+      {relatedTags && (
+        <S.TagsWrapper>
+          {relatedTags.map((tag) => (
+            <S.TagLink key={tag.to} to={tag.to}>
+              <T.P ml="3">{tag.title}</T.P>
+            </S.TagLink>
+          ))}
+        </S.TagsWrapper>
+      )}
+    </S.Container>
   );
 };
 

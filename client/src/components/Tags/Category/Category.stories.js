@@ -18,7 +18,7 @@ export const People = Template.bind({});
 People.args = {
   shape: 'circle',
   shapeColor: 'tertiaryMain',
-  text: 'People',
+  title: 'People',
   to: '/people',
 };
 
@@ -26,7 +26,7 @@ export const Topics = Template.bind({});
 Topics.args = {
   shape: 'square', // optional
   shapeColor: 'primaryMain',
-  text: 'Topics',
+  title: 'Topics',
   to: '/topics',
 };
 
@@ -34,6 +34,6 @@ export const Organisations = Template.bind({});
 Organisations.args = {
   shape: 'triangle',
   shapeColor: 'neutral',
-  text: 'Organisations',
+  title: 'Organisations',
   to: '/organisations',
 };

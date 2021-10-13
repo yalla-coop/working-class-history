@@ -2,11 +2,27 @@ import styled from '@emotion/styled';
 import setMargin from '../../../helpers/set-margin';
 import { Link } from 'react-router-dom';
 
-export const Wrapper = styled(Link)`
+export const Container = styled.div`
+  display: flex;
+`;
+
+export const CategoryWrapper = styled(Link)`
   ${setMargin};
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 `;
+
+export const TagsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const Center = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: ${({ theme }) => theme.spacings[1]};
+`;
+export const TagLink = styled(Link)``;
 
 export const Triangle = styled.div`
   width: 0;
