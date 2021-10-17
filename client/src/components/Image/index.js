@@ -2,9 +2,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 import setMargin from '../../helpers/set-margin';
 import HaitianRevolution from '../assets/HaitianRevolution.png';
+import Latest from '../assets/Latest.png';
+import Map from '../assets/Map.png';
 
 export const imgMap = {
   haitianRevolution: HaitianRevolution,
+  latest: Latest,
+  map: Map,
 };
 
 const StyledImage = styled.img`

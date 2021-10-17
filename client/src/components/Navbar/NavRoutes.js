@@ -19,7 +19,7 @@ const Routes = ({ setOpen }) => {
 
       <S.Div>
         <S.MenuLink
-          to={GENERAL['STORIES_HOME']}
+          to={GENERAL['Stories']}
           onClick={() => handleClick(setOpen)}
         >
           <T.P weight="regular" color="neutral">
