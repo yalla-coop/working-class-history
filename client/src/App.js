@@ -19,9 +19,11 @@ function App() {
           <Switch>
             <Route
               exact
-              path={navRoutes.GENERAL.HOME}
-              Component={Pages.Home}
+              path={navRoutes.GENERAL.Stories}
+              Component={Pages.LandingPage}
               layout="general"
+              landingPage
+              maxWidth="1050px"
             />
           </Switch>
         </Router>
