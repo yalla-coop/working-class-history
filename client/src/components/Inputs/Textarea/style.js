@@ -11,18 +11,18 @@ export const TextArea = styled(AntdTextArea)`
   ${CS.placeholderStyle};
   border: ${({ theme }) => theme.borders.inputs};
   border-color: ${({ theme, error }) =>
-    error ? theme.colors.error : theme.colors.gray5};
+    error ? theme.colors.error : theme.colors.secondaryMid};
   border-radius: ${({ theme }) => theme.borders.radius};
   width: 100%;
-  padding: ${({ theme }) => theme.spacings[3]};
+  padding: 40px 26px;
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.gray9};
-  font-size: 16px;
+  color: ${({ theme }) => theme.colors.neutral};
+  font-size: 20px;
   cursor: ${({ disabled }) => disabled && 'not-allowed'};
-  background: ${({ theme }) => theme.colors.gray2};
+  background: ${({ theme }) => theme.colors.tertiaryLight};
 
   :focus {
     outline: none;
-    border-color: ${({ theme }) => theme.colors.blue};
+    border-color: ${({ theme }) => theme.colors.tertiaryMain};
   }
 `;
