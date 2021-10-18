@@ -10,6 +10,7 @@ const GENERAL = {
   SHOP: '/shop',
   WCH_HOME: '/WCH-home',
   ARTICLE: '/article/:id',
+  TAG: '/tag/:tagId/:tagName',
 };
 
 const EXTERNAL = {

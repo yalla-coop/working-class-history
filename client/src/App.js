@@ -25,6 +25,13 @@ function App() {
               landingPage
               maxWidth="1050px"
             />
+            <Route
+              exact
+              path={navRoutes.GENERAL.TAG}
+              Component={Pages.TagPage}
+              layout="general"
+              maxWidth="1050px"
+            />
           </Switch>
         </Router>
       </ThemeProvider>
