@@ -15,6 +15,10 @@ export const Container = styled.div`
   left: 0;
   bottom: 0;
   z-index: -2;
+  display: block;
+  ${({ theme }) => theme.media.tablet} {
+    display: none;
+  }
 `;
 
 export const NumberContainer = styled(T.H0)`
