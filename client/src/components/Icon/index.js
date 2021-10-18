@@ -15,6 +15,9 @@ import Twitter from './icons/Twitter';
 import Tumblr from './icons/Tumblr';
 import Mastodon from './icons/Mastodon';
 import Youtube from './icons/Youtube';
+import FacebookShare from './icons/FacebookShare';
+import EmailShare from './icons/EmailShare';
+import TwitterShare from './icons/TwitterShare';
 
 export const IconMap = {
   goBack: GoBack,
@@ -27,6 +30,9 @@ export const IconMap = {
   tumblr: Tumblr,
   mastodon: Mastodon,
   youtube: Youtube,
+  facebookShare: FacebookShare,
+  emailShare: EmailShare,
+  twitterShare: TwitterShare,
 };
 
 const Icon = (props) => {
