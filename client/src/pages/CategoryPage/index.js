@@ -42,7 +42,7 @@ const CategoryPage = () => {
       <Row mt="8">
         <Col w={[4, 4, 4]}>
           <BasicInput
-            label="test"
+            label="Search"
             placeholder="search here..."
             value={search}
             handleChange={handleChange}
