@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import setMargin from '../../helpers/set-margin';
-
-export const Div = styled.div``;
+import { HashLink } from 'react-router-hash-link';
 
 export const MapSection = styled.section`
   ${setMargin};
@@ -26,4 +25,17 @@ export const MapWrapper = styled.div`
   background-color: gold;
   position: absolute;
   left: -20.416vw;
+`;
+
+export const HashRoute = styled(HashLink)`
+  font-style: normal;
+  letter-spacing: 0.2px;
+  color: ${({ theme }) => theme.colors.neutral} !important;
+  text-transform: initial !important;
+  text-align: left !important;
+  font-size: 16px !important;
+  line-height: 210% !important;
+  font-weight: 300 !important;
+  -webkit-text-decoration: underline !important;
+  text-decoration: underline !important;
 `;

@@ -8,6 +8,7 @@ import {
   ArticlesSection,
 } from '../../components';
 import { latestDummyData, articles } from './dummy-data';
+import { GENERAL } from '../../constants/nav-routes';
 
 const { Col, Row } = Grid;
 
@@ -31,13 +32,19 @@ const LandingPage = () => {
               billions of ordinary people. This is the Working Class History
               archive of historical stories of our collective struggles to build
               a better world. You can browse all of our stories by category
-              through the <T.Link underline>index</T.Link>, or some of them
-              geographically through the <T.Link underline>map</T.Link>
+              through the{' '}
+              <T.Link underline to={GENERAL.INDEX}>
+                index
+              </T.Link>
+              , or some of them geographically through the{' '}
+              <S.HashRoute underline to={`${GENERAL.LandingPage}#map`}>
+                map
+              </S.HashRoute>
             </T.P>
           </Card>
         </Col>
       </Row>
-      <S.MapSection mt="11">
+      <S.MapSection mt="11" id="map">
         <S.MapWrapper>
           <Image image="map" width="100%" />
         </S.MapWrapper>
