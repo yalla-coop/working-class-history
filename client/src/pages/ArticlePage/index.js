@@ -27,7 +27,7 @@ const ArticlePage = () => {
         mt="30px"
       />
       <S.ArticleContent>
-        <SocialSection url="https://github.com/" />
+        <SocialSection url={window.location.href} />
 
         <Image image="haitianRevolution2" mt="36px" mtT="2" />
         <T.P mt="5" mb="2">
