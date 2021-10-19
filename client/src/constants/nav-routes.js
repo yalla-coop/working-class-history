@@ -9,6 +9,7 @@ const GENERAL = {
   SUPPORT_US: '/support-us',
   SHOP: '/shop',
   WCH_HOME: '/WCH-home',
+  TAG: '/tag/:tagId/:tagName',
   ARTICLE: '/article/:id/:articleName',
 };
 
