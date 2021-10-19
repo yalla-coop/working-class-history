@@ -40,6 +40,13 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
+            <Route
+              exact
+              path={navRoutes.GENERAL.ARTICLE}
+              Component={Pages.ArticlePage}
+              layout="general"
+              maxWidth="1050px"
+            />
           </Switch>
         </Router>
       </ThemeProvider>
