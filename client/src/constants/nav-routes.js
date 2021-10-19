@@ -9,7 +9,7 @@ const GENERAL = {
   SUPPORT_US: '/support-us',
   SHOP: '/shop',
   WCH_HOME: '/WCH-home',
-  ARTICLE: '/article/:id',
+  ARTICLE: '/article/:id/:articleName',
 };
 
 const EXTERNAL = {
