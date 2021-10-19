@@ -10,13 +10,11 @@ const BasicInput = ({
   error,
   value,
   handleChange,
-  helper,
-  color = 'gray9',
+  color = 'neutral',
   w, // width
   disabled,
   autoComplete,
   m, // margins
-  showPasswordInfo,
   ...props
 }) => {
   const decideColor = () => {
@@ -27,17 +25,17 @@ const BasicInput = ({
     handleChange(e.target.value, e);
   };
 
-  const Component = type === 'password' ? S.PasswordInput : S.Input;
+  // const Component = type === 'password' ? S.PasswordInput : S.Input;
   return (
     <CS.Field w={w} disabled={disabled} {...m}>
       {label && (
         <CS.Label htmlFor={label}>
-          <T.P color={color} m="0" mb="2">
+          <T.H4 color={color} m="0" ml="20px" mb="2">
             {label}
-          </T.P>
+          </T.H4>
         </CS.Label>
       )}
-      <Component
+      <S.Input
         type={type}
         name={name}
         value={value}
@@ -49,11 +47,7 @@ const BasicInput = ({
         error={error}
         {...props}
       />
-      {helper && (
-        <T.P color={color} mt="2">
-          {helper}
-        </T.P>
-      )}
+
       {error && (
         <T.P color="error" m="0" mt="1">
           {error}
