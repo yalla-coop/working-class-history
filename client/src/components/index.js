@@ -5,11 +5,14 @@ import Route from './Route';
 import GoBack from './GoBack';
 import * as Typography from './Typography';
 import * as Inputs from './Inputs';
-import * as Icon from './Icon';
+import Icon from './Icon';
 import Image from './Image';
 import TextSection from './TextSection';
 import Card from './Card';
 import ArticlesSection from './ArticlesSection';
+import * as Tags from './Tags';
+import MoreInformation from './MoreInformation';
+import TimelineGraphic from './TimelineGraphic';
 
 export {
   Button,
@@ -24,4 +27,7 @@ export {
   Image,
   Card,
   ArticlesSection,
+  Tags,
+  MoreInformation,
+  TimelineGraphic,
 };

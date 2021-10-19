@@ -1,22 +1,30 @@
 import * as S from './style';
 import * as T from '../../Typography';
 
-const Shape = ({ shape, shapeColor }) => {
+const Shape = ({ shape, shapeColor, size }) => {
   if (shape === 'circle') {
-    return <S.Circle shapeColor={shapeColor} />;
+    return <S.Circle shapeColor={shapeColor} size={size} />;
   }
   if (shape === 'triangle') {
-    return <S.Triangle shapeColor={shapeColor} />;
+    return <S.Triangle shapeColor={shapeColor} size={size} />;
   }
-  return <S.Square shapeColor={shapeColor} />;
+  return <S.Square shapeColor={shapeColor} size={size} />;
 };
 
-const Category = ({ shape, shapeColor, title, to, relatedTags }) => {
+const Category = ({
+  shape,
+  shapeColor,
+  title,
+  to,
+  relatedTags,
+  size,
+  ...props
+}) => {
   return (
-    <S.Container>
+    <S.Container {...props}>
       <S.CategoryWrapper to={to}>
         <S.Center>
-          <Shape shape={shape} shapeColor={shapeColor} />
+          <Shape shape={shape} shapeColor={shapeColor} size={size} />
 
           <T.H4 color="neutral" weight="bold" ml="2">
             {title}

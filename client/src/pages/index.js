@@ -1,3 +1,5 @@
 import LandingPage from './LandingPage';
+import ArticlePage from './ArticlePage';
+import TagPage from './TagPage';
 
-export { LandingPage };
+export { LandingPage, ArticlePage, TagPage };

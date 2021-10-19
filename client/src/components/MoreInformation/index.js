@@ -1,11 +1,11 @@
 import * as T from '../Typography';
 import * as S from './style';
 
-const MoreInformation = ({ subtitle, link }) => {
+const MoreInformation = ({ title, subtitle, link, ...props }) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper {...props}>
       <T.H3 mb="5" color="neutral">
-        More information
+        {title || 'More information'}
       </T.H3>
       <T.P weight="light">{subtitle}</T.P>
       <T.Link to={link} external>
