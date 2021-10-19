@@ -6,4 +6,6 @@ export default {
   neutral: '#000000',
   white: '#ffffff',
   error: '#E55D3E',
+  gray: '#eaeceb',
+  grayLight: '#fcfbff',
 };
