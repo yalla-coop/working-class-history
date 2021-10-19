@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import * as T from '../Typography';
 export const Wrapper = styled.aside`
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   z-index: -2;
@@ -22,7 +22,7 @@ export const Container = styled.div`
 `;
 
 export const NumberContainer = styled(T.H0)`
-  position: absolute;
+  position: fixed;
   top: 104px;
   z-index: -1;
 `;
