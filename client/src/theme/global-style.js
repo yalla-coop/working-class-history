@@ -63,6 +63,7 @@ const style = css`
     -webkit-text-size-adjust: 100%;
     min-height: 100% important;
     height: 100%;
+    scroll-behavior: smooth;
   }
 
   *,
