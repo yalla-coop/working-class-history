@@ -19,7 +19,7 @@ const Routes = ({ setOpen }) => {
 
       <S.Div>
         <S.MenuLink
-          to={GENERAL['STORIES_HOME']}
+          to={GENERAL['STORIES']}
           onClick={() => handleClick(setOpen)}
         >
           <T.P weight="regular" color="neutral">
@@ -31,11 +31,14 @@ const Routes = ({ setOpen }) => {
             Index
           </T.P>
         </S.MenuLink>
-        <S.MenuLink to={GENERAL['MAP']} onClick={() => handleClick(setOpen)}>
+        <S.MenuHashLink
+          to={`${GENERAL['LandingPage']}#map`}
+          onClick={() => handleClick(setOpen)}
+        >
           <T.P weight="regular" color="neutral">
             Map
           </T.P>
-        </S.MenuLink>
+        </S.MenuHashLink>
         <S.MenuLink
           to={GENERAL['PODCAST']}
           onClick={() => handleClick(setOpen)}

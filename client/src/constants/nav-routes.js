@@ -1,6 +1,7 @@
 const GENERAL = {
-  HOME: '/',
-  STORIES_HOME: '/stories-home',
+  LandingPage: '/',
+  Stories: '/stories',
+  STORIES: '/stories',
   INDEX: '/index',
   MAP: '/map',
   PODCAST: '/podcast',

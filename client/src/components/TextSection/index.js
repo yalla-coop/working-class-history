@@ -2,9 +2,9 @@ import { GENERAL } from '../../constants/nav-routes';
 import * as T from '../Typography';
 import * as S from './style';
 
-const TextSection = ({ date, title, content, id }) => {
+const TextSection = ({ date, title, content, id, ...props }) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper {...props}>
       <T.P size="small" weight="medium" color="neutral">
         {date}
       </T.P>

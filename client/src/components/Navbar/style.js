@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Link as RouterLink } from 'react-router-dom';
 import { Drawer as AntDrawer } from 'antd';
 import setMargin from '../../helpers/set-margin';
+import { HashLink } from 'react-router-hash-link';
 
 export const Div = styled.div`
   display: flex;
@@ -24,6 +25,9 @@ export const Link = styled(RouterLink)`
 `;
 
 export const MenuLink = styled(Link)`
+  margin-top: ${({ theme }) => theme.spacings[4]};
+`;
+export const MenuHashLink = styled(HashLink)`
   margin-top: ${({ theme }) => theme.spacings[4]};
 `;
 

@@ -7,7 +7,7 @@ const ArticlesSection = ({ articles }) => {
     <S.Wrapper>
       <Row>
         {articles.map((article) => (
-          <Col w={[4, 6, 6]} mt="11">
+          <Col w={[4, 6, 6]} mt="11" mtM="8">
             <TextSection {...article} />
           </Col>
         ))}

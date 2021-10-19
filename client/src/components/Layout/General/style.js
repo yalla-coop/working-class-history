@@ -14,8 +14,8 @@ export const Content = styled.main`
   width: 100%;
   max-width: ${({ maxWidth, theme: { maxWidths } }) =>
     maxWidth || maxWidths.desktop};
-  padding: 247px 0 190px 0;
-
+  padding: ${({ landingPage }) =>
+    landingPage ? `126px 0 190px 0` : `247px 0 190px 0`};
   ${({ theme }) => theme.media.tablet} {
     padding: ${({ theme: { spacings } }) => `${spacings[7]} 8.43vw`};
   }
