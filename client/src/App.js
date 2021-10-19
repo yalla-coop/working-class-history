@@ -42,6 +42,20 @@ function App() {
             />
             <Route
               exact
+              path={navRoutes.GENERAL.INDEX}
+              Component={Pages.IndexPage}
+              layout="general"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
+              path={navRoutes.GENERAL.CATEGORY}
+              Component={Pages.CategoryPage}
+              layout="general"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
               path={navRoutes.GENERAL.ARTICLE}
               Component={Pages.ArticlePage}
               layout="general"
