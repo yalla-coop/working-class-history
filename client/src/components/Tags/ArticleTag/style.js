@@ -54,7 +54,9 @@ export const Square = styled.div`
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   ${({ theme }) => theme.media.mobile} {
+    align-items: flex-start;
     flex-direction: column;
   }
 `;
