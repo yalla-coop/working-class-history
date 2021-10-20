@@ -1,4 +1,4 @@
-import { string, number, boolean, array, object } from 'yup';
+import { string, number, boolean, array, object, date } from 'yup';
 import * as errMsgs from './err-msgs';
 import './custom-functions';
 
@@ -176,3 +176,7 @@ export const optionalRate = number().when('noDemos', {
   then: number().nullable(),
   otherwise: numberField,
 });
+
+export const optionalDate = date()
+  .typeError(errMsgs.DEFAULT_REQUIRED)
+  .nullable();
