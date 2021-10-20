@@ -5,21 +5,23 @@ export const Container = styled.div`
   ${setMargin};
   display: flex;
   flex-wrap: wrap;
-  /* align-items: center; */
+  align-items: center;
 `;
 
 export const Content = styled.div`
   flex: 1;
   margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Triangle = styled.div`
   width: 0;
   height: 0;
-  border-top: 51px solid transparent;
-  border-bottom: 51px solid transparent;
+  border-top: 45px solid transparent;
+  border-bottom: 45px solid transparent;
   border-left: ${({ theme, shapeColor }) =>
-    `102px solid ${
+    `90px solid ${
       shapeColor ? theme.colors[shapeColor] || shapeColor : theme.colors.neutral
     }`};
 `;

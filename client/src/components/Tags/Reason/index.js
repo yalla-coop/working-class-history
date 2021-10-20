@@ -21,7 +21,8 @@ const Reason = ({ shape, shapeColor, title, text, ...props }) => {
             color="neutral"
             weight="bold"
             ml="2"
-            style={{ display: 'inline' }}
+            mt="1"
+            style={{ display: 'inline', width: 160 }}
           >
             {title}
           </T.H4>{' '}
