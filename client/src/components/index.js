@@ -13,6 +13,7 @@ import ArticlesSection from './ArticlesSection';
 import * as Tags from './Tags';
 import MoreInformation from './MoreInformation';
 import TimelineGraphic from './TimelineGraphic';
+import Editor from './Editor';
 
 export {
   Button,
@@ -30,4 +31,5 @@ export {
   Tags,
   MoreInformation,
   TimelineGraphic,
+  Editor,
 };
