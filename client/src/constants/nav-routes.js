@@ -11,6 +11,7 @@ const GENERAL = {
   WCH_HOME: '/WCH-home',
   TAG: '/tag/:tagId/:tagName',
   ARTICLE: '/article/:id/:articleName',
+  CONTRIBUTE: '/contribute',
 };
 
 const EXTERNAL = {
