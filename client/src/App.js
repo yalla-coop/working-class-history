@@ -47,6 +47,13 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
+            <Route
+              exact
+              path={navRoutes.GENERAL.CONTRIBUTE}
+              Component={Pages.ContributePage}
+              layout="general"
+              maxWidth="1050px"
+            />
           </Switch>
         </Router>
       </ThemeProvider>
