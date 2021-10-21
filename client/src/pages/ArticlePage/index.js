@@ -10,24 +10,67 @@ import {
   TimelineGraphic,
 } from '../../components';
 
-import { getArticleData } from '../../api-calls/Article';
+import {
+  getArticleData,
+  rejectArticle,
+  approveArticle,
+} from '../../api-calls/Article';
 
 import SocialSection from './SocialSection';
 import { useParams } from 'react-router';
+import { GENERAL } from '../../constants/nav-routes';
 
 const { Col, Row } = Grid;
 const { ArticleTag, Category } = Tags;
 
 const ArticlePage = () => {
   const [data, setData] = useState({});
-  const { articleName } = useParams();
+  const [loading, setLoading] = useState(false);
+  const [pageError, setPageError] = useState('');
+  const { id } = useParams();
+  const hasAccess = true;
   useEffect(() => {
-    const articleData = getArticleData();
+    const articleData = getArticleData({ id });
     setData(articleData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const onReject = () => {
+    setLoading(true);
+    try {
+      const { data, error } = rejectArticle({ id });
+      if (error) {
+        setPageError(error.message);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log({ data });
+      }
+    } catch (error) {
+      setPageError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onApprove = () => {
+    setLoading(true);
+    try {
+      const { data, error } = approveArticle({ id });
+      if (error) {
+        setPageError(error.message);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log({ data });
+      }
+    } catch (error) {
+      setPageError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <>
-      <T.H2>{articleName}</T.H2>
+      <T.H2>{data.name || data.title || 'N/A'}</T.H2>
       <ArticleTag
         shape="square"
         shapeColor="primaryMain"
@@ -151,6 +194,44 @@ const ArticlePage = () => {
         </Col>
       </Row>
       <TimelineGraphic type="short" number={data.year} />
+      {hasAccess && (
+        <>
+          {pageError && (
+            <T.P color="error" mt="5" mb="3">
+              {pageError}
+            </T.P>
+          )}
+          <Row>
+            <Col w={[4, 4, 4]} mt="11" mtM="7">
+              <Button
+                handleClick={onReject}
+                text="Reject"
+                textColor="neutral"
+                loading={loading}
+              />
+            </Col>
+            <Col w={[4, 4, 4]} mt="11" mtM="7">
+              <Button
+                bgColor="neutral"
+                textColor="white"
+                text="Edit"
+                loading={loading}
+                to={GENERAL.CONTRIBUTE}
+                params={{ articleId: data.id, edit: true }}
+              />
+            </Col>
+            <Col w={[4, 4, 4]} mt="11" mtM="7">
+              <Button
+                handleClick={onApprove}
+                bgColor="tertiaryMain"
+                textColor="white"
+                text="Approve"
+                loading={loading}
+              />
+            </Col>
+          </Row>
+        </>
+      )}
     </>
   );
 };

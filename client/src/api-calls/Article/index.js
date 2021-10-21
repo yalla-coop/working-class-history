@@ -1,7 +1,20 @@
 import { dummyTags } from './dummy-data';
 
+export const rejectArticle = ({ id }) => {
+  return { data: `all good! article ${id} has been rejected`, error: null };
+};
+
+export const editArticle = ({ id }) => {
+  return { data: `all good! article ${id} has been rejected`, error: null };
+};
+
+export const approveArticle = ({ id }) => {
+  return { data: `all good! article ${id} has been rejected`, error: null };
+};
+
 export const getArticleData = () => {
   return {
+    id: '1',
     name: 'Haitian Revolution',
     date: '10 January 1804',
     year: '1804',
