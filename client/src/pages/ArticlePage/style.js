@@ -6,7 +6,6 @@ export const Div = styled.div``;
 export const MapSection = styled.section`
   ${setMargin};
 
-  border: 1px solid green;
   position: relative;
   width: calc(
     100% - ${({ theme }) => theme.constants.gridGutter.desktop / 2}px
