@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "cd client && npm start",
     "start": "cd client && npm start",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm build",
     "clean": "rm -rf dist && mkdir dist",
     "init": "npm i && cd client && npm i && npm run build",
     "storybook": "cd client && npm run storybook"
