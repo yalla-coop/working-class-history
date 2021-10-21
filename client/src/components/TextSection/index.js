@@ -22,7 +22,12 @@ const TextSection = ({ date, title, content, id, ...props }) => {
       >
         {content}
       </T.P>
-      <S.ReadMore to={GENERAL.ARTICLE.replace(':id', id)}>
+      <S.ReadMore
+        to={GENERAL.ARTICLE.replace(':id', id).replace(
+          ':articleName',
+          title.replace(/\s+/g, '-').toLowerCase()
+        )}
+      >
         <T.P size="small" weight="medium" underline color="neutral">
           Continue reading...
         </T.P>
