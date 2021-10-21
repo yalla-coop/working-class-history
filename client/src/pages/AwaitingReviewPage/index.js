@@ -1,3 +1,4 @@
+import { GENERAL } from '../../constants/nav-routes';
 import { Typography as T, Grid, TextSection } from '../../components';
 import { dummyData } from './dummy-data';
 
@@ -13,7 +14,12 @@ const AwaitingReviewPage = () => {
           {dummyData
             .sort((a, b) => a.date.localeCompare(b.date))
             .map((item) => (
-              <TextSection {...item} mt="7" mtM="6" />
+              <TextSection
+                {...item}
+                mt="7"
+                mtM="6"
+                to={GENERAL.PENDING_ARTICLE.replace(':articleId', item.id)}
+              />
             ))}
         </Col>
       </Row>
