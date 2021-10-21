@@ -47,6 +47,14 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
+            <Route
+              exact
+              // path={navRoutes.GENERAL.ARTICLE}
+              path="/test"
+              Component={Pages.AwaitingReviewPage}
+              layout="general"
+              maxWidth="1050px"
+            />
           </Switch>
         </Router>
       </ThemeProvider>
