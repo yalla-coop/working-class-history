@@ -47,6 +47,20 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
+            <Route
+              exact
+              path={navRoutes.GENERAL.SIGN_UP}
+              Component={Pages.SignupPage}
+              layout="general"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
+              path={navRoutes.GENERAL.LOGIN}
+              Component={Pages.LoginPage}
+              layout="general"
+              maxWidth="1050px"
+            />
           </Switch>
         </Router>
       </ThemeProvider>
