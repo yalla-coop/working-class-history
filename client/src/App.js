@@ -54,6 +54,13 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
+            <Route
+              exact
+              path={navRoutes.GENERAL.SUCCESS_EVENT_SUBMIT}
+              Component={Pages.SubmitEventPage}
+              layout="message"
+              maxWidth="1050px"
+            />
           </Switch>
         </Router>
       </ThemeProvider>
