@@ -19,12 +19,17 @@ const Button = ({
   to,
   customColor,
   children,
+  params,
   ...props
 }) => {
   const history = useHistory();
 
   const onClick = (e) => {
-    if (to) history.push(to);
+    if (to)
+      history.push({
+        pathname: to,
+        state: params,
+      });
     if (handleClick instanceof Function) handleClick(e);
   };
 
