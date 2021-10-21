@@ -1,10 +1,18 @@
+import { useState } from 'react';
+
 import { Typography as T, Grid, Tags, Button } from '../../components';
 import ContributeForm from './ContributeForm';
+import { useMediaQuery } from 'react-responsive';
+import { breakpoints } from '../../theme';
 
 const { Col, Row } = Grid;
 const { Reason } = Tags;
 
 const ContributePage = () => {
+  const [showForm, setShowForm] = useState(false);
+  const isTablet = useMediaQuery({
+    query: `(max-width: ${breakpoints.tablet})`,
+  });
   return (
     <>
       <T.H1>Want to contribute?</T.H1>
@@ -37,12 +45,31 @@ const ContributePage = () => {
         title="Reason 1: "
         text=" lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
       />
-      <Row mt="10">
-        <Col w={[4, 8, 8]}>
-          <Button text="Submit an event" textColor="neutral" />
-        </Col>
-      </Row>
-      <ContributeForm />
+      {!showForm && (
+        <Row mt="10">
+          <Col w={[4, 8, 8]}>
+            <Button
+              textColor="neutral"
+              w={isTablet ? '100%' : '470px'}
+              handleClick={() => setShowForm(true)}
+            >
+              {isTablet ? (
+                'Submit an event'
+              ) : (
+                <T.H1
+                  size="extraLarge"
+                  weight="semi"
+                  color="neutral"
+                  style={{ width: 300 }}
+                >
+                  Submit an event
+                </T.H1>
+              )}
+            </Button>
+          </Col>
+        </Row>
+      )}
+      {showForm && <ContributeForm />}
     </>
   );
 };

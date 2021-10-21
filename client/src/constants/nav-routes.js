@@ -12,6 +12,7 @@ const GENERAL = {
   TAG: '/tag/:tagId/:tagName',
   ARTICLE: '/article/:id/:articleName',
   CONTRIBUTE: '/contribute',
+  SUCCESS_EVENT_SUBMIT: '/success-submit',
 };
 
 const EXTERNAL = {

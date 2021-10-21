@@ -6,6 +6,10 @@ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  flex-direction: row;
+  ${({ theme }) => theme.media.tablet} {
+    flex-direction: column;
+  }
 `;
 
 export const Content = styled.div`
