@@ -1,6 +1,8 @@
 import axios from 'axios';
 import handleError from './format-error';
 
+import { apiData } from '../constants/index';
+
 const getRecentArticles = async ({ options }) => {
   try {
     const { data } = await axios.get(
