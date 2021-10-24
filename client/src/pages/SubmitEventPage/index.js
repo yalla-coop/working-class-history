@@ -9,7 +9,7 @@ const SubmitEventPage = () => {
         Amazing!
       </T.H1>
       <T.P mt="9" mtM="5" color="white" style={{ maxWidth: 470 }}>
-        Thanks for contributing. We’ll give your article and review. Our article
+        Thanks for contributing. we'll give your article a review. Our article
         curation is run by volunteers but we’ll do our best to email you with
         confirmation once approved.
       </T.P>

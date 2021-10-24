@@ -42,7 +42,7 @@ const ContributePage = () => {
         mt="8"
         shape="circle"
         shapeColor="tertiaryMain"
-        title="Reason 1: "
+        title="Reason 3: "
         text=" lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
       />
       {!showForm && (

@@ -15,6 +15,7 @@ const DateInput = ({ value, handleChange, error, label, ...props }) => {
       <S.DatePicker
         size="large"
         value={value}
+        format="DD/MM/YYYY"
         onChange={handleChange}
         {...props}
       />

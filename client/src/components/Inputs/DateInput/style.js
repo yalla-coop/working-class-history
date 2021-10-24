@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { DatePicker as AntDatePicker } from 'antd';
+import AntDatePicker from './DatePicker';
 
 export const DatePicker = styled(AntDatePicker)`
   width: 100%;

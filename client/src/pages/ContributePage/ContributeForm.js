@@ -73,7 +73,7 @@ const ContributeForm = () => {
       validateForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description]);
+  }, [title, description, email]);
   const validateForm = () => {
     try {
       validate({
@@ -137,7 +137,7 @@ const ContributeForm = () => {
         <Col w={[4, 8, 8]}>
           <DateInput
             label="Year, Month, Day (optional)"
-            placeholder="YY/MM/DD"
+            placeholder="DD/MM/YYYY"
             value={date}
             handleChange={(input) => setState({ date: input })}
             error={validationErrs.date}
@@ -259,7 +259,7 @@ const ContributeForm = () => {
           </T.P>
         </Col>
       </Row>
-      <Row mt="8">
+      <Row mt="6">
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Author email"
