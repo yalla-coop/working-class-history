@@ -52,6 +52,7 @@ const CategoryPage = () => {
       <TagList
         tagsList={filteredTags.length ? filteredTags : data.tags}
         mt="10"
+        mtT="5"
       />
     </>
   );
