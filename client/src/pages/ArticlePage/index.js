@@ -14,6 +14,7 @@ import { getArticleData } from '../../api-calls/Article';
 
 import SocialSection from './SocialSection';
 import { useParams } from 'react-router';
+import { GENERAL } from '../../constants/nav-routes';
 
 const { Col, Row } = Grid;
 const { ArticleTag, Category } = Tags;
@@ -146,7 +147,7 @@ const ArticlePage = () => {
             bgColor="neutral"
             textColor="primaryMain"
             text="Support us"
-            to="/support-us"
+            to={GENERAL.CONTRIBUTE}
           />
         </Col>
       </Row>
