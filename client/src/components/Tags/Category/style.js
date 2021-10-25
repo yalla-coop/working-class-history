@@ -3,6 +3,7 @@ import setMargin from '../../../helpers/set-margin';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
+  ${setMargin};
   display: flex;
   flex-direction: row;
   ${({ theme }) => theme.media.mobile} {
@@ -11,7 +12,6 @@ export const Container = styled.div`
 `;
 
 export const CategoryWrapper = styled(Link)`
-  ${setMargin};
   display: flex;
   align-items: flex-start;
 `;
