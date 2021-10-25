@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Skeleton } from 'antd';
 
 import * as S from './style';
 import {
@@ -15,27 +16,43 @@ const { Col, Row } = Grid;
 
 const LandingPage = () => {
   const [recentData, setRecentData] = useState([]);
+  const [pageError, setPageError] = useState('');
+  const [loading, setLoading] = useState(true);
+
   const getData = async () => {
     try {
-      const { data } = await getRecentArticles({});
+      setLoading(true);
+      const { error, data } = await getRecentArticles({});
       setRecentData(data.results);
+      setLoading(false);
+      if (error) {
+      }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log({ error });
+      setPageError(error.message);
     }
   };
+
   useEffect(() => {
     getData();
   }, []);
   return (
     <>
       <T.H2>Working Class History | Stories</T.H2>
+      {pageError && (
+        <T.P color="error" mt="8">
+          {pageError}
+        </T.P>
+      )}
       <T.H3 mt="9">Latest</T.H3>
       <Row jc="space-between">
         <Col w={[4, 5, 5]}>
-          {recentData.slice(0, 3).map((item) => (
-            <TextSection {...item} mt="9" mtM="8" />
-          ))}
+          {loading
+            ? Array.from([{ id: 1 }, { id: 2 }, { id: 3 }]).map((item) => (
+                <Skeleton key={item.id} loading={loading} active></Skeleton>
+              ))
+            : recentData
+                .slice(0, 3)
+                .map((item) => <TextSection {...item} mt="9" mtM="8" />)}
         </Col>
         <Col w={[4, 6, 6]} mt="6" mtM="9">
           <Image image="latest" />
@@ -63,15 +80,25 @@ const LandingPage = () => {
           <Image image="map" width="100%" />
         </S.MapWrapper>
       </S.MapSection>
-      <ArticlesSection articles={recentData.slice(3, 8)} />
+      {loading ? (
+        Array.from([{ id: 1 }, { id: 2 }, { id: 3 }]).map((item) => (
+          <Skeleton key={item.id} loading={loading} active></Skeleton>
+        ))
+      ) : (
+        <ArticlesSection articles={recentData.slice(3, 8)} />
+      )}
       <Row jc="space-between">
         <Col w={[4, 6, 6]} mt="6" mtM="8">
           <Image image="haitianRevolution" />
         </Col>
         <Col w={[4, 5, 5]}>
-          {recentData.slice(8).map((item) => (
-            <TextSection {...item} mt="9" mtM="8" />
-          ))}
+          {loading
+            ? Array.from([{ id: 1 }, { id: 2 }, { id: 3 }]).map((item) => (
+                <Skeleton key={item.id} loading={loading} active></Skeleton>
+              ))
+            : recentData
+                .slice(8)
+                .map((item) => <TextSection {...item} mt="9" mtM="8" />)}
         </Col>
       </Row>
     </>
