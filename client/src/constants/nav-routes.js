@@ -12,6 +12,7 @@ const GENERAL = {
   ARTICLE: '/article/:id/:articleName',
   CONTRIBUTE: '/contribute',
   SUCCESS_EVENT_SUBMIT: '/success-submit',
+  CATEGORY: '/category/:categoryName',
 };
 
 const EXTERNAL = {
