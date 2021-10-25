@@ -1,5 +1,4 @@
 import { ThemeProvider } from '@emotion/react';
-import axios from 'axios';
 import { Global } from '@emotion/react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import theme, { globalStyle } from './theme';
@@ -11,10 +10,6 @@ import { ScrollToTop } from './helpers';
 import 'antd/dist/antd.css';
 
 function App() {
-  axios.defaults.baseURL = `https://api.baserow.io/api`;
-  axios.defaults.headers.common[
-    'Authorization'
-  ] = `Token ${process.env.REACT_APP_BASEROW_TOKEN}`;
   return (
     <div className="app">
       <Global styles={globalStyle} />
