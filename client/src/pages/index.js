@@ -7,6 +7,7 @@ import IndexPage from './IndexPage';
 import CategoryPage from './CategoryPage';
 import SignupPage from './SignupPage';
 import LoginPage from './LoginPage';
+import SuccessSignupPage from './SuccessSignupPage';
 
 export {
   LandingPage,
@@ -18,4 +19,5 @@ export {
   CategoryPage,
   SignupPage,
   LoginPage,
+  SuccessSignupPage,
 };

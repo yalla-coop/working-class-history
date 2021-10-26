@@ -91,6 +91,13 @@ function App() {
               layout="message"
               maxWidth="1050px"
             />
+            <Route
+              exact
+              path={navRoutes.GENERAL.SUCCESS_SIGN_UP}
+              Component={Pages.SuccessSignupPage}
+              layout="message"
+              maxWidth="1050px"
+            />
           </Switch>
         </Router>
       </ThemeProvider>
