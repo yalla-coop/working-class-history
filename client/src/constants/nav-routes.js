@@ -6,11 +6,12 @@ const GENERAL = {
   MAP: '/map',
   PODCAST: '/podcast',
   SIGN_UP: '/signup',
-  SUPPORT_US: '/support-us',
   SHOP: '/shop',
   WCH_HOME: '/WCH-home',
   TAG: '/tag/:tagId/:tagName',
   ARTICLE: '/article/:id/:articleName',
+  CONTRIBUTE: '/contribute',
+  SUCCESS_EVENT_SUBMIT: '/success-submit',
   CATEGORY: '/category/:categoryName',
 };
 

@@ -17,15 +17,9 @@ const Reason = ({ shape, shapeColor, title, text, ...props }) => {
       <S.Container {...props}>
         <Shape shape={shape} shapeColor={shapeColor} />
         <S.Content>
-          <T.H4
-            color="neutral"
-            weight="bold"
-            ml="2"
-            style={{ display: 'inline' }}
-          >
-            {title}
-          </T.H4>{' '}
-          <T.P style={{ display: 'inline' }}>{text}</T.P>
+          <T.P>
+            <span style={{ fontWeight: 'bold' }}> {title}</span> {text}
+          </T.P>
         </S.Content>
       </S.Container>
     </>

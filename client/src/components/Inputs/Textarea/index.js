@@ -30,7 +30,7 @@ const Textarea = ({
     <CS.Field w={w} disabled={disabled} {...m}>
       {label && (
         <CS.Label htmlFor={label}>
-          <T.H4 color={color} m="0" ml="20px" mb="2">
+          <T.H4 color={error ? 'error' : 'neutral'} m="0" ml="20px" mb="2">
             {label}
           </T.H4>
         </CS.Label>
