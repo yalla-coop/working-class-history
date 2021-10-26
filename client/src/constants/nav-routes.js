@@ -6,7 +6,6 @@ const GENERAL = {
   MAP: '/map',
   PODCAST: '/podcast',
   SIGN_UP: '/signup',
-  SUPPORT_US: '/support-us',
   SHOP: '/shop',
   WCH_HOME: '/WCH-home',
   TAG: '/tag/:tagId/:tagName',
@@ -14,6 +13,9 @@ const GENERAL = {
   SUCCESS_SIGN_UP: '/success-signup',
   LOGIN: '/login',
   AWAITING_REVIEW: '/awaiting-review',
+  CONTRIBUTE: '/contribute',
+  SUCCESS_EVENT_SUBMIT: '/success-submit',
+  CATEGORY: '/category/:categoryName',
 };
 
 const EXTERNAL = {
