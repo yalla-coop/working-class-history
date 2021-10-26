@@ -37,47 +37,45 @@ const TagPage = () => {
 
   const { tagName, tagId } = useParams();
 
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const { error, data } = await Tag.getTagById({ id: tagId });
-      setTagData(data);
-      setLoading(false);
-      if (error) {
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const { error, data } = await Tag.getTagById({ id: tagId });
+        setTagData(data);
+        setLoading(false);
+        if (error) {
+          setPageError(error.message);
+        }
+      } catch (error) {
         setPageError(error.message);
       }
-    } catch (error) {
-      setPageError(error.message);
-    }
-  };
-
-  const getArticlesData = async () => {
-    try {
-      setLoading(true);
-      const { error, data } = await Article.getAllArticles({});
-      const filteredArticles = data.results.filter((art) =>
-        tagData.articles.find((t) => t.id === Number(art.id))
-      );
-      setArticles(filteredArticles);
-      setLoading(false);
-      if (error) {
-      }
-    } catch (error) {
-      setPageError(error.message);
-    }
-  };
-
-  useEffect(() => {
+    };
     getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [tagId]);
 
   useEffect(() => {
+    const getArticlesData = async () => {
+      try {
+        setLoading(true);
+        const { error, data } = await Article.getAllArticles({});
+        const filteredArticles = data.results.filter((art) =>
+          tagData.articles.find((t) => t.id === Number(art.id))
+        );
+        setArticles(filteredArticles);
+        setLoading(false);
+        if (error) {
+          setPageError(error.message);
+        }
+      } catch (error) {
+        setPageError(error.message);
+      }
+    };
+
     if (tagData.id) {
       getArticlesData();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tagData?.id]);
+  }, [tagData.articles, tagData.id]);
 
   return (
     <>
@@ -104,7 +102,7 @@ const TagPage = () => {
         </Col>
         <Skeleton key="skeleton" loading={loading} active></Skeleton>
 
-        {articles && articles.length && !loading ? (
+        {articles?.length && !loading ? (
           articles.slice(0, 5).map((item, i) => (
             <Col
               key={item.id}
@@ -119,10 +117,8 @@ const TagPage = () => {
           <Skeleton key="skeleton" loading={loading} active></Skeleton>
         )}
       </Row>
-      {articles && articles.length && (
-        <Articles articles={articles.slice(5, showItems)} />
-      )}
-      {articles && articles.length && articles.length > showItems && (
+      {articles?.length && <Articles articles={articles.slice(5, showItems)} />}
+      {articles.length > showItems && (
         <S.LoadMore onClick={() => setShowItems((old) => old + 6)}>
           <T.P underline>Load more...</T.P>
         </S.LoadMore>
