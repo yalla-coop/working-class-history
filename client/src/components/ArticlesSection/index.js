@@ -14,7 +14,7 @@ const ArticlesSection = ({ articles }) => {
       </Row>
       <S.ShapesWrapper>
         <S.Block top="35%" color="primaryMain" />
-        <S.Block top="65%" color="tertiaryMain" />
+        {articles.length > 3 && <S.Block top="65%" color="tertiaryMain" />}
       </S.ShapesWrapper>
     </S.Wrapper>
   );

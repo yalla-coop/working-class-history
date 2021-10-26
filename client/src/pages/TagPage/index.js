@@ -16,12 +16,13 @@ import * as Article from '../../api-calls/Article';
 const { Col, Row } = Grid;
 
 const Articles = ({ articles }) => {
-  const artLength = articles.length % 6;
+  const artLength = Math.ceil(articles.length / 6);
   const artSections = [];
   for (let i = 0; i < artLength; i++) {
     let items = articles.slice(i * 6, i * 6 + 6);
     artSections.push(items);
   }
+
   return artSections.map(
     (item) => !!item.length && <ArticlesSection articles={item} />
   );
