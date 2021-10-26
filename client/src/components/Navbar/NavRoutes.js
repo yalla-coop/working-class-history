@@ -56,7 +56,7 @@ const Routes = ({ setOpen }) => {
           </T.P>
         </S.MenuLink>
         <S.MenuLink
-          to={GENERAL['SUPPORT_US']}
+          to={GENERAL['CONTRIBUTE']}
           onClick={() => handleClick(setOpen)}
         >
           <T.P weight="regular" color="neutral">

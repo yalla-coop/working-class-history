@@ -189,7 +189,7 @@ const ArticlePage = () => {
             bgColor="neutral"
             textColor="primaryMain"
             text="Support us"
-            to="/support-us"
+            to={GENERAL.CONTRIBUTE}
           />
         </Col>
       </Row>

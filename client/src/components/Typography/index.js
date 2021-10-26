@@ -13,7 +13,7 @@ const weights = {
 };
 
 const bodyTextSizes = {
-  extraLarge: '120px !important',
+  extraLarge: '50px !important',
   large: '28px !important',
   medLarge: '24px !important',
   med: '20px !important',

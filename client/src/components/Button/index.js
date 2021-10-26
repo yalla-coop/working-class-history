@@ -18,6 +18,7 @@ const Button = ({
   disabled,
   to,
   customColor,
+  textColor,
   children,
   params,
   ...props
@@ -40,6 +41,7 @@ const Button = ({
       disabled={disabled}
       isLoading={loading}
       onClick={onClick}
+      textColor={textColor}
       {...props}
     >
       {children ? (

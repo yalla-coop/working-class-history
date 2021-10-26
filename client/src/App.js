@@ -42,11 +42,26 @@ function App() {
             />
             <Route
               exact
+              path={navRoutes.GENERAL.INDEX}
+              Component={Pages.IndexPage}
+              layout="general"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
+              path={navRoutes.GENERAL.CATEGORY}
+              Component={Pages.CategoryPage}
+              layout="general"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
               path={navRoutes.GENERAL.ARTICLE}
               Component={Pages.ArticlePage}
               layout="general"
               maxWidth="1050px"
             />
+
             <Route
               exact
               path={navRoutes.ADMIN.AWAITING_REVIEW}
@@ -56,9 +71,25 @@ function App() {
             />
             <Route
               exact
+              path={navRoutes.GENERAL.CONTRIBUTE}
+              Component={Pages.ContributePage}
+              layout="general"
+              maxWidth="1050px"
+            />
+
+            <Route
+              exact
               path={navRoutes.ADMIN.PENDING_ARTICLE}
               Component={Pages.ArticlePage}
               layout="general"
+              maxWidth="1050px"
+            />
+
+            <Route
+              exact
+              path={navRoutes.GENERAL.SUCCESS_EVENT_SUBMIT}
+              Component={Pages.SubmitEventPage}
+              layout="message"
               maxWidth="1050px"
             />
           </Switch>
