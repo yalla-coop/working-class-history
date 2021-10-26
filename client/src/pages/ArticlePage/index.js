@@ -142,9 +142,8 @@ const ArticlePage = () => {
             mt="5"
           />
           <ArticleTag
-            shape="Last edited"
             shapeColor="primaryMain"
-            label="Date"
+            label="Last edited"
             value={data?.created_at || 'N/A'}
             mt="5"
           />
