@@ -49,15 +49,14 @@ function App() {
             />
             <Route
               exact
-              // path={navRoutes.GENERAL.ARTICLE}
-              path="/test"
+              path={navRoutes.ADMIN.AWAITING_REVIEW}
               Component={Pages.AwaitingReviewPage}
               layout="general"
               maxWidth="1050px"
             />
             <Route
               exact
-              path={navRoutes.GENERAL.PENDING_ARTICLE}
+              path={navRoutes.ADMIN.PENDING_ARTICLE}
               Component={Pages.ArticlePage}
               layout="general"
               maxWidth="1050px"

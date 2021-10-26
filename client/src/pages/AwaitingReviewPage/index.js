@@ -1,4 +1,4 @@
-import { GENERAL } from '../../constants/nav-routes';
+import { ADMIN } from '../../constants/nav-routes';
 import { Typography as T, Grid, TextSection } from '../../components';
 import { dummyData } from './dummy-data';
 
@@ -18,7 +18,7 @@ const AwaitingReviewPage = () => {
                 {...item}
                 mt="7"
                 mtM="6"
-                to={GENERAL.PENDING_ARTICLE.replace(':articleId', item.id)}
+                to={ADMIN.PENDING_ARTICLE.replace(':articleId', item.id)}
               />
             ))}
         </Col>

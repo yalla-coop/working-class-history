@@ -11,7 +11,14 @@ const GENERAL = {
   WCH_HOME: '/WCH-home',
   TAG: '/tag/:tagId/:tagName',
   ARTICLE: '/article/:id/:articleName',
-  PENDING_ARTICLE: '/edit/:articleId',
+};
+
+const admin = '/admin';
+const ADMIN = {
+  AWAITING_REVIEW: `${admin}/awaiting-review`,
+  PENDING_ARTICLE: `${admin}/edit/:articleId`,
+  REJECTED: `${admin}/rejected`,
+  APPROVED: `${admin}/approved`,
 };
 
 const EXTERNAL = {
@@ -25,4 +32,4 @@ const EXTERNAL = {
   YOUTUBE: 'https://www.youtube.com/c/workingclasshistory',
 };
 
-export { GENERAL, EXTERNAL };
+export { GENERAL, EXTERNAL, ADMIN };
