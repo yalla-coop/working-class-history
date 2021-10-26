@@ -11,7 +11,7 @@ import {
   ArticlesSection,
 } from '../../components';
 import { GENERAL } from '../../constants/nav-routes';
-import { getRecentArticles } from '../../api-calls/content';
+import * as Article from '../../api-calls/Article';
 const { Col, Row } = Grid;
 
 const LandingPage = () => {
@@ -22,7 +22,7 @@ const LandingPage = () => {
   const getData = async () => {
     try {
       setLoading(true);
-      const { error, data } = await getRecentArticles({});
+      const { error, data } = await Article.getRecentArticles({});
       setRecentData(data.results);
       setLoading(false);
       if (error) {
@@ -52,7 +52,9 @@ const LandingPage = () => {
               ))
             : recentData
                 .slice(0, 3)
-                .map((item) => <TextSection {...item} mt="9" mtM="8" />)}
+                .map((item) => (
+                  <TextSection key={item.id} {...item} mt="9" mtM="8" />
+                ))}
         </Col>
         <Col w={[4, 6, 6]} mt="6" mtM="9">
           <Image image="latest" />
@@ -98,7 +100,9 @@ const LandingPage = () => {
               ))
             : recentData
                 .slice(8)
-                .map((item) => <TextSection {...item} mt="9" mtM="8" />)}
+                .map((item) => (
+                  <TextSection key={item.id} {...item} mt="9" mtM="8" />
+                ))}
         </Col>
       </Row>
     </>

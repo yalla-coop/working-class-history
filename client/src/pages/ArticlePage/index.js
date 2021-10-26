@@ -11,7 +11,8 @@ import {
 } from '../../components';
 import { Skeleton } from 'antd';
 
-import { getArticleById, getTags } from '../../api-calls/content';
+import * as Article from '../../api-calls/Article';
+import * as Tag from '../../api-calls/Tag';
 
 import SocialSection from './SocialSection';
 import { useParams } from 'react-router';
@@ -21,7 +22,7 @@ const { Col, Row } = Grid;
 const { ArticleTag, Category } = Tags;
 
 const filterTags = (relatedTags, allTags, category) => {
-  if (relatedTags && relatedTags.length && allTags && allTags.length) {
+  if (relatedTags?.length && allTags?.length) {
     const _relatedTags = relatedTags?.map((item) => item.id) || [];
     return allTags.filter(
       (item) =>
@@ -42,7 +43,7 @@ const ArticlePage = () => {
   const getData = async () => {
     try {
       setLoading(true);
-      const { error, data } = await getArticleById({ id });
+      const { error, data } = await Article.getArticleById({ id });
       setData(data);
       setLoading(false);
       if (error) {
@@ -55,7 +56,7 @@ const ArticlePage = () => {
   const getAllTags = async () => {
     try {
       setLoading(true);
-      const { error, data } = await getTags();
+      const { error, data } = await Tag.getTags();
       setTags(data.results);
       setLoading(false);
       if (error) {
@@ -101,7 +102,6 @@ const ArticlePage = () => {
             <Row mt="9">
               <Col w={[4, 10, 10]}>
                 <T.P>{data?.description}</T.P>
-                {/* <T.P mt="5">{data.articleContent1}</T.P> */}
               </Col>
             </Row>
           </S.ArticleContent>
@@ -156,7 +156,7 @@ const ArticlePage = () => {
                 size="small"
                 title="People"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'people')}
-                relatedTags={filterTags(data.articles_to_tags, tags, 'person')}
+                relatedTags={filterTags(data.tags, tags, 'person')}
               />
             </Col>
             <Col w={[4, 12, 6]} mt="6">
@@ -166,11 +166,7 @@ const ArticlePage = () => {
                 size="small"
                 title="City/Area"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'area')}
-                relatedTags={filterTags(
-                  data.articles_to_tags,
-                  tags,
-                  'city_area'
-                )}
+                relatedTags={filterTags(data.tags, tags, 'city_area')}
               />
             </Col>
             <Col w={[4, 12, 6]} mt="6">
@@ -180,7 +176,7 @@ const ArticlePage = () => {
                 size="small"
                 title="Topic"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'topic')}
-                relatedTags={filterTags(data.articles_to_tags, tags, 'topic')}
+                relatedTags={filterTags(data.tags, tags, 'topic')}
               />
             </Col>
             <Col w={[4, 12, 6]} mt="6">
@@ -190,7 +186,7 @@ const ArticlePage = () => {
                 size="small"
                 title="Country"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'country')}
-                relatedTags={filterTags(data.articles_to_tags, tags, 'country')}
+                relatedTags={filterTags(data.tags, tags, 'country')}
               />
             </Col>
             <Col w={[4, 12, 6]} mt="6">
@@ -200,11 +196,7 @@ const ArticlePage = () => {
                 shapeColor="neutral"
                 title="Organisation"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'organisation')}
-                relatedTags={filterTags(
-                  data.articles_to_tags,
-                  tags,
-                  'organisation'
-                )}
+                relatedTags={filterTags(data.tags, tags, 'organisation')}
               />
             </Col>
           </Row>

@@ -10,7 +10,8 @@ import {
 import * as S from './style';
 import { Skeleton } from 'antd';
 
-import { getTagById, getAllArticles } from '../../api-calls/content';
+import * as Tag from '../../api-calls/Tag';
+import * as Article from '../../api-calls/Article';
 
 const { Col, Row } = Grid;
 
@@ -39,7 +40,7 @@ const TagPage = () => {
   const getData = async () => {
     try {
       setLoading(true);
-      const { error, data } = await getTagById({ id: tagId });
+      const { error, data } = await Tag.getTagById({ id: tagId });
       setTagData(data);
       setLoading(false);
       if (error) {
@@ -53,9 +54,9 @@ const TagPage = () => {
   const getArticlesData = async () => {
     try {
       setLoading(true);
-      const { error, data } = await getAllArticles({});
+      const { error, data } = await Article.getAllArticles({});
       const filteredArticles = data.results.filter((art) =>
-        art.articles_to_tags.find((t) => t.id === Number(tagId))
+        tagData.articles.find((t) => t.id === Number(art.id))
       );
       setArticles(filteredArticles);
       setLoading(false);
@@ -68,9 +69,15 @@ const TagPage = () => {
 
   useEffect(() => {
     getData();
-    getArticlesData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (tagData.id) {
+      getArticlesData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tagData?.id]);
 
   return (
     <>
@@ -82,22 +89,30 @@ const TagPage = () => {
       )}
       <Row>
         <Col w={[4, 6, 6]} mt="8">
-          <Card bgColor="tertiaryMain">
-            <T.H4 color="white">
-              {tagData.subtitle || 'Description of the tag here'}
-            </T.H4>
-            <T.P color="white" weight="light" mt="3">
-              {tagData.description ||
-                'In December 1925, a three-day general strike broke out in Arequipa, Peru, against "Conscripción Vial": forced conscription to road building for anyone who could not afford to pay a fee to get out of it...'}
-            </T.P>
+          <Card bgColor="tertiaryMain" style={{ width: '100%' }}>
+            {tagData.subtitle ? (
+              <>
+                <T.H4 color="white">{tagData.subtitle}</T.H4>
+                <T.P color="white" weight="light" mt="3">
+                  {tagData.description}
+                </T.P>
+              </>
+            ) : (
+              <Skeleton key="subtitle" loading={loading} active></Skeleton>
+            )}
           </Card>
         </Col>
         <Skeleton key="skeleton" loading={loading} active></Skeleton>
 
         {articles && articles.length && !loading ? (
           articles.slice(0, 5).map((item, i) => (
-            <Col w={[4, 6, 6]} mt="8" jc={i % 2 ? 'flex-start' : 'flex-end'}>
-              <TextSection key={item.id} {...item} />
+            <Col
+              key={item.id}
+              w={[4, 6, 6]}
+              mt="8"
+              jc={i % 2 ? 'flex-start' : 'flex-end'}
+            >
+              <TextSection {...item} />
             </Col>
           ))
         ) : (
