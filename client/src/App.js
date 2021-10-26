@@ -92,6 +92,20 @@ function App() {
               layout="message"
               maxWidth="1050px"
             />
+            <Route
+              exact
+              path={navRoutes.ADMIN.APPROVED}
+              Component={Pages.ApprovedPage}
+              layout="message"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
+              path={navRoutes.ADMIN.REJECTED}
+              Component={Pages.RejectedPage}
+              layout="message"
+              maxWidth="1050px"
+            />
           </Switch>
         </Router>
       </ThemeProvider>

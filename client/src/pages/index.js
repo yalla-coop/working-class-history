@@ -6,6 +6,8 @@ import SubmitEventPage from './SubmitEventPage';
 import IndexPage from './IndexPage';
 import CategoryPage from './CategoryPage';
 import AwaitingReviewPage from './AwaitingReviewPage';
+import ApprovedPage from './ApprovePage';
+import RejectedPage from './RejectedPage';
 
 export {
   LandingPage,
@@ -16,4 +18,6 @@ export {
   IndexPage,
   CategoryPage,
   AwaitingReviewPage,
+  ApprovedPage,
+  RejectedPage,
 };

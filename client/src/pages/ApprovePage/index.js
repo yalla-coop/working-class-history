@@ -2,16 +2,15 @@ import * as S from './style';
 import { Typography as T } from '../../components';
 import { GENERAL } from '../../constants/nav-routes';
 
-const SubmitEventPage = () => {
+const ApprovePage = () => {
   return (
     <S.Wrapper>
       <T.H1 mt="0" mtM="6" color="white">
-        Amazing!
+        Approved!
       </T.H1>
-      <T.P mt="9" mtM="5" color="white" style={{ maxWidth: 470 }}>
-        Thanks for contributing. we'll give your article a review. Our article
-        curation is run by volunteers but we’ll do our best to email you with
-        confirmation once approved.
+      <T.P mt="7" mtM="5" color="white" style={{ maxWidth: 470 }}>
+        Admin have been notified and will put it live shortly. Thank you for
+        again for contributing to this project!
       </T.P>
       <S.ButtonWrapper>
         <S.StyledButton bgColor="neutral" to={GENERAL.LandingPage}>
@@ -39,4 +38,4 @@ const SubmitEventPage = () => {
   );
 };
 
-export default SubmitEventPage;
+export default ApprovePage;

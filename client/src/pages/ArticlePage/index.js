@@ -17,8 +17,8 @@ import {
 } from '../../api-calls/Article';
 
 import SocialSection from './SocialSection';
-import { useParams } from 'react-router';
-import { GENERAL } from '../../constants/nav-routes';
+import { useHistory, useParams } from 'react-router';
+import { ADMIN, GENERAL } from '../../constants/nav-routes';
 
 const { Col, Row } = Grid;
 const { ArticleTag, Category } = Tags;
@@ -28,7 +28,11 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState(false);
   const [pageError, setPageError] = useState('');
   const { id } = useParams();
+  const history = useHistory();
+
+  // change this when connecting to the backend
   const hasAccess = true;
+
   useEffect(() => {
     const articleData = getArticleData({ id });
     setData(articleData);
@@ -44,6 +48,7 @@ const ArticlePage = () => {
       } else {
         // eslint-disable-next-line no-console
         console.log({ data });
+        history.push(ADMIN.REJECTED);
       }
     } catch (error) {
       setPageError(error.message);
@@ -61,6 +66,7 @@ const ArticlePage = () => {
       } else {
         // eslint-disable-next-line no-console
         console.log({ data });
+        history.push(ADMIN.APPROVED);
       }
     } catch (error) {
       setPageError(error.message);
