@@ -16,7 +16,8 @@ export const getArticleData = () => {
   return {
     id: '1',
     name: 'Haitian Revolution',
-    date: '10 January 1804',
+    created_at: '2021-10-22T12:08:55.558Z',
+    date: '1804-01-10T12:08:55.558Z',
     year: '1804',
     image: 'haitianRevolution2',
     imageDescription: 'Contemporary depiction of the revolution',

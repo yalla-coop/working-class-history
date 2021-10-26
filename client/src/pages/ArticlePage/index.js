@@ -219,11 +219,10 @@ const ArticlePage = () => {
             <Col w={[4, 4, 4]} mt="11" mtM="7">
               <Button
                 bgColor="neutral"
+                to={ADMIN.EDIT_ARTICLE.replace(':articleId', data.id)}
                 textColor="white"
                 text="Edit"
                 loading={loading}
-                to={GENERAL.CONTRIBUTE}
-                params={{ articleId: data.id, edit: true }}
               />
             </Col>
             <Col w={[4, 4, 4]} mt="11" mtM="7">

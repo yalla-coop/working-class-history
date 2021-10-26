@@ -8,6 +8,7 @@ import CategoryPage from './CategoryPage';
 import AwaitingReviewPage from './AwaitingReviewPage';
 import ApprovedPage from './ApprovePage';
 import RejectedPage from './RejectedPage';
+import EditEventPage from './EditEventPage';
 
 export {
   LandingPage,
@@ -20,4 +21,5 @@ export {
   AwaitingReviewPage,
   ApprovedPage,
   RejectedPage,
+  EditEventPage,
 };

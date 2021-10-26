@@ -87,6 +87,14 @@ function App() {
 
             <Route
               exact
+              path={navRoutes.ADMIN.EDIT_ARTICLE}
+              Component={Pages.EditEventPage}
+              layout="general"
+              maxWidth="1050px"
+            />
+
+            <Route
+              exact
               path={navRoutes.GENERAL.SUCCESS_EVENT_SUBMIT}
               Component={Pages.SubmitEventPage}
               layout="message"
