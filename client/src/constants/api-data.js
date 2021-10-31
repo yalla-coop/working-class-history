@@ -6,4 +6,12 @@ const TABLES = {
   translations: 33219,
 };
 
-export { TABLES };
+const CATEGORIES = {
+  person: 17946,
+  organisation: 17947,
+  city_area: 17948,
+  country: 17949,
+  topic: 17950,
+};
+
+export { TABLES, CATEGORIES };

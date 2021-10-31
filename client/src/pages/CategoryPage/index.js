@@ -1,28 +1,68 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Skeleton } from 'antd';
+
 import { Typography as T, Grid, Inputs, Tags } from '../../components';
-import { getCategoryData } from '../../api-calls/Category';
+
+import * as Tag from '../../api-calls/Tag';
+import { CATEGORIES } from '../../constants/api-data';
 
 const { Col, Row } = Grid;
 const { TagList } = Tags;
 const { BasicInput } = Inputs;
 
+const decideCategory = (type) => {
+  switch (type) {
+    case 'organisation':
+      return CATEGORIES.organisation;
+    case 'people':
+      return CATEGORIES.person;
+    case 'area':
+      return CATEGORIES.city_area;
+    case 'country':
+      return CATEGORIES.country;
+    case 'topic':
+      return CATEGORIES.topic;
+
+    default:
+      return CATEGORIES.organisation;
+  }
+};
+
 const CategoryPage = () => {
-  const [data, setData] = useState({});
+  const [tags, setTags] = useState([]);
+
   const [filteredTags, setFilteredTags] = useState([]);
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [pageError, setPageError] = useState('');
+
   const { categoryName } = useParams();
 
   useEffect(() => {
-    let categoryData = getCategoryData();
-    setData(categoryData);
+    const getAllTags = async () => {
+      try {
+        setLoading(true);
+        const { error, data } = await Tag.getTagsByCategory({
+          category: decideCategory(categoryName),
+        });
+        setTags(data.results);
+        setLoading(false);
+        if (error) {
+        }
+      } catch (error) {
+        setPageError(error.message);
+      }
+    };
+    getAllTags();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (value) => {
     const filteredData =
-      data.tags &&
-      data.tags.filter((tag) =>
-        tag.label.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+      tags &&
+      tags.filter((tag) =>
+        tag.Title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
       );
     setSearch(value);
     setFilteredTags(filteredData);
@@ -31,6 +71,11 @@ const CategoryPage = () => {
   return (
     <>
       <T.H1>{categoryName}</T.H1>
+      {pageError && (
+        <T.P color="error" mt="8">
+          {pageError}
+        </T.P>
+      )}
       <Row>
         <Col w={[4, 12, 8]}>
           <T.P mt="6" color="neutral">
@@ -49,11 +94,19 @@ const CategoryPage = () => {
           />
         </Col>
       </Row>
-      <TagList
-        tagsList={filteredTags.length ? filteredTags : data.tags}
-        mt="10"
-        mtT="5"
-      />
+      {loading ? (
+        <Row mt="10" mtT="5">
+          <Col w={[4, 12, 12]}>
+            <Skeleton key="skeleton" loading={loading} active></Skeleton>
+          </Col>
+        </Row>
+      ) : (
+        <TagList
+          tagsList={filteredTags.length ? filteredTags : tags}
+          mt="10"
+          mtT="5"
+        />
+      )}
     </>
   );
 };

@@ -36,7 +36,7 @@ const ArticlePage = () => {
   const [data, setData] = useState({});
   const [tags, setTags] = useState([]);
   const [pageError, setPageError] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const { articleName, id } = useParams();
 
