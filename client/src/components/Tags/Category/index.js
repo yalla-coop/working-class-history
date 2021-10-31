@@ -1,5 +1,6 @@
 import * as S from './style';
 import * as T from '../../Typography';
+import { GENERAL } from '../../../constants/nav-routes';
 
 const Shape = ({ shape, shapeColor, size }) => {
   if (shape === 'circle') {
@@ -34,8 +35,14 @@ const Category = ({
       {relatedTags && (
         <S.TagsWrapper>
           {relatedTags.map((tag) => (
-            <S.TagLink key={tag.to} to={tag.to}>
-              <T.P ml="3">{tag.title}</T.P>
+            <S.TagLink
+              key={tag.id}
+              to={GENERAL.TAG.replace(':tagId', tag.id).replace(
+                ':tagName',
+                tag.Title.replace(/\s+/g, '-').toLowerCase()
+              )}
+            >
+              <T.P ml="3">{tag.Title}</T.P>
             </S.TagLink>
           ))}
         </S.TagsWrapper>

@@ -24,6 +24,9 @@ const EXTERNAL = {
   TUMBLER: 'https://workingclasshistory.tumblr.com/',
   MASTODON: 'https://mastodon.social/@workingclasshistory',
   YOUTUBE: 'https://www.youtube.com/c/workingclasshistory',
+  SHOP: 'https://shop.workingclasshistory.com/',
+  PODCAST: 'https://workingclasshistory.com/podcast/',
+  WCH_HOME: 'https://workingclasshistory.com/',
 };
 
 export { GENERAL, EXTERNAL };

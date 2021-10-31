@@ -25,4 +25,7 @@ export const NumberContainer = styled(T.H0)`
   position: fixed;
   top: 104px;
   z-index: -1;
+  font-size: 120px !important;
+  font-family: 'Zilla Slab', serif;
+  position: fixed;
 `;

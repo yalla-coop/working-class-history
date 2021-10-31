@@ -1,4 +1,4 @@
-import { GENERAL } from '../../constants/nav-routes';
+import { GENERAL, EXTERNAL } from '../../constants/nav-routes';
 
 import * as S from './style';
 import * as T from '../Typography';
@@ -18,15 +18,12 @@ const Routes = ({ setOpen }) => {
       </T.H4>
 
       <S.Div>
-        <S.MenuLink
-          to={GENERAL['STORIES']}
-          onClick={() => handleClick(setOpen)}
-        >
+        <S.MenuLink to={GENERAL.STORIES} onClick={() => handleClick(setOpen)}>
           <T.P weight="regular" color="neutral">
             Stories Home
           </T.P>
         </S.MenuLink>
-        <S.MenuLink to={GENERAL['INDEX']} onClick={() => handleClick(setOpen)}>
+        <S.MenuLink to={GENERAL.INDEX} onClick={() => handleClick(setOpen)}>
           <T.P weight="regular" color="neutral">
             Index
           </T.P>
@@ -40,36 +37,39 @@ const Routes = ({ setOpen }) => {
           </T.P>
         </S.MenuHashLink>
         <S.MenuLink
-          to={GENERAL['PODCAST']}
+          to={{ pathname: EXTERNAL.PODCAST }}
+          target="_blank"
           onClick={() => handleClick(setOpen)}
         >
           <T.P weight="regular" color="neutral">
             Podcast
           </T.P>
         </S.MenuLink>
-        <S.MenuLink
-          to={GENERAL['SIGN_UP']}
-          onClick={() => handleClick(setOpen)}
-        >
+        <S.MenuLink to={GENERAL.SIGN_UP} onClick={() => handleClick(setOpen)}>
           <T.P weight="regular" color="neutral">
             Sign Up
           </T.P>
         </S.MenuLink>
         <S.MenuLink
-          to={GENERAL['CONTRIBUTE']}
+          to={GENERAL.CONTRIBUTE}
           onClick={() => handleClick(setOpen)}
         >
           <T.P weight="regular" color="neutral">
             Support Us
           </T.P>
         </S.MenuLink>
-        <S.MenuLink to={GENERAL['SHOP']} onClick={() => handleClick(setOpen)}>
+        <S.MenuLink
+          to={{ pathname: EXTERNAL.SHOP }}
+          target="_blank"
+          onClick={() => handleClick(setOpen)}
+        >
           <T.P weight="regular" color="neutral">
             Shop
           </T.P>
         </S.MenuLink>
         <S.MenuLink
-          to={GENERAL['WCH_HOME']}
+          to={{ pathname: EXTERNAL.WCH_HOME }}
+          target="_blank"
           onClick={() => handleClick(setOpen)}
         >
           <T.P weight="regular" color="neutral">

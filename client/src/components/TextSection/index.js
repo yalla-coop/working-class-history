@@ -2,11 +2,20 @@ import { GENERAL } from '../../constants/nav-routes';
 import * as T from '../Typography';
 import * as S from './style';
 
-const TextSection = ({ date, title, content, id, ...props }) => {
+const TextSection = ({
+  date,
+  created_at,
+  title,
+  content,
+  description,
+  id,
+  to,
+  ...props
+}) => {
   return (
     <S.Wrapper {...props}>
       <T.P size="small" weight="medium" color="neutral">
-        {date}
+        {date || created_at}
       </T.P>
       <T.H4 mt="4" mb="4" color="neutral">
         {title}
@@ -20,9 +29,17 @@ const TextSection = ({ date, title, content, id, ...props }) => {
           symbol: ' ',
         }}
       >
-        {content}
+        {content || description}
       </T.P>
-      <S.ReadMore to={GENERAL.ARTICLE.replace(':id', id)}>
+      <S.ReadMore
+        to={
+          to ||
+          GENERAL.ARTICLE.replace(':id', id).replace(
+            ':articleName',
+            title.replace(/\s+/g, '-').toLowerCase()
+          )
+        }
+      >
         <T.P size="small" weight="medium" underline color="neutral">
           Continue reading...
         </T.P>
