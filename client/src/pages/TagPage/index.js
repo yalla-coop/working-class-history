@@ -30,7 +30,7 @@ const Articles = ({ articles }) => {
 
 const TagPage = () => {
   const [tagData, setTagData] = useState({});
-  const [articles, setArticles] = useState({});
+  const [articles, setArticles] = useState([]);
 
   const [showItems, setShowItems] = useState(10);
   const [pageError, setPageError] = useState('');

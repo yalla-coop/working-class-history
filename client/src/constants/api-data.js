@@ -14,4 +14,11 @@ const CATEGORIES = {
   topic: 17950,
 };
 
-export { TABLES, CATEGORIES };
+const STATUS = {
+  approved: 17942,
+  pending: 17943,
+  rejected: 17944,
+  published: 17945,
+};
+
+export { TABLES, CATEGORIES, STATUS };
