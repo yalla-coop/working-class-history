@@ -73,9 +73,9 @@ const LoginPage = () => {
   };
   return (
     <S.Form onSubmit={handleSubmit}>
-      <T.H1>Log in</T.H1>
+      <T.H1 mb="70px">Log in</T.H1>
 
-      <Row mt="8">
+      <Row>
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Email"
@@ -88,7 +88,7 @@ const LoginPage = () => {
           />
         </Col>
       </Row>
-      <Row mt="8">
+      <Row mt="7">
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Unique PIN"

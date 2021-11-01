@@ -85,13 +85,13 @@ const SignupPage = () => {
   };
   return (
     <S.Form onSubmit={handleSubmit}>
-      <T.H1>Sign up</T.H1>
-      <T.P mt="9" style={{ maxWidth: 600 }}>
+      <T.H1 mb="70px">Sign up</T.H1>
+      <T.P style={{ maxWidth: 600 }}>
         This is to sign up to be a reviewer of content as part of this project.
         Once you’ve created an account, it will be reviewed by the team and we
         will be in touch
       </T.P>
-      <Row mt="8">
+      <Row mt="7">
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Name"
@@ -104,7 +104,7 @@ const SignupPage = () => {
           />
         </Col>
       </Row>
-      <Row mt="8">
+      <Row mt="7">
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Email"
@@ -116,7 +116,7 @@ const SignupPage = () => {
           />
         </Col>
       </Row>
-      <Row mt="8">
+      <Row mt="7">
         <Col w={[4, 8, 8]}>
           <Textarea
             label="Why do you want to be part of the project?"
@@ -129,7 +129,7 @@ const SignupPage = () => {
           />
         </Col>
       </Row>
-      <Row mt="8">
+      <Row mt="7">
         <Col w={[4, 8, 8]}>
           <Textarea
             label="Any academic credentials?"
@@ -142,7 +142,7 @@ const SignupPage = () => {
           />
         </Col>
       </Row>
-      <Row mt="8">
+      <Row mt="7">
         {httpError && (
           <T.P mb="2" color="error">
             {httpError}
