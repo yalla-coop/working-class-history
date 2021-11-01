@@ -268,8 +268,8 @@ const ArticlePage = () => {
             </Row>
           )}
           {hasAccess && (
-            <Row>
-              <Col w={[4, 4, 4]} mt="11" mtM="7">
+            <Row mt="11">
+              <Col w={[4, 6, 4]} mt="5" mtM="7" style={{ minWidth: 210 }}>
                 <Button
                   handleClick={onReject}
                   text="Reject"
@@ -277,7 +277,7 @@ const ArticlePage = () => {
                   loading={loading}
                 />
               </Col>
-              <Col w={[4, 4, 4]} mt="11" mtM="7">
+              <Col w={[4, 6, 4]} mt="5" mtM="7" style={{ minWidth: 210 }}>
                 <Button
                   bgColor="neutral"
                   to={ADMIN.EDIT_ARTICLE.replace(':articleId', data?.id)}
@@ -286,7 +286,7 @@ const ArticlePage = () => {
                   loading={loading}
                 />
               </Col>
-              <Col w={[4, 4, 4]} mt="11" mtM="7">
+              <Col w={[4, 6, 4]} mt="5" mtM="7" style={{ minWidth: 210 }}>
                 <Button
                   handleClick={onApprove}
                   bgColor="tertiaryMain"
