@@ -85,6 +85,7 @@ const LoginPage = () => {
             label="Email"
             placeholder="Email..."
             autoFocus
+            name="email"
             type="email"
             value={email}
             handleChange={(input) => setState({ email: input })}
