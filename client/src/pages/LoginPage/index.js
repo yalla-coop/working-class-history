@@ -73,7 +73,11 @@ const LoginPage = () => {
   };
   return (
     <S.Form onSubmit={handleSubmit}>
-      <T.H1 mb="70px">Log in</T.H1>
+      <Row>
+        <Col w={[4, 12, 12]}>
+          <T.H1 mb="70px">Log in</T.H1>
+        </Col>
+      </Row>
 
       <Row>
         <Col w={[4, 8, 8]}>
