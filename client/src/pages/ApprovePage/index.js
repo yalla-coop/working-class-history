@@ -1,6 +1,6 @@
 import * as S from './style';
 import { Typography as T } from '../../components';
-import { GENERAL } from '../../constants/nav-routes';
+import { ADMIN } from '../../constants/nav-routes';
 
 const ApprovePage = () => {
   return (
@@ -13,7 +13,7 @@ const ApprovePage = () => {
         again for contributing to this project!
       </T.P>
       <S.ButtonWrapper>
-        <S.StyledButton bgColor="neutral" to={GENERAL.LandingPage}>
+        <S.StyledButton bgColor="neutral" to={ADMIN.AWAITING_REVIEW}>
           <T.P
             size="extraLarge"
             weight="semi"

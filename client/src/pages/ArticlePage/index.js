@@ -87,12 +87,10 @@ const ArticlePage = () => {
   const onReject = () => {
     setLoading(true);
     try {
-      const { data, error } = rejectArticle({ id });
+      const { error } = rejectArticle({ id });
       if (error) {
         setPageError(error.message);
       } else {
-        // eslint-disable-next-line no-console
-        console.log({ data });
         history.push(ADMIN.REJECTED);
       }
     } catch (error) {
@@ -105,12 +103,10 @@ const ArticlePage = () => {
   const onApprove = () => {
     setLoading(true);
     try {
-      const { data, error } = approveArticle({ id });
+      const { error } = approveArticle({ id });
       if (error) {
         setPageError(error.message);
       } else {
-        // eslint-disable-next-line no-console
-        console.log({ data });
         history.push(ADMIN.APPROVED);
       }
     } catch (error) {
