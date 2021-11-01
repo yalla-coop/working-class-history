@@ -1,12 +1,14 @@
 import { fields, createSchema, validate as _validate } from '..';
 
-const { email, loginPassword } = fields;
+const { email, requiredText } = fields;
 
-const volunteer = createSchema({
+const login = createSchema({
+  PIN: requiredText,
   email,
-  password: loginPassword,
 });
 
-const validate = (data) => _validate(volunteer, data);
+const validate = (data) => {
+  _validate(login, data);
+};
 
 export default validate;

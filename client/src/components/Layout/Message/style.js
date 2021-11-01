@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   position: relative;
+  overflow: hidden;
   display: flex;
   min-height: 100vh;
   flex-direction: row;
@@ -46,8 +47,8 @@ export const BlueDiv = styled.div`
   left: 0;
   right: 0;
   background-color: ${({ theme }) => theme.colors.secondaryMid};
-  height: 57.5vh;
-  clip-path: polygon(0 35%, 100% 0%, 100% 100%, 0% 100%);
+  height: 50vh;
+  clip-path: polygon(0 45%, 100% 0%, 100% 100%, 0% 100%);
   z-index: -1;
   display: block;
   ${({ theme }) => theme.media.tablet} {

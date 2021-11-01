@@ -13,18 +13,22 @@ export const placeholderStyle = ({ theme }) => `
   ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     ${commonStyle};
     color: ${theme.colors.neutral};
+    font-family: 'Roboto';
   }
   ::-moz-placeholder { /* Firefox 19+ */
     ${commonStyle};
     color: ${theme.colors.neutral};
+    font-family: 'Roboto';
   }
   :-ms-input-placeholder { /* IE 10+ */
     ${commonStyle};
     color: ${theme.colors.neutral};
+    font-family: 'Roboto';
   }
   :-moz-placeholder { /* Firefox 18- */
     ${commonStyle};
     color: ${theme.colors.neutral};
+    font-family: 'Roboto';
   }
 `;
 

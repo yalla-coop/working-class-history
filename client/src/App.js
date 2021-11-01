@@ -61,6 +61,14 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
+
+            <Route
+              exact
+              path={navRoutes.GENERAL.SIGN_UP}
+              Component={Pages.SignupPage}
+              layout="general"
+              maxWidth="1050px"
+            />
             <Route
               exact
               path={navRoutes.GENERAL.CONTRIBUTE}
@@ -68,10 +76,25 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
+
+            <Route
+              exact
+              path={navRoutes.GENERAL.LOGIN}
+              Component={Pages.LoginPage}
+              layout="general"
+              maxWidth="1050px"
+            />
             <Route
               exact
               path={navRoutes.GENERAL.SUCCESS_EVENT_SUBMIT}
               Component={Pages.SubmitEventPage}
+              layout="message"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
+              path={navRoutes.GENERAL.SUCCESS_SIGN_UP}
+              Component={Pages.SuccessSignupPage}
               layout="message"
               maxWidth="1050px"
             />
