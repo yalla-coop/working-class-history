@@ -16,7 +16,7 @@ const AwaitingReviewPage = () => {
             .map((item) => (
               <TextSection
                 {...item}
-                mt="7"
+                mt="9"
                 mtM="6"
                 to={ADMIN.PENDING_ARTICLE.replace(':articleId', item.id)}
               />
