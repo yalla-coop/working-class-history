@@ -88,11 +88,13 @@ const SignupPage = () => {
       <Row>
         <Col w={[4, 12, 12]}>
           <T.H1 mb="70px">Sign up</T.H1>
-          <T.P style={{ maxWidth: 600 }}>
-            This is to sign up to be a reviewer of content as part of this
-            project. Once you’ve created an account, it will be reviewed by the
-            team and we will be in touch
-          </T.P>
+          <Col w={[4, 12, 12]}>
+            <T.P style={{ maxWidth: 600 }}>
+              This is to sign up to be a reviewer of content as part of this
+              project. Once you’ve created an account, it will be reviewed by
+              the team and we will be in touch
+            </T.P>
+          </Col>
         </Col>
       </Row>
       <Row mt="7">
