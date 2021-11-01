@@ -87,7 +87,7 @@ const SignupPage = () => {
     <S.Form onSubmit={handleSubmit}>
       <Row>
         <Col w={[4, 12, 12]}>
-          <T.H1 mb="70px">Sign up</T.H1>
+          <T.H1 mb={7}>Sign up</T.H1>
           <Col w={[4, 12, 12]}>
             <T.P style={{ maxWidth: 600 }}>
               This is to sign up to be a reviewer of content as part of this
