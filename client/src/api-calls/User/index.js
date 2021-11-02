@@ -1,7 +1,7 @@
 import { apiData } from '../../constants/index';
 import axios from 'axios';
 import handleError from '../format-error';
-import { uniqueID } from '../../helpers';
+import { createUniqueID } from '../../helpers';
 const DB_ROWS_TABLE = 'database/rows/table';
 
 export const isEmailUsed = async ({ email, options = {} }) => {
@@ -44,7 +44,7 @@ export const signup = async ({
         why_join,
         academic_credentials,
         Approved: false,
-        pin: uniqueID(),
+        pin: createUniqueID(),
         articles: [],
       }
     );
