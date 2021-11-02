@@ -40,7 +40,7 @@ const TextSection = ({
           )
         }
       >
-        <T.P size="small" weight="medium" underline color="neutral">
+        <T.P size="small" weight="bold" underline color="neutral">
           Continue reading...
         </T.P>
       </S.ReadMore>

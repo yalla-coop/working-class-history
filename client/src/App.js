@@ -67,6 +67,14 @@ function App() {
 
               <Route
                 exact
+                path={navRoutes.ADMIN.AWAITING_REVIEW}
+                Component={Pages.AwaitingReviewPage}
+                layout="general"
+                maxWidth="1050px"
+                isPrivet
+              />
+              <Route
+                exact
                 path={navRoutes.GENERAL.SIGN_UP}
                 Component={Pages.SignupPage}
                 layout="general"
@@ -78,6 +86,23 @@ function App() {
                 Component={Pages.ContributePage}
                 layout="general"
                 maxWidth="1050px"
+              />
+              <Route
+                exact
+                path={navRoutes.ADMIN.PENDING_ARTICLE}
+                Component={Pages.ArticlePage}
+                layout="general"
+                maxWidth="1050px"
+                isPrivet
+              />
+
+              <Route
+                exact
+                path={navRoutes.ADMIN.EDIT_ARTICLE}
+                Component={Pages.EditEventPage}
+                layout="general"
+                maxWidth="1050px"
+                isPrivet
               />
 
               <Route
@@ -93,6 +118,22 @@ function App() {
                 Component={Pages.SubmitEventPage}
                 layout="message"
                 maxWidth="1050px"
+              />
+              <Route
+                exact
+                path={navRoutes.ADMIN.APPROVED}
+                Component={Pages.ApprovedPage}
+                layout="message"
+                maxWidth="1050px"
+                isPrivet
+              />
+              <Route
+                exact
+                path={navRoutes.ADMIN.REJECTED}
+                Component={Pages.RejectedPage}
+                layout="message"
+                maxWidth="1050px"
+                isPrivet
               />
               <Route
                 exact

@@ -18,6 +18,16 @@ const GENERAL = {
   CATEGORY: '/category/:categoryName',
 };
 
+const admin = '/admin';
+
+const ADMIN = {
+  AWAITING_REVIEW: `${admin}/awaiting-review`,
+  PENDING_ARTICLE: `${admin}/pending/:articleId`,
+  EDIT_ARTICLE: `${admin}/edit/:articleId`,
+  REJECTED: `${admin}/rejected`,
+  APPROVED: `${admin}/approved`,
+};
+
 const EXTERNAL = {
   TERMS_OF_USE: 'www.google.com/',
   PRIVACY_POLICY: 'www.google.com/',
@@ -32,4 +42,4 @@ const EXTERNAL = {
   WCH_HOME: 'https://workingclasshistory.com/',
 };
 
-export { GENERAL, EXTERNAL };
+export { GENERAL, EXTERNAL, ADMIN };
