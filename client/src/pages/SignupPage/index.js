@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
 
@@ -7,7 +7,8 @@ import * as S from './style';
 import validate from '../../validation/schemas/signup';
 import { signup, isEmailUsed } from '../../api-calls/User';
 import { Typography as T, Grid, Button, Inputs } from '../../components';
-import { GENERAL } from '../../constants/nav-routes';
+import { ADMIN, GENERAL } from '../../constants/nav-routes';
+import { useAuth } from '../../context/auth';
 
 const { Col, Row } = Grid;
 const { BasicInput, Textarea } = Inputs;
@@ -37,6 +38,7 @@ const SignupPage = () => {
     validationErrs,
     httpError,
   } = state;
+  const { user } = useAuth();
   const history = useHistory();
   const isTablet = useMediaQuery({
     query: `(max-width: ${breakpoints.tablet})`,
@@ -96,6 +98,9 @@ const SignupPage = () => {
       }
     }
   };
+  if (user?.id) {
+    return <Redirect to={ADMIN.AWAITING_REVIEW} />;
+  }
   return (
     <S.Form onSubmit={handleSubmit}>
       <Row>

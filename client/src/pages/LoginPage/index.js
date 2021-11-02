@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
 
@@ -7,7 +7,7 @@ import * as S from './style';
 import validate from '../../validation/schemas/login';
 import { login } from '../../api-calls/User';
 import { Typography as T, Grid, Button, Inputs } from '../../components';
-import { GENERAL } from '../../constants/nav-routes';
+import { ADMIN } from '../../constants/nav-routes';
 import { useAuth } from '../../context/auth';
 
 const { Col, Row } = Grid;
@@ -30,7 +30,7 @@ const LoginPage = () => {
   const { PIN, email, loading, validationErrs, httpError } = state;
 
   const history = useHistory();
-  const { setUser } = useAuth();
+  const { setUser, user } = useAuth();
 
   const isTablet = useMediaQuery({
     query: `(max-width: ${breakpoints.tablet})`,
@@ -67,7 +67,6 @@ const LoginPage = () => {
       setState({ loading: true });
       const { error, data } = await login({ PIN, email });
       setState({ loading: false });
-
       if (data?.results?.length) {
         if (data.results[0].Approved) {
           setUser(data.results[0]);
@@ -87,10 +86,15 @@ const LoginPage = () => {
       if (error) {
         setState({ httpError: error.message });
       } else {
-        history.push(GENERAL.AWAITING_REVIEW);
+        return history.push(ADMIN.AWAITING_REVIEW);
       }
     }
   };
+
+  if (user?.id) {
+    return <Redirect to={ADMIN.AWAITING_REVIEW} />;
+  }
+
   return (
     <S.Form onSubmit={handleSubmit}>
       <Row>

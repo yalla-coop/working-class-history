@@ -63,7 +63,46 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
-            <AuthProvider>
+
+            <Route
+              exact
+              path={navRoutes.GENERAL.CONTRIBUTE}
+              Component={Pages.ContributePage}
+              layout="general"
+              maxWidth="1050px"
+            />
+
+            <Route
+              exact
+              path={navRoutes.GENERAL.SUCCESS_EVENT_SUBMIT}
+              Component={Pages.SubmitEventPage}
+              layout="message"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
+              path={navRoutes.GENERAL.SUCCESS_SIGN_UP}
+              Component={Pages.SuccessSignupPage}
+              layout="message"
+              maxWidth="1050px"
+            />
+          </Switch>
+          <AuthProvider>
+            <Switch>
+              <Route
+                exact
+                path={navRoutes.GENERAL.SIGN_UP}
+                Component={Pages.SignupPage}
+                layout="general"
+                maxWidth="1050px"
+              />
+              <Route
+                exact
+                path={navRoutes.GENERAL.LOGIN}
+                Component={Pages.LoginPage}
+                layout="general"
+                maxWidth="1050px"
+              />
               <Route
                 exact
                 path={navRoutes.ADMIN.AWAITING_REVIEW}
@@ -107,43 +146,8 @@ function App() {
                 maxWidth="1050px"
                 isPrivet
               />
-            </AuthProvider>
-            <Route
-              exact
-              path={navRoutes.GENERAL.SIGN_UP}
-              Component={Pages.SignupPage}
-              layout="general"
-              maxWidth="1050px"
-            />
-            <Route
-              exact
-              path={navRoutes.GENERAL.CONTRIBUTE}
-              Component={Pages.ContributePage}
-              layout="general"
-              maxWidth="1050px"
-            />
-            <Route
-              exact
-              path={navRoutes.GENERAL.LOGIN}
-              Component={Pages.LoginPage}
-              layout="general"
-              maxWidth="1050px"
-            />
-            <Route
-              exact
-              path={navRoutes.GENERAL.SUCCESS_EVENT_SUBMIT}
-              Component={Pages.SubmitEventPage}
-              layout="message"
-              maxWidth="1050px"
-            />
-            <Route
-              exact
-              path={navRoutes.GENERAL.SUCCESS_SIGN_UP}
-              Component={Pages.SuccessSignupPage}
-              layout="message"
-              maxWidth="1050px"
-            />
-          </Switch>
+            </Switch>
+          </AuthProvider>
         </Router>
       </ThemeProvider>
     </div>

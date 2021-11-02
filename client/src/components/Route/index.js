@@ -13,7 +13,7 @@ const Route = (props) => {
   return (
     <RouterRoute path={path} {...props} exact={exact}>
       <Layout layout={layout} {...props}>
-        <Component {...props} user={user} />
+        <Component {...props} />
       </Layout>
     </RouterRoute>
   );
