@@ -18,7 +18,6 @@ const LandingPage = () => {
   const [recentData, setRecentData] = useState([]);
   const [pageError, setPageError] = useState('');
   const [loading, setLoading] = useState(true);
-
   const getData = async () => {
     try {
       setLoading(true);

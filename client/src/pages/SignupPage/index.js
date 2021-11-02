@@ -5,7 +5,7 @@ import { breakpoints } from '../../theme';
 
 import * as S from './style';
 import validate from '../../validation/schemas/signup';
-import { Signup } from '../../api-calls/User';
+import { signup, isEmailUsed } from '../../api-calls/User';
 import { Typography as T, Grid, Button, Inputs } from '../../components';
 import { GENERAL } from '../../constants/nav-routes';
 
@@ -13,9 +13,9 @@ const { Col, Row } = Grid;
 const { BasicInput, Textarea } = Inputs;
 
 const initialState = {
-  name: '',
-  explainer: '',
-  credentials: '',
+  full_name: '',
+  why_join: '',
+  academic_credentials: '',
   email: '',
   httpError: '',
   validationErrs: {},
@@ -29,9 +29,9 @@ const SignupPage = () => {
   const submitAttempt = useRef(false);
   const [state, setState] = useReducer(reducer, initialState);
   const {
-    name,
-    explainer,
-    credentials,
+    full_name,
+    why_join,
+    academic_credentials,
     email,
     loading,
     validationErrs,
@@ -46,20 +46,20 @@ const SignupPage = () => {
       validateForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, explainer, credentials, email]);
+  }, [full_name, why_join, academic_credentials, email]);
 
   const validateForm = () => {
     try {
       validate({
-        name,
-        explainer,
-        credentials,
+        full_name,
+        why_join,
+        academic_credentials,
         email,
       });
       setState({ validationErrs: {} });
       return true;
     } catch (error) {
-      if (error.name === 'ValidationError') {
+      if (error.full_name === 'ValidationError') {
         setState({ validationErrs: error.inner });
       }
       return false;
@@ -72,14 +72,27 @@ const SignupPage = () => {
     const isValid = validateForm();
     if (isValid) {
       setState({ loading: true });
-      const { error } = await Signup({ name, explainer, credentials, email });
-
-      setState({ loading: false });
-
-      if (error) {
-        setState({ httpError: error.message });
+      const emailAlreadyUsed = await isEmailUsed({ email });
+      if (!emailAlreadyUsed) {
+        const { error } = await signup({
+          full_name,
+          why_join,
+          academic_credentials,
+          email,
+        });
+        if (error) {
+          setState({ httpError: error.message });
+        } else {
+          history.push(GENERAL.SUCCESS_SIGN_UP);
+        }
+        setState({ loading: false });
       } else {
-        history.push(GENERAL.SUCCESS_SIGN_UP);
+        setState({
+          validationErrs: {
+            ...validationErrs,
+            email: 'this email address is already being used',
+          },
+        });
       }
     }
   };
@@ -103,10 +116,10 @@ const SignupPage = () => {
             label="Name"
             placeholder="add your name here..."
             type="text"
-            value={name}
+            value={full_name}
             autoFocus
-            handleChange={(input) => setState({ name: input })}
-            error={validationErrs.name}
+            handleChange={(input) => setState({ full_name: input })}
+            error={validationErrs.full_name}
           />
         </Col>
       </Row>
@@ -128,9 +141,9 @@ const SignupPage = () => {
             label="Why do you want to be part of the project?"
             placeholder="A little explainer..."
             type="text"
-            value={explainer}
-            handleChange={(input) => setState({ explainer: input })}
-            error={validationErrs.explainer}
+            value={why_join}
+            handleChange={(input) => setState({ why_join: input })}
+            error={validationErrs.why_join}
             rows="5"
           />
         </Col>
@@ -141,9 +154,9 @@ const SignupPage = () => {
             label="Any academic credentials?"
             placeholder="add your credentials here..."
             type="text"
-            value={credentials}
-            handleChange={(input) => setState({ credentials: input })}
-            error={validationErrs.credentials}
+            value={academic_credentials}
+            handleChange={(input) => setState({ academic_credentials: input })}
+            error={validationErrs.academic_credentials}
             rows="3"
           />
         </Col>
