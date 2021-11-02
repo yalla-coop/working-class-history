@@ -10,9 +10,22 @@ const GENERAL = {
   WCH_HOME: '/WCH-home',
   TAG: '/tag/:tagId/:tagName',
   ARTICLE: '/article/:id/:articleName',
+  SUCCESS_SIGN_UP: '/success-signup',
+  LOGIN: '/login',
+  AWAITING_REVIEW: '/awaiting-review',
   CONTRIBUTE: '/contribute',
   SUCCESS_EVENT_SUBMIT: '/success-submit',
   CATEGORY: '/category/:categoryName',
+};
+
+const admin = '/admin';
+
+const ADMIN = {
+  AWAITING_REVIEW: `${admin}/awaiting-review`,
+  PENDING_ARTICLE: `${admin}/pending/:articleId`,
+  EDIT_ARTICLE: `${admin}/edit/:articleId`,
+  REJECTED: `${admin}/rejected`,
+  APPROVED: `${admin}/approved`,
 };
 
 const EXTERNAL = {
@@ -29,4 +42,4 @@ const EXTERNAL = {
   WCH_HOME: 'https://workingclasshistory.com/',
 };
 
-export { GENERAL, EXTERNAL };
+export { GENERAL, EXTERNAL, ADMIN };

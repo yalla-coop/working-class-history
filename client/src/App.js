@@ -61,6 +61,22 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
+
+            <Route
+              exact
+              path={navRoutes.ADMIN.AWAITING_REVIEW}
+              Component={Pages.AwaitingReviewPage}
+              layout="general"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
+              path={navRoutes.GENERAL.SIGN_UP}
+              Component={Pages.SignupPage}
+              layout="general"
+              maxWidth="1050px"
+            />
+
             <Route
               exact
               path={navRoutes.GENERAL.CONTRIBUTE}
@@ -68,10 +84,56 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
+
+            <Route
+              exact
+              path={navRoutes.ADMIN.PENDING_ARTICLE}
+              Component={Pages.ArticlePage}
+              layout="general"
+              maxWidth="1050px"
+            />
+
+            <Route
+              exact
+              path={navRoutes.ADMIN.EDIT_ARTICLE}
+              Component={Pages.EditEventPage}
+              layout="general"
+              maxWidth="1050px"
+            />
+
+            <Route
+              exact
+              path={navRoutes.GENERAL.LOGIN}
+              Component={Pages.LoginPage}
+              layout="general"
+              maxWidth="1050px"
+            />
             <Route
               exact
               path={navRoutes.GENERAL.SUCCESS_EVENT_SUBMIT}
               Component={Pages.SubmitEventPage}
+              layout="message"
+              maxWidth="1050px"
+            />
+
+            <Route
+              exact
+              path={navRoutes.ADMIN.APPROVED}
+              Component={Pages.ApprovedPage}
+              layout="message"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
+              path={navRoutes.ADMIN.REJECTED}
+              Component={Pages.RejectedPage}
+              layout="message"
+              maxWidth="1050px"
+            />
+            <Route
+              exact
+              path={navRoutes.GENERAL.SUCCESS_SIGN_UP}
+              Component={Pages.SuccessSignupPage}
               layout="message"
               maxWidth="1050px"
             />
