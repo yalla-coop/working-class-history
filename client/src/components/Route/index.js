@@ -7,9 +7,8 @@ import { GENERAL } from '../../constants/nav-routes';
 const Route = (props) => {
   const { layout, path, Component, exact, isPrivet } = props;
   const { user } = useAuth();
-
   if (isPrivet && !user?.id) {
-    <Redirect to={GENERAL.LOGIN} />;
+    return <Redirect to={GENERAL.LOGIN} />;
   }
   return (
     <RouterRoute path={path} {...props} exact={exact}>
