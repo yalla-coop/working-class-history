@@ -1,8 +1,21 @@
 import axios from 'axios';
 import handleError from '../format-error';
-
 import { apiData } from '../../constants/index';
 const DB_ROWS_TABLE = 'database/rows/table';
+
+export const rejectArticle = ({ id }) => {
+  return { data: `all good! article ${id} has been rejected`, error: null };
+};
+
+export const editArticle = ({ id }) => {
+  return { data: `all good! article ${id} has been rejected`, error: null };
+};
+
+export const approveArticle = ({ id }) => {
+  return { data: `all good! article ${id} has been rejected`, error: null };
+};
+
+export const getArticleData = () => {};
 
 export const getAllArticles = async ({ options = {} }) => {
   try {

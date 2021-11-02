@@ -11,12 +11,16 @@ import {
 } from '../../components';
 import { Skeleton } from 'antd';
 
-import * as Article from '../../api-calls/Article';
+import {
+  rejectArticle,
+  approveArticle,
+  getArticleById,
+} from '../../api-calls/Article';
 import * as Tag from '../../api-calls/Tag';
 
 import SocialSection from './SocialSection';
-import { useParams } from 'react-router';
-import { GENERAL } from '../../constants/nav-routes';
+import { useHistory, useParams } from 'react-router';
+import { ADMIN, GENERAL } from '../../constants/nav-routes';
 
 const { Col, Row } = Grid;
 const { ArticleTag, Category } = Tags;
@@ -35,51 +39,85 @@ const filterTags = (relatedTags, allTags, category) => {
 const ArticlePage = () => {
   const [data, setData] = useState({});
   const [tags, setTags] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [pageError, setPageError] = useState('');
-  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+  const history = useHistory();
 
-  const { articleName, id } = useParams();
-
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const { error, data } = await Article.getArticleById({ id });
-      setData(data);
-      setLoading(false);
-      if (error) {
-      }
-    } catch (error) {
-      setPageError(error.message);
-    }
-  };
-
-  const getAllTags = async () => {
-    try {
-      setLoading(true);
-      const { error, data } = await Tag.getTags();
-      setTags(data.results);
-      setLoading(false);
-      if (error) {
-      }
-    } catch (error) {
-      setPageError(error.message);
-    }
-  };
+  // change this when connecting to the backend
+  const hasAccess = true;
 
   useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const { error, data } = await getArticleById({ id });
+        setData(data);
+        setLoading(false);
+        if (error) {
+        }
+      } catch (error) {
+        setPageError(error.message);
+      }
+    };
+
     getData();
-    getAllTags();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const getAllTags = async () => {
+      try {
+        setLoading(true);
+        const { error, data } = await Tag.getTags();
+        setTags(data.results);
+        setLoading(false);
+        if (error) {
+        }
+      } catch (error) {
+        setPageError(error.message);
+      }
+    };
+    if (data.created_at) {
+      getAllTags();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data?.created_at]);
+
+  const onReject = () => {
+    setLoading(true);
+    try {
+      const { error } = rejectArticle({ id });
+      if (error) {
+        setPageError(error.message);
+      } else {
+        history.push(ADMIN.REJECTED);
+      }
+    } catch (error) {
+      setPageError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onApprove = () => {
+    setLoading(true);
+    try {
+      const { error } = approveArticle({ id });
+      if (error) {
+        setPageError(error.message);
+      } else {
+        history.push(ADMIN.APPROVED);
+      }
+    } catch (error) {
+      setPageError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
-      <T.H2>{data?.title || articleName}</T.H2>
-      {pageError && (
-        <T.P color="error" mt="8">
-          {pageError}
-        </T.P>
-      )}
       {loading ? (
         <Skeleton key="skeleton" loading={loading} active></Skeleton>
       ) : (
@@ -114,6 +152,7 @@ const ArticlePage = () => {
             subtitle="CLR James, A History of Pan African Revolt,"
             link="https://shop.workingclasshistory.com/products/a-history-of-pan-african-revolt-c-l-r-james"
           />
+
           {data?.sources && (
             <MoreInformation
               mt="9"
@@ -134,6 +173,7 @@ const ArticlePage = () => {
             value={data?.author_name || 'N/A'}
             mt="5"
           />
+
           <ArticleTag
             shape="circle"
             shapeColor="primaryMain"
@@ -156,7 +196,9 @@ const ArticlePage = () => {
                 size="small"
                 title="People"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'people')}
-                relatedTags={filterTags(data.tags, tags, 'person')}
+                relatedTags={
+                  tags.length ? filterTags(data.tags, tags, 'person') : []
+                }
               />
             </Col>
             <Col w={[4, 12, 6]} mt="6">
@@ -166,7 +208,9 @@ const ArticlePage = () => {
                 size="small"
                 title="City/Area"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'area')}
-                relatedTags={filterTags(data.tags, tags, 'city_area')}
+                relatedTags={
+                  tags.length ? filterTags(data.tags, tags, 'city_area') : []
+                }
               />
             </Col>
             <Col w={[4, 12, 6]} mt="6">
@@ -176,7 +220,9 @@ const ArticlePage = () => {
                 size="small"
                 title="Topic"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'topic')}
-                relatedTags={filterTags(data.tags, tags, 'topic')}
+                relatedTags={
+                  tags.length ? filterTags(data.tags, tags, 'topic') : []
+                }
               />
             </Col>
             <Col w={[4, 12, 6]} mt="6">
@@ -186,7 +232,9 @@ const ArticlePage = () => {
                 size="small"
                 title="Country"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'country')}
-                relatedTags={filterTags(data.tags, tags, 'country')}
+                relatedTags={
+                  tags.length ? filterTags(data.tags, tags, 'country') : []
+                }
               />
             </Col>
             <Col w={[4, 12, 6]} mt="6">
@@ -196,22 +244,62 @@ const ArticlePage = () => {
                 shapeColor="neutral"
                 title="Organisation"
                 to={GENERAL.CATEGORY.replace(':categoryName', 'organisation')}
-                relatedTags={filterTags(data.tags, tags, 'organisation')}
+                relatedTags={
+                  tags.length ? filterTags(data.tags, tags, 'organisation') : []
+                }
               />
             </Col>
           </Row>
-          <Row mt="9">
-            <Col w={[4, 7, 7]}>
-              <Button
-                bgColor="neutral"
-                textColor="primaryMain"
-                text="Support us"
-                to={GENERAL.CONTRIBUTE}
-              />
-            </Col>
-          </Row>
+          {pageError && (
+            <T.P color="error" mt="5" mb="3">
+              {pageError}
+            </T.P>
+          )}
+          {!hasAccess && (
+            <Row mt="9">
+              <Col w={[4, 7, 7]}>
+                <Button
+                  bgColor="neutral"
+                  textColor="primaryMain"
+                  text="Support us"
+                  to={GENERAL.CONTRIBUTE}
+                />
+              </Col>
+            </Row>
+          )}
+          {hasAccess && (
+            <Row mt="11">
+              <Col w={[4, 6, 4]} mt="5" mtM="7" style={{ minWidth: 210 }}>
+                <Button
+                  handleClick={onReject}
+                  text="Reject"
+                  textColor="neutral"
+                  loading={loading}
+                />
+              </Col>
+              <Col w={[4, 6, 4]} mt="5" mtM="7" style={{ minWidth: 210 }}>
+                <Button
+                  bgColor="neutral"
+                  to={ADMIN.EDIT_ARTICLE.replace(':articleId', data?.id)}
+                  textColor="white"
+                  text="Edit"
+                  loading={loading}
+                />
+              </Col>
+              <Col w={[4, 6, 4]} mt="5" mtM="7" style={{ minWidth: 210 }}>
+                <Button
+                  handleClick={onApprove}
+                  bgColor="tertiaryMain"
+                  textColor="white"
+                  text="Approve"
+                  loading={loading}
+                />
+              </Col>
+            </Row>
+          )}
         </>
       )}
+
       <TimelineGraphic type="short" number={data?.year} />
     </>
   );

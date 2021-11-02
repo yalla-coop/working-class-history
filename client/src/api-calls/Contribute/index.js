@@ -4,3 +4,10 @@ export const sendContribute = () => {
     data: 'all good!',
   };
 };
+
+export const updateEvent = () => {
+  return {
+    error: null,
+    data: 'all good!',
+  };
+};

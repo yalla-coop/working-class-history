@@ -23,10 +23,11 @@ export const Button = styled.button`
     bgColor ? theme.colors[bgColor] || bgColor : theme.colors.primaryMain};
   padding: ${({ theme }) => `14px ${theme.spacings[6]}`};
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (max-width: 1100px) {
+    font-size: 50px;
+    line-height: 54px;
     font-size: 50px;
     font-weight: 600;
-    line-height: 54px;
     padding: ${({ theme }) => `14px ${theme.spacings[5]}`};
     height: 150px;
     justify-content: center;
