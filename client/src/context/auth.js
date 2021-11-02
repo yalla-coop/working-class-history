@@ -1,4 +1,5 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
+import { login } from '../api-calls/User';
 
 const initialUserState = {
   id: null,
@@ -14,7 +15,7 @@ const AuthContext = createContext({
 
 const getUserInfoFromStorage = () => {
   const user = JSON.parse(localStorage.getItem('user'));
-  if (user && user.id) {
+  if (user?.id) {
     return user;
   } else {
     return initialUserState;
@@ -43,6 +44,29 @@ const AuthProvider = (props) => {
     clearUserInfoIntoStorage();
     setUser(initialUserState);
   };
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const user = await getUserInfoFromStorage();
+      if (user?.Approved) {
+        const { data } = await login({
+          PIN: user.pin,
+          email: user.email,
+        });
+        if (data?.results[0]?.id) {
+          _setUser(user);
+        } else {
+          clearUserInfoIntoStorage();
+          setUser(initialUserState);
+        }
+      } else {
+        clearUserInfoIntoStorage();
+        setUser(initialUserState);
+      }
+    };
+
+    getUserInfo();
+  }, []);
 
   const value = {
     user,
