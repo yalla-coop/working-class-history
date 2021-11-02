@@ -9,6 +9,9 @@ import AwaitingReviewPage from './AwaitingReviewPage';
 import ApprovedPage from './ApprovePage';
 import RejectedPage from './RejectedPage';
 import EditEventPage from './EditEventPage';
+import SignupPage from './SignupPage';
+import LoginPage from './LoginPage';
+import SuccessSignupPage from './SuccessSignupPage';
 
 export {
   LandingPage,
@@ -22,4 +25,7 @@ export {
   ApprovedPage,
   RejectedPage,
   EditEventPage,
+  SignupPage,
+  LoginPage,
+  SuccessSignupPage,
 };
