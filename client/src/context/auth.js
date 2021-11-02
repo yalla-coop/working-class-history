@@ -3,7 +3,7 @@ import { createContext, useState, useContext } from 'react';
 const initialUserState = {
   id: null,
   email: '',
-  full_name: '',
+  fullName: '',
 };
 
 const AuthContext = createContext({

@@ -29,20 +29,20 @@ export const login = async ({ email, PIN, options = {} }) => {
 };
 
 export const signup = async ({
-  full_name,
+  fullName,
   email,
-  why_join,
-  academic_credentials,
+  whyJoin,
+  academicCredentials,
   options = {},
 }) => {
   try {
     const { data } = await axios.post(
       `${DB_ROWS_TABLE}/${apiData.TABLES.reviewers}/?user_field_names=true`,
       {
-        full_name,
+        full_name: fullName,
         email,
-        why_join,
-        academic_credentials,
+        why_join: whyJoin,
+        academic_credentials: academicCredentials,
         Approved: false,
         pin: createUniqueID(),
         articles: [],

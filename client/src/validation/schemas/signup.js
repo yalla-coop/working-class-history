@@ -3,9 +3,9 @@ import { fields, createSchema, validate as _validate } from '..';
 const { email, requiredText } = fields;
 
 const signup = createSchema({
-  full_name: requiredText,
-  why_join: requiredText,
-  academic_credentials: requiredText,
+  fullName: requiredText,
+  whyJoin: requiredText,
+  academicCredentials: requiredText,
   email,
 });
 

@@ -14,9 +14,9 @@ const { Col, Row } = Grid;
 const { BasicInput, Textarea } = Inputs;
 
 const initialState = {
-  full_name: '',
-  why_join: '',
-  academic_credentials: '',
+  fullName: '',
+  whyJoin: '',
+  academicCredentials: '',
   email: '',
   httpError: '',
   validationErrs: {},
@@ -30,9 +30,9 @@ const SignupPage = () => {
   const submitAttempt = useRef(false);
   const [state, setState] = useReducer(reducer, initialState);
   const {
-    full_name,
-    why_join,
-    academic_credentials,
+    fullName,
+    whyJoin,
+    academicCredentials,
     email,
     loading,
     validationErrs,
@@ -48,20 +48,20 @@ const SignupPage = () => {
       validateForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [full_name, why_join, academic_credentials, email]);
+  }, [fullName, whyJoin, academicCredentials, email]);
 
   const validateForm = () => {
     try {
       validate({
-        full_name,
-        why_join,
-        academic_credentials,
+        fullName,
+        whyJoin,
+        academicCredentials,
         email,
       });
       setState({ validationErrs: {} });
       return true;
     } catch (error) {
-      if (error.full_name === 'ValidationError') {
+      if (error.name === 'ValidationError') {
         setState({ validationErrs: error.inner });
       }
       return false;
@@ -77,9 +77,9 @@ const SignupPage = () => {
       const emailAlreadyUsed = await isEmailUsed({ email });
       if (!emailAlreadyUsed) {
         const { error } = await signup({
-          full_name,
-          why_join,
-          academic_credentials,
+          fullName,
+          whyJoin,
+          academicCredentials,
           email,
         });
         if (error) {
@@ -121,10 +121,10 @@ const SignupPage = () => {
             label="Name"
             placeholder="add your name here..."
             type="text"
-            value={full_name}
+            value={fullName}
             autoFocus
-            handleChange={(input) => setState({ full_name: input })}
-            error={validationErrs.full_name}
+            handleChange={(input) => setState({ fullName: input })}
+            error={validationErrs.fullName}
           />
         </Col>
       </Row>
@@ -146,9 +146,9 @@ const SignupPage = () => {
             label="Why do you want to be part of the project?"
             placeholder="A little explainer..."
             type="text"
-            value={why_join}
-            handleChange={(input) => setState({ why_join: input })}
-            error={validationErrs.why_join}
+            value={whyJoin}
+            handleChange={(input) => setState({ whyJoin: input })}
+            error={validationErrs.whyJoin}
             rows="5"
           />
         </Col>
@@ -159,9 +159,9 @@ const SignupPage = () => {
             label="Any academic credentials?"
             placeholder="add your credentials here..."
             type="text"
-            value={academic_credentials}
-            handleChange={(input) => setState({ academic_credentials: input })}
-            error={validationErrs.academic_credentials}
+            value={academicCredentials}
+            handleChange={(input) => setState({ academicCredentials: input })}
+            error={validationErrs.academicCredentials}
             rows="3"
           />
         </Col>
