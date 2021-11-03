@@ -56,13 +56,6 @@ function App() {
               layout="general"
               maxWidth="1050px"
             />
-            <Route
-              exact
-              path={navRoutes.GENERAL.ARTICLE}
-              Component={Pages.ArticlePage}
-              layout="general"
-              maxWidth="1050px"
-            />
 
             <Route
               exact
@@ -111,7 +104,13 @@ function App() {
                 maxWidth="1050px"
                 isPrivet
               />
-
+              <Route
+                exact
+                path={navRoutes.GENERAL.ARTICLE}
+                Component={Pages.ArticlePage}
+                layout="general"
+                maxWidth="1050px"
+              />
               <Route
                 exact
                 path={navRoutes.ADMIN.PENDING_ARTICLE}
