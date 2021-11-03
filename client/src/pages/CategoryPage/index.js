@@ -59,11 +59,9 @@ const CategoryPage = () => {
   }, []);
 
   const handleChange = (value) => {
-    const filteredData =
-      tags &&
-      tags.filter((tag) =>
-        tag.Title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
-      );
+    const filteredData = tags?.filter((tag) =>
+      tag.Title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+    );
     setSearch(value);
     setFilteredTags(filteredData);
   };
