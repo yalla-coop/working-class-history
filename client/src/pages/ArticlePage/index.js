@@ -11,16 +11,14 @@ import {
 } from '../../components';
 import { Skeleton } from 'antd';
 
-import {
-  rejectArticle,
-  approveArticle,
-  getArticleById,
-} from '../../api-calls/Article';
+import { getArticleById, updateArticleStatus } from '../../api-calls/Article';
 import * as Tag from '../../api-calls/Tag';
 
 import SocialSection from './SocialSection';
 import { useHistory, useParams } from 'react-router';
 import { ADMIN, GENERAL } from '../../constants/nav-routes';
+import { useAuth } from '../../context/auth';
+import { apiData } from '../../constants/index';
 
 const { Col, Row } = Grid;
 const { ArticleTag, Category } = Tags;
@@ -43,18 +41,22 @@ const ArticlePage = () => {
   const [pageError, setPageError] = useState('');
   const { id } = useParams();
   const history = useHistory();
+  const [hasAccess, setHasAccess] = useState(false);
 
-  // change this when connecting to the backend
-  const hasAccess = true;
+  const { user } = useAuth();
 
   useEffect(() => {
     const getData = async () => {
       try {
         setLoading(true);
         const { error, data } = await getArticleById({ id });
+        setHasAccess(() => {
+          return user?.Approved && data.status.id === apiData.STATUS.pending;
+        });
         setData(data);
         setLoading(false);
         if (error) {
+          setPageError(error.message);
         }
       } catch (error) {
         setPageError(error.message);
@@ -84,10 +86,14 @@ const ArticlePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.created_at]);
 
-  const onReject = () => {
+  const onReject = async () => {
     setLoading(true);
     try {
-      const { error } = rejectArticle({ id });
+      const { error } = await updateArticleStatus({
+        id,
+        status: apiData.STATUS.rejected,
+        reviewerId: user.id,
+      });
       if (error) {
         setPageError(error.message);
       } else {
@@ -100,10 +106,14 @@ const ArticlePage = () => {
     }
   };
 
-  const onApprove = () => {
+  const onApprove = async () => {
     setLoading(true);
     try {
-      const { error } = approveArticle({ id });
+      const { error } = await updateArticleStatus({
+        id,
+        status: apiData.STATUS.approved,
+        reviewerId: user.id,
+      });
       if (error) {
         setPageError(error.message);
       } else {
