@@ -12,7 +12,6 @@ const GENERAL = {
   ARTICLE: '/article/:id/:articleName',
   SUCCESS_SIGN_UP: '/success-signup',
   LOGIN: '/login',
-  AWAITING_REVIEW: '/awaiting-review',
   CONTRIBUTE: '/contribute',
   SUCCESS_EVENT_SUBMIT: '/success-submit',
   CATEGORY: '/category/:categoryName',

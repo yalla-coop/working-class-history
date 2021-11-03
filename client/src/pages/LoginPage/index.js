@@ -1,13 +1,14 @@
 import { useReducer, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
 
 import * as S from './style';
 import validate from '../../validation/schemas/login';
-import { Login } from '../../api-calls/User';
+import { login } from '../../api-calls/User';
 import { Typography as T, Grid, Button, Inputs } from '../../components';
-import { GENERAL } from '../../constants/nav-routes';
+import { ADMIN } from '../../constants/nav-routes';
+import { useAuth } from '../../context/auth';
 
 const { Col, Row } = Grid;
 const { BasicInput } = Inputs;
@@ -27,10 +28,14 @@ const LoginPage = () => {
   const submitAttempt = useRef(false);
   const [state, setState] = useReducer(reducer, initialState);
   const { PIN, email, loading, validationErrs, httpError } = state;
+
   const history = useHistory();
+  const { setUser, user } = useAuth();
+
   const isTablet = useMediaQuery({
     query: `(max-width: ${breakpoints.tablet})`,
   });
+
   useEffect(() => {
     if (submitAttempt.current) {
       validateForm();
@@ -60,17 +65,36 @@ const LoginPage = () => {
     const isValid = validateForm();
     if (isValid) {
       setState({ loading: true });
-      const { error } = await Login({ PIN, email });
-
+      const { error, data } = await login({ PIN, email });
       setState({ loading: false });
+      if (data?.results?.length) {
+        if (data.results[0].Approved) {
+          setUser(data.results[0]);
+        } else {
+          setState({
+            httpError: 'your account not approved yet!',
+          });
+          return;
+        }
+      } else {
+        setState({
+          httpError: 'you have entered an invalid email or PIN',
+        });
+        return;
+      }
 
       if (error) {
         setState({ httpError: error.message });
       } else {
-        history.push(GENERAL.AWAITING_REVIEW);
+        return history.push(ADMIN.AWAITING_REVIEW);
       }
     }
   };
+
+  if (user?.id) {
+    return <Redirect to={ADMIN.AWAITING_REVIEW} />;
+  }
+
   return (
     <S.Form onSubmit={handleSubmit}>
       <Row>
@@ -107,11 +131,13 @@ const LoginPage = () => {
       </Row>
 
       <Row mt="8">
-        {httpError && (
-          <T.P mb="2" color="error">
-            {httpError}
-          </T.P>
-        )}
+        <Col w={[4, 12, 12]}>
+          {httpError && (
+            <T.P mb="5" color="error">
+              {httpError}
+            </T.P>
+          )}
+        </Col>
         <Col w={[4, 8, 8]}>
           <Button
             handleClick={handleSubmit}

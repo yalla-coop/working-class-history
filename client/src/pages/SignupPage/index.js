@@ -1,21 +1,22 @@
 import { useReducer, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
 
 import * as S from './style';
 import validate from '../../validation/schemas/signup';
-import { Signup } from '../../api-calls/User';
+import { signup, isEmailUsed } from '../../api-calls/User';
 import { Typography as T, Grid, Button, Inputs } from '../../components';
-import { GENERAL } from '../../constants/nav-routes';
+import { ADMIN, GENERAL } from '../../constants/nav-routes';
+import { useAuth } from '../../context/auth';
 
 const { Col, Row } = Grid;
 const { BasicInput, Textarea } = Inputs;
 
 const initialState = {
-  name: '',
-  explainer: '',
-  credentials: '',
+  fullName: '',
+  whyJoin: '',
+  academicCredentials: '',
   email: '',
   httpError: '',
   validationErrs: {},
@@ -29,14 +30,15 @@ const SignupPage = () => {
   const submitAttempt = useRef(false);
   const [state, setState] = useReducer(reducer, initialState);
   const {
-    name,
-    explainer,
-    credentials,
+    fullName,
+    whyJoin,
+    academicCredentials,
     email,
     loading,
     validationErrs,
     httpError,
   } = state;
+  const { user } = useAuth();
   const history = useHistory();
   const isTablet = useMediaQuery({
     query: `(max-width: ${breakpoints.tablet})`,
@@ -46,14 +48,14 @@ const SignupPage = () => {
       validateForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, explainer, credentials, email]);
+  }, [fullName, whyJoin, academicCredentials, email]);
 
   const validateForm = () => {
     try {
       validate({
-        name,
-        explainer,
-        credentials,
+        fullName,
+        whyJoin,
+        academicCredentials,
         email,
       });
       setState({ validationErrs: {} });
@@ -72,17 +74,33 @@ const SignupPage = () => {
     const isValid = validateForm();
     if (isValid) {
       setState({ loading: true });
-      const { error } = await Signup({ name, explainer, credentials, email });
-
-      setState({ loading: false });
-
-      if (error) {
-        setState({ httpError: error.message });
+      const emailAlreadyUsed = await isEmailUsed({ email });
+      if (!emailAlreadyUsed) {
+        const { error } = await signup({
+          fullName,
+          whyJoin,
+          academicCredentials,
+          email,
+        });
+        if (error) {
+          setState({ httpError: error.message });
+        } else {
+          history.push(GENERAL.SUCCESS_SIGN_UP);
+        }
+        setState({ loading: false });
       } else {
-        history.push(GENERAL.SUCCESS_SIGN_UP);
+        setState({
+          validationErrs: {
+            ...validationErrs,
+            email: 'this email address is already being used',
+          },
+        });
       }
     }
   };
+  if (user?.id) {
+    return <Redirect to={ADMIN.AWAITING_REVIEW} />;
+  }
   return (
     <S.Form onSubmit={handleSubmit}>
       <Row>
@@ -103,10 +121,10 @@ const SignupPage = () => {
             label="Name"
             placeholder="add your name here..."
             type="text"
-            value={name}
+            value={fullName}
             autoFocus
-            handleChange={(input) => setState({ name: input })}
-            error={validationErrs.name}
+            handleChange={(input) => setState({ fullName: input })}
+            error={validationErrs.fullName}
           />
         </Col>
       </Row>
@@ -128,9 +146,9 @@ const SignupPage = () => {
             label="Why do you want to be part of the project?"
             placeholder="A little explainer..."
             type="text"
-            value={explainer}
-            handleChange={(input) => setState({ explainer: input })}
-            error={validationErrs.explainer}
+            value={whyJoin}
+            handleChange={(input) => setState({ whyJoin: input })}
+            error={validationErrs.whyJoin}
             rows="5"
           />
         </Col>
@@ -141,9 +159,9 @@ const SignupPage = () => {
             label="Any academic credentials?"
             placeholder="add your credentials here..."
             type="text"
-            value={credentials}
-            handleChange={(input) => setState({ credentials: input })}
-            error={validationErrs.credentials}
+            value={academicCredentials}
+            handleChange={(input) => setState({ academicCredentials: input })}
+            error={validationErrs.academicCredentials}
             rows="3"
           />
         </Col>
