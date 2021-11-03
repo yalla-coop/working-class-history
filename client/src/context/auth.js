@@ -47,18 +47,12 @@ const AuthProvider = (props) => {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const user = await getUserInfoFromStorage();
-      if (user?.Approved) {
-        const { data } = await login({
-          PIN: user.pin,
-          email: user.email,
-        });
-        if (data?.results[0]?.id) {
-          _setUser(user);
-        } else {
-          clearUserInfoIntoStorage();
-          setUser(initialUserState);
-        }
+      const { data } = await login({
+        PIN: user.pin,
+        email: user.email,
+      });
+      if (data?.results[0]?.id) {
+        _setUser(data.results[0]);
       } else {
         clearUserInfoIntoStorage();
         setUser(initialUserState);
@@ -66,6 +60,7 @@ const AuthProvider = (props) => {
     };
 
     getUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const value = {
