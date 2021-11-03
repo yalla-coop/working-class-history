@@ -1,5 +1,6 @@
 import { useReducer, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import { getYear, format } from 'date-fns';
 
 import {
   Typography as T,
@@ -11,8 +12,10 @@ import {
 import * as S from './style';
 import validate from '../../validation/schemas/contribute';
 
-import { sendContribute } from '../../api-calls/Contribute';
+import { createArticle } from '../../api-calls/Article';
+
 import { GENERAL } from '../../constants/nav-routes';
+import { apiData } from '../../constants/index';
 
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
@@ -33,12 +36,23 @@ const initialState = {
   authorName: '',
   authorUrl: '',
   email: '',
+  year: '',
+  month: '',
+  day: '',
+  time: '',
   httpError: '',
   validationErrs: {},
   loading: false,
 };
 
 function reducer(state, newState) {
+  if (newState.date) {
+    const year = getYear(newState.date);
+    const month = newState.date.getMonth() + 1;
+    const day = newState.date.getDate();
+    const time = format(newState.date.getTime(), 'HH:mm');
+    return { ...state, year, month, day, time, ...newState };
+  }
   return { ...state, ...newState };
 }
 const cleanText = (txt) => txt.replace(/<\/?[^>]+(>|$)/g, '');
@@ -59,6 +73,10 @@ const ContributeForm = () => {
     authorName,
     authorUrl,
     email,
+    year,
+    day,
+    time,
+    month,
     loading,
     validationErrs,
     httpError,
@@ -107,7 +125,24 @@ const ContributeForm = () => {
     const isValid = validateForm();
     if (isValid) {
       setState({ loading: true });
-      const { error } = await sendContribute({ title, date });
+      const { error } = await createArticle({
+        title,
+        year,
+        month,
+        day,
+        time,
+        description,
+        sources,
+        latitude,
+        longitude,
+        geotag_info: geotagInfo,
+        geotag_description: geotagDescription,
+        visitor_info: visitorInformation,
+        author_name: authorName,
+        author_url: authorUrl,
+        author_email: email,
+        status: apiData.STATUS.pending,
+      });
 
       setState({ loading: false });
 
