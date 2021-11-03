@@ -119,7 +119,7 @@ const ArticlePage = () => {
   return (
     <>
       {loading ? (
-        <Skeleton key="skeleton" loading={loading} active></Skeleton>
+        <Skeleton key="article-skeleton" loading={loading} active></Skeleton>
       ) : (
         <>
           <ArticleTag

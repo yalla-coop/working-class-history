@@ -18,7 +18,7 @@ const AwaitingReviewPage = () => {
                 {...item}
                 mt="9"
                 mtM="6"
-                to={ADMIN.PENDING_ARTICLE.replace(':articleId', item.id)}
+                to={ADMIN.PENDING_ARTICLE.replace(':id', item.id)}
               />
             ))}
         </Col>

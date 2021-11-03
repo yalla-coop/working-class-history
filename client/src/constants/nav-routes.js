@@ -21,7 +21,7 @@ const admin = '/admin';
 
 const ADMIN = {
   AWAITING_REVIEW: `${admin}/awaiting-review`,
-  PENDING_ARTICLE: `${admin}/pending/:articleId`,
+  PENDING_ARTICLE: `${admin}/pending/:id`,
   EDIT_ARTICLE: `${admin}/edit/:articleId`,
   REJECTED: `${admin}/rejected`,
   APPROVED: `${admin}/approved`,

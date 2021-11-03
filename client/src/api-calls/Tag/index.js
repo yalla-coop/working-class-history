@@ -26,3 +26,15 @@ export const getTags = async () => {
     return { error: err };
   }
 };
+
+export const getTagsByCategory = async ({ category, options }) => {
+  try {
+    const { data } = await axios.get(
+      `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true&filter__field_177168__single_select_equal=${category}`
+    );
+    return { data };
+  } catch (error) {
+    const err = handleError(error, options);
+    return { error: err };
+  }
+};

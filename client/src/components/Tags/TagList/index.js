@@ -14,10 +14,10 @@ const TagList = ({ tagsList = [], ...props }) => {
             key={tag.id}
             to={GENERAL.TAG.replace(':tagId', tag.id).replace(
               ':tagName',
-              tag.name
+              tag.Title.replace(/\s+/g, '-').toLowerCase()
             )}
           >
-            <T.P>{tag.label}</T.P>
+            <T.P>{tag.label || tag.Title}</T.P>
           </S.TagLink>
           {index !== tagsList.length - 1 && <S.Edge />}
         </>
