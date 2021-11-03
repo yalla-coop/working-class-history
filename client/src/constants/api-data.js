@@ -21,4 +21,8 @@ const STATUS = {
   published: 17945,
 };
 
-export { TABLES, CATEGORIES, STATUS };
+const COLUMNS = {
+  STATUS: 'field_177157',
+};
+
+export { TABLES, CATEGORIES, STATUS, COLUMNS };

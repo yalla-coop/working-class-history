@@ -20,7 +20,7 @@ export const getArticleData = () => {};
 export const getAllArticles = async ({ options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=created_at&filter__field_177157__single_select_equal=${apiData.STATUS.published}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
     );
     return { data };
   } catch (error) {
