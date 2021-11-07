@@ -48,22 +48,22 @@ const AwaitingReviewPage = () => {
         </Row>
       ) : (
         <Row>
-          <Col w={[4, 6, 6]}>
-            {articles?.length ? (
-              articles.map((item) => (
+          {articles?.length ? (
+            articles.map((item) => (
+              <Col w={[4, 6, 6]} key={item.id}>
                 <TextSection
                   {...item}
                   mt="9"
                   mtM="6"
                   to={ADMIN.PENDING_ARTICLE.replace(':id', item.id)}
                 />
-              ))
-            ) : (
-              <T.H4 mt="9" mtM="6">
-                there is no article need to review for now come back latter!
-              </T.H4>
-            )}
-          </Col>
+              </Col>
+            ))
+          ) : (
+            <T.H4 mt="9" mtM="6">
+              there is no article need to review for now come back latter!
+            </T.H4>
+          )}
         </Row>
       )}
     </>
