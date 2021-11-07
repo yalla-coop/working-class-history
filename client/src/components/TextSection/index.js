@@ -1,6 +1,7 @@
 import { GENERAL } from '../../constants/nav-routes';
 import * as T from '../Typography';
 import * as S from './style';
+import { getMonthName } from '../../helpers';
 
 const TextSection = ({
   date,
@@ -10,27 +11,22 @@ const TextSection = ({
   description,
   id,
   to,
+  year,
+  day,
+  month,
   ...props
 }) => {
   return (
     <S.Wrapper {...props}>
       <T.P size="small" weight="medium" color="neutral">
-        {date || created_at}
+        {year && month && day
+          ? `${getMonthName(month)} ${day}, ${year}`
+          : 'N/A'}
       </T.P>
       <T.H4 mt="4" mb="4" color="neutral">
         {title}
       </T.H4>
-      <T.P
-        mb="4"
-        weight="light"
-        ellipsis={{
-          rows: 2,
-          expandable: true,
-          symbol: ' ',
-        }}
-      >
-        {content || description}
-      </T.P>
+      <S.Div dangerouslySetInnerHTML={{ __html: description }} />
       <S.ReadMore
         to={
           to ||
@@ -40,7 +36,7 @@ const TextSection = ({
           )
         }
       >
-        <T.P size="small" weight="bold" underline color="neutral">
+        <T.P size="small" weight="bold" underline color="neutral" mt="1">
           Continue reading...
         </T.P>
       </S.ReadMore>
