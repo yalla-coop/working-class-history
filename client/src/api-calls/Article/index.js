@@ -10,7 +10,7 @@ export const approveArticle = ({ id }) => {
 export const getAllArticles = async ({ options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
     );
     return { data };
   } catch (error) {
@@ -22,7 +22,7 @@ export const getAllArticles = async ({ options = {} }) => {
 export const getPendingArticles = async () => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.pending}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.pending}`
     );
     return { data };
   } catch (error) {
@@ -34,7 +34,7 @@ export const getPendingArticles = async () => {
 export const getArticles = async ({ options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
     );
     return { data };
   } catch (error) {
@@ -80,7 +80,7 @@ export const createArticle = async (body) => {
 export const getRecentArticles = async ({ options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&size=11&order_by=created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-created_at&size=11&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
     );
     return { data };
   } catch (error) {
