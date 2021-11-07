@@ -19,6 +19,7 @@ import { useHistory, useParams } from 'react-router';
 import { ADMIN, GENERAL } from '../../constants/nav-routes';
 import { useAuth } from '../../context/auth';
 import { apiData } from '../../constants/index';
+import { getMonthName } from '../../helpers';
 
 const { Col, Row } = Grid;
 const { ArticleTag, Category } = Tags;
@@ -136,7 +137,11 @@ const ArticlePage = () => {
             shape="square"
             shapeColor="primaryMain"
             label="Date"
-            value={data?.created_at}
+            value={
+              data.year && data.month && data.day
+                ? `${data.day} ${getMonthName(data.month)} ${data.year}`
+                : 'N/A'
+            }
             mt="30px"
           />
           <S.ArticleContent>
@@ -149,7 +154,7 @@ const ArticlePage = () => {
 
             <Row mt="9">
               <Col w={[4, 10, 10]}>
-                <T.P>{data?.description}</T.P>
+                <div dangerouslySetInnerHTML={{ __html: data?.description }} />
               </Col>
             </Row>
           </S.ArticleContent>
@@ -180,9 +185,20 @@ const ArticlePage = () => {
             shape="triangle"
             shapeColor="primaryMain"
             label="Author"
-            value={data?.author_name || 'N/A'}
             mt="5"
-          />
+          >
+            {data?.author_url ? (
+              <T.Link to={data?.author_url} external ml="4" mlM="5">
+                <T.P weight="light" underline color="neutral">
+                  {data?.author_name || 'N/A'}
+                </T.P>
+              </T.Link>
+            ) : (
+              <T.P ml="4" mlM="5">
+                {data?.author_name || 'N/A'}
+              </T.P>
+            )}
+          </ArticleTag>
 
           <ArticleTag
             shape="circle"
