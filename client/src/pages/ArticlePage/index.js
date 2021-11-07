@@ -126,13 +126,15 @@ const ArticlePage = () => {
       setLoading(false);
     }
   };
-
   return (
     <>
       {loading ? (
         <Skeleton key="article-skeleton" loading={loading} active></Skeleton>
       ) : (
         <>
+          <T.H1 mb="6" mt="9" mtT="1" color="neutral">
+            {data.title || 'N/A'}
+          </T.H1>
           <ArticleTag
             shape="square"
             shapeColor="primaryMain"
@@ -145,7 +147,10 @@ const ArticlePage = () => {
             mt="30px"
           />
           <S.ArticleContent>
-            <SocialSection url={window.location.href} />
+            <SocialSection
+              url={window.location.href}
+              hasMedia={Boolean(data?.media)}
+            />
 
             <Image src={data?.media} mt="36px" mtT="2" />
             <T.P mt="5" mb="2">
@@ -154,7 +159,9 @@ const ArticlePage = () => {
 
             <Row mt="9">
               <Col w={[4, 10, 10]}>
-                <div dangerouslySetInnerHTML={{ __html: data?.description }} />
+                <S.RichText
+                  dangerouslySetInnerHTML={{ __html: data?.description }}
+                />
               </Col>
             </Row>
           </S.ArticleContent>

@@ -7,9 +7,9 @@ import {
 import * as S from './style';
 import { Icon } from '../../components';
 
-const SocialSection = ({ url }) => {
+const SocialSection = ({ url, hasMedia }) => {
   return (
-    <S.SocialLinksWrapper>
+    <S.SocialLinksWrapper hasMedia={hasMedia}>
       <EmailShareButton url={url}>
         <Icon color="secondaryMid" icon="emailShare" />
       </EmailShareButton>

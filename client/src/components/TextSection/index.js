@@ -26,7 +26,12 @@ const TextSection = ({
       <T.H4 mt="4" mb="4" color="neutral">
         {title}
       </T.H4>
-      <S.Div dangerouslySetInnerHTML={{ __html: description }} />
+      <S.RichText
+        unsafeHTML={description}
+        maxLine="4"
+        ellipsis="..."
+        basedOn="letters"
+      />
       <S.ReadMore
         to={
           to ||
