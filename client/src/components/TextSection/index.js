@@ -8,7 +8,7 @@ const TextSection = ({
   created_at,
   title,
   content,
-  description,
+  preview_text,
   id,
   to,
   year,
@@ -26,12 +26,17 @@ const TextSection = ({
       <T.H4 mt="4" mb="4" color="neutral">
         {title}
       </T.H4>
-      <S.RichText
-        unsafeHTML={description}
-        maxLine="4"
-        ellipsis="..."
-        basedOn="letters"
-      />
+      <T.P
+        mb="4"
+        weight="light"
+        ellipsis={{
+          rows: 4,
+          expandable: true,
+          symbol: ' ',
+        }}
+      >
+        {preview_text}
+      </T.P>
       <S.ReadMore
         to={
           to ||
