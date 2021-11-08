@@ -10,6 +10,7 @@ const initialState = {
   title: '',
   date: null,
   description: '',
+  previewText: '',
   sources: '',
   latitude: '',
   longitude: '',
@@ -48,6 +49,7 @@ const EditEventPage = () => {
         setState({
           title: data.title,
           description: data.description,
+          previewText: data.preview_text,
           sources: data.sources,
           latitude: data.latitude,
           longitude: data.longitude,

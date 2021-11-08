@@ -44,6 +44,7 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
     month,
     day,
     time,
+    previewText,
     validationErrs,
     httpError,
   } = state;
@@ -57,13 +58,14 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
       validateForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, email]);
+  }, [title, description, previewText, email]);
   const validateForm = () => {
     try {
       validate({
         title,
         date,
         description: cleanText(description),
+        previewText,
         sources,
         latitude,
         longitude,
@@ -99,6 +101,7 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
         day,
         time,
         description: state.description,
+        preview_text: state.previewText,
         sources: state.sources,
         latitude: state.latitude,
         longitude: state.longitude,
@@ -168,6 +171,18 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
             value={sources}
             handleChange={(input) => setState({ sources: input })}
             error={validationErrs.sources}
+          />
+        </Col>
+      </Row>
+      <Row mt="8">
+        <Col w={[4, 8, 8]}>
+          <Textarea
+            label="Preview text"
+            placeholder="preview text..."
+            type="text"
+            value={previewText}
+            handleChange={(input) => setState({ previewText: input })}
+            error={validationErrs.previewText}
           />
         </Col>
       </Row>

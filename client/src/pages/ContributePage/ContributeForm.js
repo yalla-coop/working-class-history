@@ -27,6 +27,7 @@ const initialState = {
   title: '',
   date: null,
   description: '',
+  previewText: '',
   sources: '',
   latitude: '',
   longitude: '',
@@ -64,6 +65,7 @@ const ContributeForm = () => {
     title,
     date,
     description,
+    previewText,
     sources,
     latitude,
     longitude,
@@ -91,13 +93,14 @@ const ContributeForm = () => {
       validateForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, email]);
+  }, [title, description, previewText, email]);
   const validateForm = () => {
     try {
       validate({
         title,
         date,
         description: cleanText(description),
+        previewText,
         sources,
         latitude,
         longitude,
@@ -132,6 +135,7 @@ const ContributeForm = () => {
         day,
         time,
         description,
+        preview_text: previewText,
         sources,
         latitude,
         longitude,
@@ -187,6 +191,18 @@ const ContributeForm = () => {
             editorHtml={description}
             setEditorHtml={(input) => setState({ description: input })}
             error={validationErrs.description}
+          />
+        </Col>
+      </Row>
+      <Row mt="8">
+        <Col w={[4, 8, 8]}>
+          <Textarea
+            label="Preview text"
+            placeholder="preview text..."
+            type="text"
+            value={previewText}
+            handleChange={(input) => setState({ previewText: input })}
+            error={validationErrs.previewText}
           />
         </Col>
       </Row>
