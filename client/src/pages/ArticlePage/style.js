@@ -49,6 +49,11 @@ export const RichText = styled.div`
   font-size: 16px;
   line-height: 210%;
   font-weight: 300;
+  ol,
+  ul,
+  dl {
+    margin-left: ${({ theme }) => theme.spacings[6]};
+  }
   p {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
