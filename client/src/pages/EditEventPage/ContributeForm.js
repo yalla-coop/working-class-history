@@ -11,18 +11,21 @@ import {
 import * as S from './style';
 import validate from '../../validation/schemas/contribute';
 
-import { updateEvent } from '../../api-calls/Contribute';
+import { updateArticleStatus } from '../../api-calls/Article';
+import { apiData } from '../../constants/index';
+
 import { ADMIN } from '../../constants/nav-routes';
 
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
+import { useAuth } from '../../context/auth';
 
 const { Col, Row } = Grid;
 const { BasicInput, DateInput, Textarea } = Inputs;
 
 const cleanText = (txt) => txt.replace(/<\/?[^>]+(>|$)/g, '');
 
-const ContributeForm = ({ state, setState, submitAttempt }) => {
+const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
   const {
     title,
     date,
@@ -37,6 +40,11 @@ const ContributeForm = ({ state, setState, submitAttempt }) => {
     authorUrl,
     email,
     loading,
+    year,
+    month,
+    day,
+    time,
+    previewText,
     validationErrs,
     httpError,
   } = state;
@@ -44,19 +52,20 @@ const ContributeForm = ({ state, setState, submitAttempt }) => {
   const isTablet = useMediaQuery({
     query: `(max-width: ${breakpoints.tablet})`,
   });
-
+  const { user } = useAuth();
   useEffect(() => {
     if (submitAttempt.current) {
       validateForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, email]);
+  }, [title, description, previewText, email]);
   const validateForm = () => {
     try {
       validate({
         title,
         date,
         description: cleanText(description),
+        previewText,
         sources,
         latitude,
         longitude,
@@ -84,7 +93,27 @@ const ContributeForm = ({ state, setState, submitAttempt }) => {
     const isValid = validateForm();
     if (isValid) {
       setState({ loading: true });
-      const { error } = await updateEvent({ title, date });
+      const { error } = await updateArticleStatus({
+        id: articleId,
+        title: state.title,
+        year,
+        month,
+        day,
+        time,
+        description: state.description,
+        preview_text: state.previewText,
+        sources: state.sources,
+        latitude: state.latitude,
+        longitude: state.longitude,
+        geotag_info: state.geotagInfo,
+        geotag_description: state.geotagDescription,
+        visitor_info: state.visitorInformation,
+        author_name: state.authorName,
+        author_url: state.authorUrl,
+        author_email: state.email,
+        reviewerId: user.id,
+        status: apiData.STATUS.approved,
+      });
 
       setState({ loading: false });
 
@@ -116,7 +145,7 @@ const ContributeForm = ({ state, setState, submitAttempt }) => {
           <DateInput
             label="Year, Month, Day (optional)"
             placeholder="dd/mm/yyyy"
-            value={Date.parse(date)}
+            value={new Date(`${year}/${month}/${day}`)}
             handleChange={(input) => setState({ date: input })}
             error={validationErrs.date}
           />
@@ -142,6 +171,18 @@ const ContributeForm = ({ state, setState, submitAttempt }) => {
             value={sources}
             handleChange={(input) => setState({ sources: input })}
             error={validationErrs.sources}
+          />
+        </Col>
+      </Row>
+      <Row mt="8">
+        <Col w={[4, 8, 8]}>
+          <Textarea
+            label="Preview text"
+            placeholder="preview text..."
+            type="text"
+            value={previewText}
+            handleChange={(input) => setState({ previewText: input })}
+            error={validationErrs.previewText}
           />
         </Col>
       </Row>

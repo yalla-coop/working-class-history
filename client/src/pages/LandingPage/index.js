@@ -34,6 +34,7 @@ const LandingPage = () => {
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <>
       <T.H2>Working Class History | Stories</T.H2>

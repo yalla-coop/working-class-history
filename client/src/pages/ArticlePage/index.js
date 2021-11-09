@@ -11,16 +11,15 @@ import {
 } from '../../components';
 import { Skeleton } from 'antd';
 
-import {
-  rejectArticle,
-  approveArticle,
-  getArticleById,
-} from '../../api-calls/Article';
+import { getArticleById, updateArticleStatus } from '../../api-calls/Article';
 import * as Tag from '../../api-calls/Tag';
 
 import SocialSection from './SocialSection';
 import { useHistory, useParams } from 'react-router';
 import { ADMIN, GENERAL } from '../../constants/nav-routes';
+import { useAuth } from '../../context/auth';
+import { apiData } from '../../constants/index';
+import { getMonthName } from '../../helpers';
 
 const { Col, Row } = Grid;
 const { ArticleTag, Category } = Tags;
@@ -43,18 +42,22 @@ const ArticlePage = () => {
   const [pageError, setPageError] = useState('');
   const { id } = useParams();
   const history = useHistory();
+  const [hasAccess, setHasAccess] = useState(false);
 
-  // change this when connecting to the backend
-  const hasAccess = true;
+  const { user } = useAuth();
 
   useEffect(() => {
     const getData = async () => {
       try {
         setLoading(true);
         const { error, data } = await getArticleById({ id });
+        setHasAccess(() => {
+          return user?.Approved && data.status.id === apiData.STATUS.pending;
+        });
         setData(data);
         setLoading(false);
         if (error) {
+          setPageError(error.message);
         }
       } catch (error) {
         setPageError(error.message);
@@ -84,10 +87,14 @@ const ArticlePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.created_at]);
 
-  const onReject = () => {
+  const onReject = async () => {
     setLoading(true);
     try {
-      const { error } = rejectArticle({ id });
+      const { error } = await updateArticleStatus({
+        id,
+        status: apiData.STATUS.rejected,
+        reviewerId: user.id,
+      });
       if (error) {
         setPageError(error.message);
       } else {
@@ -100,10 +107,14 @@ const ArticlePage = () => {
     }
   };
 
-  const onApprove = () => {
+  const onApprove = async () => {
     setLoading(true);
     try {
-      const { error } = approveArticle({ id });
+      const { error } = await updateArticleStatus({
+        id,
+        status: apiData.STATUS.approved,
+        reviewerId: user.id,
+      });
       if (error) {
         setPageError(error.message);
       } else {
@@ -115,22 +126,31 @@ const ArticlePage = () => {
       setLoading(false);
     }
   };
-
   return (
     <>
       {loading ? (
         <Skeleton key="article-skeleton" loading={loading} active></Skeleton>
       ) : (
         <>
+          <T.H1 mb="6" mt="9" mtT="1" color="neutral">
+            {data.title || 'N/A'}
+          </T.H1>
           <ArticleTag
             shape="square"
             shapeColor="primaryMain"
             label="Date"
-            value={data?.created_at}
+            value={
+              data.year && data.month && data.day
+                ? `${data.day} ${getMonthName(data.month)} ${data.year}`
+                : 'N/A'
+            }
             mt="30px"
           />
           <S.ArticleContent>
-            <SocialSection url={window.location.href} />
+            <SocialSection
+              url={window.location.href}
+              hasMedia={Boolean(data?.media)}
+            />
 
             <Image src={data?.media} mt="36px" mtT="2" />
             <T.P mt="5" mb="2">
@@ -139,7 +159,9 @@ const ArticlePage = () => {
 
             <Row mt="9">
               <Col w={[4, 10, 10]}>
-                <T.P>{data?.description}</T.P>
+                <S.RichText
+                  dangerouslySetInnerHTML={{ __html: data?.description }}
+                />
               </Col>
             </Row>
           </S.ArticleContent>
@@ -170,9 +192,20 @@ const ArticlePage = () => {
             shape="triangle"
             shapeColor="primaryMain"
             label="Author"
-            value={data?.author_name || 'N/A'}
             mt="5"
-          />
+          >
+            {data?.author_url ? (
+              <T.Link to={data?.author_url} external ml="4" mlM="5">
+                <T.P weight="light" underline color="neutral">
+                  {data?.author_name || 'N/A'}
+                </T.P>
+              </T.Link>
+            ) : (
+              <T.P ml="4" mlM="5">
+                {data?.author_name || 'N/A'}
+              </T.P>
+            )}
+          </ArticleTag>
 
           <ArticleTag
             shape="circle"

@@ -7,7 +7,7 @@ const DB_ROWS_TABLE = 'database/rows/table';
 export const isEmailUsed = async ({ email, options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.reviewers}?user_field_names=true&filter__field_177159__equal=${email}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.reviewers}?user_field_names=true&filter__${apiData.COLUMNS.EMAIL}__equal=${email}`
     );
     return data?.count === 1;
   } catch (error) {
@@ -19,7 +19,7 @@ export const isEmailUsed = async ({ email, options = {} }) => {
 export const login = async ({ email, PIN, options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.reviewers}?user_field_names=true&filter__field_177159__equal=${email}&filter__field_177161__equal=${PIN}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.reviewers}?user_field_names=true&filter__${apiData.COLUMNS.EMAIL}__equal=${email}&filter__${apiData.COLUMNS.PIN}__equal=${PIN}`
     );
     return { data };
   } catch (error) {

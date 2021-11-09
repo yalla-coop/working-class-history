@@ -81,11 +81,15 @@ const TagPage = () => {
   return (
     <>
       <T.H1>{tagData.Title || tagName}</T.H1>
-      {pageError && (
-        <T.P color="error" mt="8">
-          {pageError}
-        </T.P>
-      )}
+      <Row>
+        <Col w={[4, 12, 12]}>
+          {pageError && (
+            <T.P color="error" mt="8">
+              {pageError}
+            </T.P>
+          )}
+        </Col>
+      </Row>
       <Row>
         <Col w={[4, 6, 6]} mt="8">
           <Card bgColor="tertiaryMain" style={{ width: '100%' }}>
@@ -118,7 +122,15 @@ const TagPage = () => {
           <Skeleton key="skeleton" loading={loading} active></Skeleton>
         )}
       </Row>
-      {articles?.length && <Articles articles={articles.slice(5, showItems)} />}
+      {articles?.length ? (
+        <Articles articles={articles.slice(5, showItems)} />
+      ) : (
+        <Row mt="8" mtM="5">
+          <Col w={[4, 12, 12]}>
+            <T.H4>more articles will come soon!</T.H4>
+          </Col>
+        </Row>
+      )}
       {articles.length > showItems && (
         <S.LoadMore onClick={() => setShowItems((old) => old + 6)}>
           <T.P underline>Load more...</T.P>

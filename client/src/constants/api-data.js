@@ -23,6 +23,9 @@ const STATUS = {
 
 const COLUMNS = {
   STATUS: 'field_177157',
+  CATEGORY: 'field_177168',
+  EMAIL: 'field_177159',
+  PIN: 'field_177161',
 };
 
 export { TABLES, CATEGORIES, STATUS, COLUMNS };

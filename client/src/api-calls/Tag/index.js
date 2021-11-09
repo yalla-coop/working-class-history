@@ -18,7 +18,7 @@ export const getTagById = async ({ id, options = {} }) => {
 export const getTags = async () => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.tags}?user_field_names=true` // field_177156
+      `${DB_ROWS_TABLE}/${apiData.TABLES.tags}?user_field_names=true`
     );
     return { data };
   } catch (error) {
@@ -30,7 +30,7 @@ export const getTags = async () => {
 export const getTagsByCategory = async ({ category, options }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true&filter__field_177168__single_select_equal=${category}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true&filter__${apiData.COLUMNS.CATEGORY}__single_select_equal=${category}`
     );
     return { data };
   } catch (error) {
