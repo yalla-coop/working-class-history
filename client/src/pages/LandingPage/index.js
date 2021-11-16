@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Skeleton } from 'antd';
 
 import * as S from './style';
+
 import {
   Typography as T,
   Grid,
@@ -79,7 +80,15 @@ const LandingPage = () => {
       </Row>
       <S.MapSection mt="11" id="map">
         <S.MapWrapper>
-          <Image image="map" width="100%" />
+          <iframe
+            title="map"
+            src="https://arcg.is/4iiuu"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            style={{ width: '100%' }}
+            allowFullScreen
+          ></iframe>
         </S.MapWrapper>
       </S.MapSection>
       {loading ? (

@@ -13,16 +13,25 @@ export const MapSection = styled.section`
   display: flex;
   padding-right: ${({ theme }) => theme.constants.gridGutter.desktop / 2}px;
   ${({ theme }) => theme.media.tablet} {
-    display: none;
+    width: 100%;
+    padding-right: 0;
   }
 `;
 
 export const MapWrapper = styled.div`
-  width: 100%;
   width: calc(100% + 20.416vw);
   height: 100%;
   position: absolute;
   left: -20.416vw;
+  ${({ theme }) => theme.media.tablet} {
+    width: calc(100% + 16.7vw);
+    left: -8.43vw;
+  }
+
+  ${({ theme }) => theme.media.mobile} {
+    width: calc(100% + 13vw);
+    left: -6.551vw;
+  }
 `;
 
 export const HashRoute = styled(HashLink)`
@@ -36,4 +45,9 @@ export const HashRoute = styled(HashLink)`
   font-weight: 300 !important;
   -webkit-text-decoration: underline !important;
   text-decoration: underline !important;
+`;
+
+export const TestP = styled.p`
+  font-size: 28px;
+  color: ${(props) => props.color};
 `;
