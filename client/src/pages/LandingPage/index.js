@@ -10,14 +10,32 @@ import {
   Card,
   ArticlesSection,
 } from '../../components';
+
 import { GENERAL } from '../../constants/nav-routes';
 import * as Article from '../../api-calls/Article';
 const { Col, Row } = Grid;
+
+const randomImage = () => {
+  const images = [
+    'landingPage_1',
+    'landingPage_2',
+    'landingPage_3',
+    'landingPage_4',
+    'landingPage_5',
+    'haitianRevolution',
+  ];
+  return images[Math.floor(Math.random() * images.length)];
+};
 
 const LandingPage = () => {
   const [recentData, setRecentData] = useState([]);
   const [pageError, setPageError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [imageSrc, setImageSrc] = useState('');
+
+  useEffect(() => {
+    setImageSrc(randomImage());
+  }, []);
   const getData = async () => {
     try {
       setLoading(true);
@@ -91,7 +109,7 @@ const LandingPage = () => {
       )}
       <Row jc="space-between">
         <Col w={[4, 6, 6]} mt="6" mtM="8">
-          <Image image="haitianRevolution" />
+          <Image image={imageSrc} />
         </Col>
         <Col w={[4, 5, 5]}>
           {loading
