@@ -229,69 +229,78 @@ const ArticlePage = () => {
             value={data?.created_at || 'N/A'}
             mt="5"
           />
-          <T.H3 mt="9">Related tags</T.H3>
-          <Row>
-            <Col w={[4, 12, 6]} mt="6">
-              <Category
-                shape="square"
-                shapeColor="primaryMain"
-                size="small"
-                title="People"
-                to={GENERAL.CATEGORY.replace(':categoryName', 'people')}
-                relatedTags={
-                  tags.length ? filterTags(data.tags, tags, 'person') : []
-                }
-              />
-            </Col>
-            <Col w={[4, 12, 6]} mt="6">
-              <Category
-                shape="square"
-                shapeColor="primaryMain"
-                size="small"
-                title="City/Area"
-                to={GENERAL.CATEGORY.replace(':categoryName', 'area')}
-                relatedTags={
-                  tags.length ? filterTags(data.tags, tags, 'city_area') : []
-                }
-              />
-            </Col>
-            <Col w={[4, 12, 6]} mt="6">
-              <Category
-                shape="circle"
-                shapeColor="tertiaryMain"
-                size="small"
-                title="Topic"
-                to={GENERAL.CATEGORY.replace(':categoryName', 'topic')}
-                relatedTags={
-                  tags.length ? filterTags(data.tags, tags, 'topic') : []
-                }
-              />
-            </Col>
-            <Col w={[4, 12, 6]} mt="6">
-              <Category
-                shape="circle"
-                shapeColor="tertiaryMain"
-                size="small"
-                title="Country"
-                to={GENERAL.CATEGORY.replace(':categoryName', 'country')}
-                relatedTags={
-                  tags.length ? filterTags(data.tags, tags, 'country') : []
-                }
-              />
-            </Col>
-            <Col w={[4, 12, 6]} mt="6">
-              <Category
-                shape="triangle"
-                size="small"
-                shapeColor="neutral"
-                title="Organisation"
-                to={GENERAL.CATEGORY.replace(':categoryName', 'organisation')}
-                relatedTags={
-                  tags.length ? filterTags(data.tags, tags, 'organisation') : []
-                }
-              />
-            </Col>
-          </Row>
+          {data?.tags?.length > 0 && tags?.length > 0 && (
+            <>
+              <T.H3 mt="9">Related tags</T.H3>
+              <Row>
+                {filterTags(data.tags, tags, 'person').length > 0 && (
+                  <Col w={[4, 12, 6]} mt="6">
+                    <Category
+                      shape="square"
+                      shapeColor="primaryMain"
+                      size="small"
+                      title="People"
+                      to={GENERAL.CATEGORY.replace(':categoryName', 'people')}
+                      relatedTags={filterTags(data.tags, tags, 'person')}
+                    />
+                  </Col>
+                )}
+                {filterTags(data.tags, tags, 'city_area').length > 0 && (
+                  <Col w={[4, 12, 6]} mt="6">
+                    <Category
+                      shape="square"
+                      shapeColor="primaryMain"
+                      size="small"
+                      title="City/Area"
+                      to={GENERAL.CATEGORY.replace(':categoryName', 'area')}
+                      relatedTags={filterTags(data.tags, tags, 'city_area')}
+                    />
+                  </Col>
+                )}
+                {filterTags(data.tags, tags, 'topic').length > 0 && (
+                  <Col w={[4, 12, 6]} mt="6">
+                    <Category
+                      shape="circle"
+                      shapeColor="tertiaryMain"
+                      size="small"
+                      title="Topic"
+                      to={GENERAL.CATEGORY.replace(':categoryName', 'topic')}
+                      relatedTags={
+                        tags.length ? filterTags(data.tags, tags, 'topic') : []
+                      }
+                    />
+                  </Col>
+                )}
+                {filterTags(data.tags, tags, 'country').length > 0 && (
+                  <Col w={[4, 12, 6]} mt="6">
+                    <Category
+                      shape="circle"
+                      shapeColor="tertiaryMain"
+                      size="small"
+                      title="Country"
+                      to={GENERAL.CATEGORY.replace(':categoryName', 'country')}
+                      relatedTags={filterTags(data.tags, tags, 'country')}
+                    />
+                  </Col>
+                )}
+                {filterTags(data.tags, tags, 'organisation').length > 0 && (
+                  <Col w={[4, 12, 6]} mt="6">
+                    <Category
+                      shape="triangle"
+                      size="small"
+                      shapeColor="neutral"
+                      title="Organisation"
+                      to={GENERAL.CATEGORY.replace(
+                        ':categoryName',
+                        'organisation'
+                      )}
+                      relatedTags={filterTags(data.tags, tags, 'organisation')}
+                    />
+                  </Col>
+                )}
+              </Row>
+            </>
+          )}
           {pageError && (
             <T.P color="error" mt="5" mb="3">
               {pageError}
