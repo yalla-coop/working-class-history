@@ -45,6 +45,7 @@ export const ArticleContent = styled.article`
 `;
 
 export const RichText = styled.div`
+  ${setMargin};
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 210%;
@@ -65,5 +66,17 @@ export const RichText = styled.div`
       padding: 0;
       margin: 0;
     }
+  }
+  a {
+    font-size: 16px !important;
+    line-height: 210% !important;
+    font-weight: 300 !important;
+    font-style: normal !important;
+    letter-spacing: 0.2px !important;
+    color: ${({ theme }) => `${theme.colors.neutral} !important`};
+    text-transform: initial !important;
+    text-align: left !important;
+    text-decoration: underline;
+    font-family: 'Roboto', sans-serif;
   }
 `;

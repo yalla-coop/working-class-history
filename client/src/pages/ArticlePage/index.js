@@ -168,12 +168,21 @@ const ArticlePage = () => {
           <S.MapSection mt="11" mb="3">
             <Image image="map" width="100%" />
           </S.MapSection>
-          <MoreInformation
-            mt="9"
-            mb="2"
-            subtitle="CLR James, A History of Pan African Revolt,"
-            link="https://shop.workingclasshistory.com/products/a-history-of-pan-african-revolt-c-l-r-james"
-          />
+
+          <Row mt="9">
+            <T.H3 mb="5" color="neutral">
+              More information
+            </T.H3>
+            <Col w={[4, 10, 10]} mb="2">
+              {data?.more_info ? (
+                <S.RichText
+                  dangerouslySetInnerHTML={{ __html: data?.more_info }}
+                />
+              ) : (
+                <T.P>N/A</T.P>
+              )}
+            </Col>
+          </Row>
 
           {data?.sources && (
             <MoreInformation
