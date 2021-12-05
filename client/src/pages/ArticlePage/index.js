@@ -153,10 +153,8 @@ const ArticlePage = () => {
             />
 
             <Image src={data?.media} mt="36px" mtT="2" />
-            <T.P mt="5" mb="2">
-              {data?.media_caption}
-            </T.P>
-
+            <T.P mt="5">{data?.media_caption}</T.P>
+            <T.P mb="2">{data?.media_credit}</T.P>
             <Row mt="9">
               <Col w={[4, 10, 10]}>
                 <S.RichText
