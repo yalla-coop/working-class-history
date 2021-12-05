@@ -8,7 +8,12 @@ const SuccessSignupPage = () => {
       <T.H1 mt="0" mtM="6" color="white">
         All done!
       </T.H1>
-      <T.P mt="7" mtM="5" color="white" style={{ maxWidth: 470 }}>
+      <T.P
+        mt="7"
+        mtM="5"
+        color="white"
+        style={{ maxWidth: 470, paddingRight: 16 }}
+      >
         WCH will be in touch as soon as possible!
       </T.P>
       <S.ButtonWrapper>

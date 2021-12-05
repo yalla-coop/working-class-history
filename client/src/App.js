@@ -145,6 +145,15 @@ function App() {
                 maxWidth="1050px"
                 isPrivet
               />
+              <Route
+                exact
+                // path={navRoutes.ADMIN.REJECTED}
+                path="/test"
+                Component={Pages.RejectedPage}
+                layout="message"
+                maxWidth="1050px"
+                // isPrivet
+              />
             </Switch>
           </AuthProvider>
         </Router>
