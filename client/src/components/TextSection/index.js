@@ -4,7 +4,6 @@ import * as S from './style';
 import { getMonthName } from '../../helpers';
 
 const TextSection = ({
-  date,
   created_at,
   title,
   content,
@@ -24,7 +23,7 @@ const TextSection = ({
           : 'N/A'}
       </T.P>
       <T.H4 mt="4" mb="4" color="neutral">
-        {title}
+        {title || 'N/A'}
       </T.H4>
       <T.P
         mb="4"
@@ -35,7 +34,7 @@ const TextSection = ({
           symbol: ' ',
         }}
       >
-        {preview_text}
+        {preview_text || 'N/A'}
       </T.P>
       <S.ReadMore
         to={
