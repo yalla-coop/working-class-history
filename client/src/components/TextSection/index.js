@@ -22,9 +22,19 @@ const TextSection = ({
           ? `${getMonthName(month)} ${day}, ${year}`
           : 'N/A'}
       </T.P>
-      <T.H4 mt="4" mb="4" color="neutral">
-        {title || 'N/A'}
-      </T.H4>
+      <S.ReadMore
+        to={
+          to ||
+          GENERAL.ARTICLE.replace(':id', id).replace(
+            ':articleName',
+            title.replace(/\s+/g, '-').toLowerCase()
+          )
+        }
+      >
+        <T.H4 mt="4" mb="4" color="neutral">
+          {title || 'N/A'}
+        </T.H4>
+      </S.ReadMore>
       <T.P
         mb="4"
         weight="light"
