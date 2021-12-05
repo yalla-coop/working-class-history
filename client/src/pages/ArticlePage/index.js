@@ -219,7 +219,7 @@ const ArticlePage = () => {
           <ArticleTag
             shape="circle"
             shapeColor="primaryMain"
-            label="Fact checker"
+            label="Reviewer"
             value={data?.reviwer_id?.value || 'N/A'}
             mt="5"
           />
