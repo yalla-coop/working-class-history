@@ -61,6 +61,9 @@ const Head1 = styled(Title)`
   font-size: 70px !important;
   line-height: 84px !important;
   font-weight: ${({ weight }) => (weight ? weights[weight] : '700 !important')};
+  ${({ theme }) => theme.media.mobile} {
+    font-size: 48px !important;
+  }
 `;
 export const H1 = (props) => <Head1 {...props} level={1} />;
 

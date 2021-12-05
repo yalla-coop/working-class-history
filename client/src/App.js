@@ -149,7 +149,7 @@ function App() {
                 exact
                 // path={navRoutes.ADMIN.REJECTED}
                 path="/test"
-                Component={Pages.RejectedPage}
+                Component={Pages.ApprovedPage}
                 layout="message"
                 maxWidth="1050px"
                 // isPrivet
