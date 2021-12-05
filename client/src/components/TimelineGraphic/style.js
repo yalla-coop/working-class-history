@@ -4,6 +4,7 @@ export const Wrapper = styled.aside`
   position: fixed;
   right: 0;
   top: 0;
+  pointer-events: none;
 `;
 
 export const Container = styled.div`

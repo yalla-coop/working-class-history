@@ -23,6 +23,7 @@ export const Side = styled.aside`
   bottom: 0;
   width: 20.416vw;
   display: block;
+
   ${({ theme }) => theme.media.tablet} {
     display: none;
   }
