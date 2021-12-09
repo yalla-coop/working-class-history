@@ -159,7 +159,7 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
           <Editor
             label="Description (Max 1800 characters)"
             placeholder="add description here..."
-            editorHtml={description}
+            editorHtml={description || ''}
             setEditorHtml={(input) => setState({ description: input })}
             error={validationErrs.description}
           />
@@ -170,9 +170,10 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
           <Editor
             label="More information (optional, Max 1800 characters)"
             placeholder="add more information here..."
-            editorHtml={moreInfo}
+            editorHtml={moreInfo || ''}
             setEditorHtml={(input) => setState({ moreInfo: input })}
             error={validationErrs.moreInfo}
+            small
           />
         </Col>
       </Row>
