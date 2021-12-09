@@ -56,7 +56,7 @@ function reducer(state, newState) {
   }
   return { ...state, ...newState };
 }
-const cleanText = (txt) => txt.replace(/<\/?[^>]+(>|$)/g, '');
+const cleanText = (txt) => txt?.replace(/<\/?[^>]+(>|$)/g, '');
 
 const ContributeForm = () => {
   const submitAttempt = useRef(false);
@@ -95,6 +95,7 @@ const ContributeForm = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, description, previewText, email]);
+
   const validateForm = () => {
     try {
       validate({
@@ -119,6 +120,8 @@ const ContributeForm = () => {
       if (error.name === 'ValidationError') {
         setState({ validationErrs: error.inner });
       }
+
+      console.log('VAL', error);
       return false;
     }
   };
@@ -222,14 +225,15 @@ const ContributeForm = () => {
         </Col>
       </Row>
       <Row mt="8">
-        <Col w={[4, 8, 8]}>
-          <Textarea
+        <Col w={[4, 12, 12]}>
+          <Editor
             label="Sources (optional)"
             placeholder="Sources..."
             type="text"
-            value={sources}
-            handleChange={(input) => setState({ sources: input })}
+            editorHtml={sources || ''}
+            setEditorHtml={(input) => setState({ sources: input })}
             error={validationErrs.sources}
+            small
           />
         </Col>
       </Row>
@@ -339,8 +343,14 @@ const ContributeForm = () => {
       </Row>
       <Row mt="8">
         {httpError && (
-          <T.P mb="2" color="error">
+          <T.P mb="4" color="error">
             {httpError}
+          </T.P>
+        )}
+
+        {Object.keys(validationErrs)?.length > 0 && (
+          <T.P mb="4" ml="3" color="error">
+            Errors submitting - please check the fields above
           </T.P>
         )}
         <Col w={[4, 8, 8]}>
