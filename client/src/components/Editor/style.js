@@ -17,7 +17,7 @@ export const Quill = styled(ReactQuill)`
     border: ${theme.borders.inputs};
     background-color: ${theme.colors.grayLight};
     border-top: none;
-    min-height: 700px;
+    min-height: ${({ small }) => (small ? '350px' : '700px')};
     font-size: 20px;
     border-color: ${({ error }) =>
       error ? theme.colors.error : theme.colors.neutral};
