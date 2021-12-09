@@ -230,7 +230,7 @@ const ArticlePage = () => {
           {data?.tags?.length > 0 && tags?.length > 0 && (
             <>
               <T.H3 mt="9">Related tags</T.H3>
-              <Row>
+              <Row inner>
                 {filterTags(data.tags, tags, 'person').length > 0 && (
                   <Col w={[4, 12, 6]} mt="6">
                     <Category
