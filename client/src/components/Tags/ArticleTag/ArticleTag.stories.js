@@ -26,7 +26,7 @@ export const FactChecker = Template.bind({});
 FactChecker.args = {
   shape: 'circle',
   shapeColor: 'primaryMain',
-  label: 'Fact checker',
+  label: 'Reviewer',
   value: 'Working Class History',
 };
 

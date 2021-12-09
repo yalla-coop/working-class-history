@@ -156,7 +156,7 @@ const SignupPage = () => {
       <Row mt="7">
         <Col w={[4, 8, 8]}>
           <Textarea
-            label="Any academic credentials?"
+            label="Do you have any academic credentials, and/or are you a member of any political organisations or unions? (Optional)"
             placeholder="add your credentials here..."
             type="text"
             value={academicCredentials}

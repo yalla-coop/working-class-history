@@ -13,15 +13,15 @@ const { BasicInput } = Inputs;
 
 const decideCategory = (type) => {
   switch (type) {
-    case 'organisation':
+    case 'organisations':
       return CATEGORIES.organisation;
     case 'people':
       return CATEGORIES.person;
-    case 'area':
+    case 'areas':
       return CATEGORIES.city_area;
-    case 'country':
+    case 'countries':
       return CATEGORIES.country;
-    case 'topic':
+    case 'topics':
       return CATEGORIES.topic;
 
     default:
@@ -68,7 +68,9 @@ const CategoryPage = () => {
 
   return (
     <>
-      <T.H1>{categoryName}</T.H1>
+      <T.H1>
+        {categoryName?.charAt(0).toUpperCase() + categoryName?.slice(1)}
+      </T.H1>
       {pageError && (
         <T.P color="error" mt="8">
           {pageError}

@@ -4,7 +4,6 @@ import * as S from './style';
 import { getMonthName } from '../../helpers';
 
 const TextSection = ({
-  date,
   created_at,
   title,
   content,
@@ -23,9 +22,19 @@ const TextSection = ({
           ? `${getMonthName(month)} ${day}, ${year}`
           : 'N/A'}
       </T.P>
-      <T.H4 mt="4" mb="4" color="neutral">
-        {title}
-      </T.H4>
+      <S.ReadMore
+        to={
+          to ||
+          GENERAL.ARTICLE.replace(':id', id).replace(
+            ':articleName',
+            title.replace(/\s+/g, '-').toLowerCase()
+          )
+        }
+      >
+        <T.H4 mt="4" mb="4" color="neutral">
+          {title || 'N/A'}
+        </T.H4>
+      </S.ReadMore>
       <T.P
         mb="4"
         weight="light"
@@ -35,7 +44,7 @@ const TextSection = ({
           symbol: ' ',
         }}
       >
-        {preview_text}
+        {preview_text || 'N/A'}
       </T.P>
       <S.ReadMore
         to={

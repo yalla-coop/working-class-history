@@ -6,6 +6,8 @@ const contributeEvent = createSchema({
   title,
   date: optionalDate,
   description: requiredText,
+  previewText: requiredText,
+  moreInfo: optionalText,
   sources: optionalText,
   latitude: optionalText,
   longitude: optionalText,

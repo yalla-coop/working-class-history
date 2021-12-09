@@ -23,6 +23,7 @@ export const Side = styled.aside`
   bottom: 0;
   width: 20.416vw;
   display: block;
+
   ${({ theme }) => theme.media.tablet} {
     display: none;
   }
@@ -63,8 +64,11 @@ export const Circle = styled.div`
   top: -15%;
   background-color: ${({ theme }) => theme.colors.tertiaryMain};
   border-radius: 50%;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   height: 130vh;
   width: 130vh;
+  min-width: 50vw;
 `;
 
 export const LogoWrapper = styled(Link)`

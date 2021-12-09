@@ -2,6 +2,7 @@ import { GENERAL, EXTERNAL } from '../../constants/nav-routes';
 
 import * as S from './style';
 import * as T from '../Typography';
+import { useAuth } from '../../context/auth';
 
 const handleClick = (cb) => {
   if (typeof cb === 'function') {
@@ -11,6 +12,7 @@ const handleClick = (cb) => {
 };
 
 const Routes = ({ setOpen }) => {
+  const { logout, user } = useAuth();
   return (
     <>
       <T.H4 weight="bold" mb="1" mt="2">
@@ -45,11 +47,13 @@ const Routes = ({ setOpen }) => {
             Podcast
           </T.P>
         </S.MenuLink>
-        <S.MenuLink to={GENERAL.SIGN_UP} onClick={() => handleClick(setOpen)}>
-          <T.P weight="regular" color="neutral">
-            Sign Up
-          </T.P>
-        </S.MenuLink>
+        {!user?.id && (
+          <S.MenuLink to={GENERAL.SIGN_UP} onClick={() => handleClick(setOpen)}>
+            <T.P weight="regular" color="neutral">
+              Sign Up
+            </T.P>
+          </S.MenuLink>
+        )}
         <S.MenuLink
           to={GENERAL.CONTRIBUTE}
           onClick={() => handleClick(setOpen)}
@@ -76,6 +80,19 @@ const Routes = ({ setOpen }) => {
             WCH Home
           </T.P>
         </S.MenuLink>
+        {user?.id && (
+          <S.MenuLink
+            to={{ pathname: GENERAL.STORIES }}
+            onClick={() => {
+              logout();
+              handleClick(setOpen);
+            }}
+          >
+            <T.P weight="regular" color="neutral">
+              Log out
+            </T.P>
+          </S.MenuLink>
+        )}
       </S.Div>
     </>
   );

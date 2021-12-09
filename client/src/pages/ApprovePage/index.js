@@ -8,7 +8,12 @@ const ApprovePage = () => {
       <T.H1 mt="0" mtM="6" color="white">
         Approved!
       </T.H1>
-      <T.P mt="7" mtM="5" color="white" style={{ maxWidth: 470 }}>
+      <T.P
+        mt="7"
+        mtM="5"
+        color="white"
+        style={{ maxWidth: 470, paddingRight: 16 }}
+      >
         Admin have been notified and will put it live shortly. Thank you for
         again for contributing to this project!
       </T.P>

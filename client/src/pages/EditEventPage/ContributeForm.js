@@ -30,6 +30,7 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
     title,
     date,
     description,
+    moreInfo,
     sources,
     latitude,
     longitude,
@@ -65,6 +66,7 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
         title,
         date,
         description: cleanText(description),
+        moreInfo,
         previewText,
         sources,
         latitude,
@@ -101,6 +103,7 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
         day,
         time,
         description: state.description,
+        more_info: state.moreInfo,
         preview_text: state.previewText,
         sources: state.sources,
         latitude: state.latitude,
@@ -156,9 +159,21 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
           <Editor
             label="Description (Max 1800 characters)"
             placeholder="add description here..."
-            editorHtml={description}
+            editorHtml={description || ''}
             setEditorHtml={(input) => setState({ description: input })}
             error={validationErrs.description}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col w={[4, 12, 12]}>
+          <Editor
+            label="More information (optional, Max 1800 characters)"
+            placeholder="add more information here..."
+            editorHtml={moreInfo || ''}
+            setEditorHtml={(input) => setState({ moreInfo: input })}
+            error={validationErrs.moreInfo}
+            small
           />
         </Col>
       </Row>
