@@ -69,7 +69,7 @@ const CategoryPage = () => {
   return (
     <>
       <T.H1>
-        {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
+        {categoryName?.charAt(0).toUpperCase() + categoryName?.slice(1)}
       </T.H1>
       {pageError && (
         <T.P color="error" mt="8">
