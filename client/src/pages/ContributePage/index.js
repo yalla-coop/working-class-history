@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Typography as T, Grid, Tags, Button } from '../../components';
 import ContributeForm from './ContributeForm';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
+import { GENERAL } from '../../constants/nav-routes';
 
 const { Col, Row } = Grid;
 const { Reason } = Tags;
@@ -13,6 +15,7 @@ const ContributePage = () => {
   const isTablet = useMediaQuery({
     query: `(max-width: ${breakpoints.tablet})`,
   });
+  const history = useHistory();
   return (
     <>
       <T.H1>Want to contribute?</T.H1>
@@ -47,7 +50,7 @@ const ContributePage = () => {
       />
       {!showForm && (
         <Row mt="10">
-          <Col w={[4, 8, 8]}>
+          <Col w={[4, 8, 6]}>
             <Button
               textColor="neutral"
               w={isTablet ? '100%' : '470px'}
@@ -63,6 +66,27 @@ const ContributePage = () => {
                   style={{ width: 300 }}
                 >
                   Submit an event
+                </T.H1>
+              )}
+            </Button>
+          </Col>
+          <Col w={[4, 8, 6]}>
+            <Button
+              textColor="white"
+              bgColor="tertiaryMain"
+              w={isTablet ? '100%' : '470px'}
+              handleClick={() => history.push(GENERAL.SIGN_UP)}
+            >
+              {isTablet ? (
+                'Submit an event'
+              ) : (
+                <T.H1
+                  size="extraLarge"
+                  weight="semi"
+                  color="white"
+                  style={{ width: 300 }}
+                >
+                  Become a reviewer
                 </T.H1>
               )}
             </Button>

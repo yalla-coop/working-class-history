@@ -47,19 +47,31 @@ const Routes = ({ setOpen }) => {
             Podcast
           </T.P>
         </S.MenuLink>
-        {!user?.id && (
-          <S.MenuLink to={GENERAL.SIGN_UP} onClick={() => handleClick(setOpen)}>
-            <T.P weight="regular" color="neutral">
-              Sign Up
-            </T.P>
-          </S.MenuLink>
-        )}
+        <S.MenuLink
+          to={{ pathname: EXTERNAL.SIGN_UP }}
+          target="_blank"
+          onClick={() => handleClick(setOpen)}
+        >
+          <T.P weight="regular" color="neutral">
+            Sign Up
+          </T.P>
+        </S.MenuLink>
+
+        <S.MenuLink
+          to={{ pathname: EXTERNAL.SUPPORT }}
+          target="_blank"
+          onClick={() => handleClick(setOpen)}
+        >
+          <T.P weight="regular" color="neutral">
+            Support Us
+          </T.P>
+        </S.MenuLink>
         <S.MenuLink
           to={GENERAL.CONTRIBUTE}
           onClick={() => handleClick(setOpen)}
         >
           <T.P weight="regular" color="neutral">
-            Support Us
+            Contribute
           </T.P>
         </S.MenuLink>
         <S.MenuLink

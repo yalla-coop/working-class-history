@@ -39,6 +39,8 @@ const EXTERNAL = {
   SHOP: 'https://shop.workingclasshistory.com/',
   PODCAST: 'https://workingclasshistory.com/podcast/',
   WCH_HOME: 'https://workingclasshistory.com/',
+  SIGN_UP: 'https://workingclasshistory.com/sign-up/',
+  SUPPORT: 'https://workingclasshistory.com/support/',
 };
 
 export { GENERAL, EXTERNAL, ADMIN };
