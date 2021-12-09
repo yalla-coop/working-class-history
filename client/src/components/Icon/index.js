@@ -18,6 +18,7 @@ import Youtube from './icons/Youtube';
 import FacebookShare from './icons/FacebookShare';
 import EmailShare from './icons/EmailShare';
 import TwitterShare from './icons/TwitterShare';
+import TikTok from './icons/TikTok';
 
 export const IconMap = {
   goBack: GoBack,
@@ -33,6 +34,7 @@ export const IconMap = {
   facebookShare: FacebookShare,
   emailShare: EmailShare,
   twitterShare: TwitterShare,
+  tikTok: TikTok,
 };
 
 const Icon = (props) => {

@@ -76,9 +76,9 @@ const Footer = () => {
             height={iconDimensions}
           />
         </S.IconLink>
-        <S.IconLink mr="4" to={{ pathname: EXTERNAL.YOUTUBE }} target="_blank">
+        <S.IconLink mr="4" to={{ pathname: EXTERNAL.TIKTOK }} target="_blank">
           <Icon
-            icon="youtube"
+            icon="tikTok"
             color="white"
             width={iconDimensions}
             height={iconDimensions}
