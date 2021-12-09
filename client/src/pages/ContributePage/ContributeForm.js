@@ -241,7 +241,7 @@ const ContributeForm = () => {
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Latitude (optional)"
-            placeholder="e.g. 41°24'12.2'N 2°10'26.5'E"
+            placeholder="e.g. e.g. 51.492599118181836"
             type="text"
             value={latitude}
             handleChange={(input) => setState({ latitude: input })}
@@ -253,7 +253,7 @@ const ContributeForm = () => {
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Longitude (optional)"
-            placeholder="e.g. 41°24'12.2'N 2°10'26.5'E"
+            placeholder="e.g. -0.10925629120604793"
             type="text"
             value={longitude}
             handleChange={(input) => setState({ longitude: input })}
