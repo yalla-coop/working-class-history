@@ -16,7 +16,7 @@ import * as Tag from '../../api-calls/Tag';
 
 import SocialSection from './SocialSection';
 import { useHistory, useParams } from 'react-router';
-import { ADMIN, GENERAL } from '../../constants/nav-routes';
+import { ADMIN, GENERAL, EXTERNAL } from '../../constants/nav-routes';
 import { useAuth } from '../../context/auth';
 import { apiData } from '../../constants/index';
 import { getMonthName } from '../../helpers';
@@ -307,12 +307,13 @@ const ArticlePage = () => {
           {!hasAccess && (
             <Row mt="9">
               <Col w={[4, 7, 7]}>
-                <Button
-                  bgColor="neutral"
-                  textColor="primaryMain"
-                  text="Support us"
-                  to={GENERAL.CONTRIBUTE}
-                />
+                <a href={EXTERNAL.SUPPORT} target="_blank" rel="noreferrer">
+                  <Button
+                    bgColor="neutral"
+                    textColor="primaryMain"
+                    text="Support us"
+                  />
+                </a>
               </Col>
             </Row>
           )}

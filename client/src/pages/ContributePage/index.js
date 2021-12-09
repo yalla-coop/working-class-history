@@ -70,7 +70,7 @@ const ContributePage = () => {
               )}
             </Button>
           </Col>
-          <Col w={[4, 8, 6]}>
+          <Col w={[4, 8, 6]} mtT="4">
             <Button
               textColor="white"
               bgColor="tertiaryMain"
@@ -78,7 +78,7 @@ const ContributePage = () => {
               handleClick={() => history.push(GENERAL.SIGN_UP)}
             >
               {isTablet ? (
-                'Submit an event'
+                'Become a reviewer'
               ) : (
                 <T.H1
                   size="extraLarge"
