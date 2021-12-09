@@ -15,7 +15,6 @@ const modules = {
       { indent: '+1' },
     ],
     ['link'],
-    ['clean'],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
@@ -39,7 +38,14 @@ const formats = [
   'image',
 ];
 
-const Editor = ({ setEditorHtml, editorHtml, label, placeholder, error }) => {
+const Editor = ({
+  setEditorHtml,
+  editorHtml,
+  label,
+  placeholder,
+  small,
+  error,
+}) => {
   const handleChange = (html) => {
     setEditorHtml(html);
   };
@@ -62,6 +68,7 @@ const Editor = ({ setEditorHtml, editorHtml, label, placeholder, error }) => {
         formats={formats}
         bounds={'.app'}
         placeholder={placeholder || 'add your description...'}
+        small={small}
         error={error}
       />
       {error && (
