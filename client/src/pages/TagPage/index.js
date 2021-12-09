@@ -24,7 +24,7 @@ const Articles = ({ articles }) => {
   }
 
   return artSections.map(
-    (item) => !!item.length && <ArticlesSection articles={item} />
+    (item) => !!item.length && <ArticlesSection key={item.id} articles={item} />
   );
 };
 
