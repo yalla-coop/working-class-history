@@ -3,7 +3,6 @@
  * @param {*} error error object
  */
 const handleValidationError = (error) => {
-  console.log('ERR', error);
   const newErrors = {};
   if (error.inner)
     error.inner.forEach(({ path, message: errorMessage }) => {

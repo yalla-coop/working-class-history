@@ -14,14 +14,14 @@ import validate from '../../validation/schemas/contribute';
 
 import { createArticle } from '../../api-calls/Article';
 
-import { GENERAL } from '../../constants/nav-routes';
+import { navRoutes, formData } from '../../constants';
 import { apiData } from '../../constants/index';
 
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
 
 const { Col, Row } = Grid;
-const { BasicInput, DateInput, Textarea } = Inputs;
+const { BasicInput, DateInput, Textarea, Select } = Inputs;
 
 const initialState = {
   title: '',
@@ -121,7 +121,6 @@ const ContributeForm = () => {
         setState({ validationErrs: error.inner });
       }
 
-      console.log('VAL', error);
       return false;
     }
   };
@@ -159,7 +158,7 @@ const ContributeForm = () => {
       if (error) {
         setState({ httpError: error.message });
       } else {
-        history.push(GENERAL.SUCCESS_EVENT_SUBMIT);
+        history.push(navRoutes.GENERAL.SUCCESS_EVENT_SUBMIT);
       }
     }
   };
@@ -263,10 +262,10 @@ const ContributeForm = () => {
       </Row>
       <Row mt="8">
         <Col w={[4, 8, 8]}>
-          <BasicInput
+          <Select
             label="Geotag info (optional)"
-            placeholder="e.g. ..."
-            type="text"
+            placeholder="e.g. exact location"
+            options={formData.GEOTAG}
             value={geotagInfo}
             handleChange={(input) => setState({ geotagInfo: input })}
             error={validationErrs.geotagInfo}
@@ -277,7 +276,7 @@ const ContributeForm = () => {
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Geotag description (optional)"
-            placeholder="e.g. ..."
+            placeholder="e.g. This was the street where the event took place"
             type="text"
             value={geotagDescription}
             handleChange={(input) => setState({ geotagDescription: input })}
@@ -289,7 +288,7 @@ const ContributeForm = () => {
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Visitor information (optional)"
-            placeholder="e.g. ..."
+            placeholder="e.g. A bank now sits on the site"
             type="text"
             value={visitorInformation}
             handleChange={(input) => setState({ visitorInformation: input })}

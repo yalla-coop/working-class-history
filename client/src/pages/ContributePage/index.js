@@ -5,7 +5,7 @@ import { Typography as T, Grid, Tags, Button } from '../../components';
 import ContributeForm from './ContributeForm';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
-import { GENERAL } from '../../constants/nav-routes';
+import { navRoutes } from '../../constants';
 
 const { Col, Row } = Grid;
 const { Reason } = Tags;
@@ -75,7 +75,7 @@ const ContributePage = () => {
               textColor="white"
               bgColor="tertiaryMain"
               w={isTablet ? '100%' : '470px'}
-              handleClick={() => history.push(GENERAL.SIGN_UP)}
+              handleClick={() => history.push(navRoutes.GENERAL.SIGN_UP)}
             >
               {isTablet ? (
                 'Become a reviewer'
