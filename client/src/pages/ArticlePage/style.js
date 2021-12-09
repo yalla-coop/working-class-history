@@ -73,7 +73,7 @@ export const RichText = styled.div`
     font-weight: 300 !important;
     font-style: normal !important;
     letter-spacing: 0.2px !important;
-    color: ${({ theme }) => `${theme.colors.neutral} !important`};
+    color: ${({ theme }) => `${theme.colors.secondaryMid} !important`};
     text-transform: initial !important;
     text-align: left !important;
     text-decoration: underline;

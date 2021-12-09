@@ -76,6 +76,14 @@ const Footer = () => {
             height={iconDimensions}
           />
         </S.IconLink>
+        <S.IconLink mr="4" to={{ pathname: EXTERNAL.YOUTUBE }} target="_blank">
+          <Icon
+            icon="youtube"
+            color="white"
+            width={iconDimensions}
+            height={iconDimensions}
+          />
+        </S.IconLink>
       </S.IconsWrapper>
     </S.Wrapper>
   );
