@@ -20,10 +20,6 @@ const Select = ({
   allowClear = true,
   ...props
 }) => {
-  const decideColor = () => {
-    if (error) return 'error';
-    return color;
-  };
   const onChange = (val, opt) => {
     handleChange(val, opt);
   };
