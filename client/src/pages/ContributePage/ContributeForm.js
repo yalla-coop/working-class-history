@@ -14,14 +14,14 @@ import validate from '../../validation/schemas/contribute';
 
 import { createArticle } from '../../api-calls/Article';
 
-import { GENERAL } from '../../constants/nav-routes';
+import { navRoutes, formData } from '../../constants';
 import { apiData } from '../../constants/index';
 
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
 
 const { Col, Row } = Grid;
-const { BasicInput, DateInput, Textarea } = Inputs;
+const { BasicInput, DateInput, Textarea, Select } = Inputs;
 
 const initialState = {
   title: '',
@@ -56,7 +56,7 @@ function reducer(state, newState) {
   }
   return { ...state, ...newState };
 }
-const cleanText = (txt) => txt.replace(/<\/?[^>]+(>|$)/g, '');
+const cleanText = (txt) => txt?.replace(/<\/?[^>]+(>|$)/g, '');
 
 const ContributeForm = () => {
   const submitAttempt = useRef(false);
@@ -95,6 +95,7 @@ const ContributeForm = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, description, previewText, email]);
+
   const validateForm = () => {
     try {
       validate({
@@ -119,6 +120,7 @@ const ContributeForm = () => {
       if (error.name === 'ValidationError') {
         setState({ validationErrs: error.inner });
       }
+
       return false;
     }
   };
@@ -156,7 +158,7 @@ const ContributeForm = () => {
       if (error) {
         setState({ httpError: error.message });
       } else {
-        history.push(GENERAL.SUCCESS_EVENT_SUBMIT);
+        history.push(navRoutes.GENERAL.SUCCESS_EVENT_SUBMIT);
       }
     }
   };
@@ -222,14 +224,15 @@ const ContributeForm = () => {
         </Col>
       </Row>
       <Row mt="8">
-        <Col w={[4, 8, 8]}>
-          <Textarea
+        <Col w={[4, 12, 12]}>
+          <Editor
             label="Sources (optional)"
             placeholder="Sources..."
             type="text"
-            value={sources}
-            handleChange={(input) => setState({ sources: input })}
+            editorHtml={sources || ''}
+            setEditorHtml={(input) => setState({ sources: input })}
             error={validationErrs.sources}
+            small
           />
         </Col>
       </Row>
@@ -237,7 +240,7 @@ const ContributeForm = () => {
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Latitude (optional)"
-            placeholder="e.g. 41°24'12.2'N 2°10'26.5'E"
+            placeholder="e.g. e.g. 51.492599118181836"
             type="text"
             value={latitude}
             handleChange={(input) => setState({ latitude: input })}
@@ -249,7 +252,7 @@ const ContributeForm = () => {
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Longitude (optional)"
-            placeholder="e.g. 41°24'12.2'N 2°10'26.5'E"
+            placeholder="e.g. -0.10925629120604793"
             type="text"
             value={longitude}
             handleChange={(input) => setState({ longitude: input })}
@@ -259,10 +262,10 @@ const ContributeForm = () => {
       </Row>
       <Row mt="8">
         <Col w={[4, 8, 8]}>
-          <BasicInput
+          <Select
             label="Geotag info (optional)"
-            placeholder="e.g. ..."
-            type="text"
+            placeholder="e.g. exact location"
+            options={formData.GEOTAG}
             value={geotagInfo}
             handleChange={(input) => setState({ geotagInfo: input })}
             error={validationErrs.geotagInfo}
@@ -273,7 +276,7 @@ const ContributeForm = () => {
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Geotag description (optional)"
-            placeholder="e.g. ..."
+            placeholder="e.g. This was the street where the event took place"
             type="text"
             value={geotagDescription}
             handleChange={(input) => setState({ geotagDescription: input })}
@@ -285,7 +288,7 @@ const ContributeForm = () => {
         <Col w={[4, 8, 8]}>
           <BasicInput
             label="Visitor information (optional)"
-            placeholder="e.g. ..."
+            placeholder="e.g. A bank now sits on the site"
             type="text"
             value={visitorInformation}
             handleChange={(input) => setState({ visitorInformation: input })}
@@ -339,8 +342,14 @@ const ContributeForm = () => {
       </Row>
       <Row mt="8">
         {httpError && (
-          <T.P mb="2" color="error">
+          <T.P mb="4" color="error">
             {httpError}
+          </T.P>
+        )}
+
+        {Object.keys(validationErrs)?.length > 0 && (
+          <T.P mb="4" ml="3" color="error">
+            Errors submitting - please check the fields above
           </T.P>
         )}
         <Col w={[4, 8, 8]}>

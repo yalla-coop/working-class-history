@@ -8,7 +8,7 @@ const Burger = ({ width, height, color, secondColor, ...props }) => (
     {...props}
   >
     <path d="M1 0.5H21" stroke={'#1E1E1E'} strokeLinecap="round" />
-    <path d="M1 5.5H21" stroke={'#1E1E1E'} strokeLinecap="round" />
+    <path d="M1 5.5H21" stroke={'#6013FB'} strokeLinecap="round" />
     <path d="M1 10.5H21" stroke={'#FAD40A'} strokeLinecap="round" />
   </svg>
 );
