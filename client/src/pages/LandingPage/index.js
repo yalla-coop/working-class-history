@@ -58,6 +58,7 @@ const LandingPage = () => {
       setLoading(true);
       const { error, data } = await Article.getRecentArticles({});
       setRecentData(data?.results || []);
+      setNextData(data.next);
       setTotalArticles(data?.count || 0);
       setLoading(false);
       if (error) {
