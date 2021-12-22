@@ -15,6 +15,19 @@ import { GENERAL } from '../../constants/nav-routes';
 import * as Article from '../../api-calls/Article';
 const { Col, Row } = Grid;
 
+const Articles = ({ articles }) => {
+  const artLength = Math.ceil(articles.length / 6);
+  const artSections = [];
+  for (let i = 0; i < artLength; i++) {
+    let items = articles.slice(i * 6, i * 6 + 6);
+    artSections.push(items);
+  }
+
+  return artSections.map(
+    (item) => !!item.length && <ArticlesSection key={item.id} articles={item} />
+  );
+};
+
 const randomImage = () => {
   const images = [
     'landingPage_1',
@@ -32,6 +45,10 @@ const LandingPage = () => {
   const [pageError, setPageError] = useState('');
   const [loading, setLoading] = useState(true);
   const [imageSrc, setImageSrc] = useState('');
+  const [nextData, setNextData] = useState('');
+  const [totalArticles, setTotalArticles] = useState(0);
+  // starts at 11 as there is originally 11 articles shown on landing page
+  const [showItems, setShowItems] = useState(10);
 
   useEffect(() => {
     setImageSrc(randomImage());
@@ -41,6 +58,7 @@ const LandingPage = () => {
       setLoading(true);
       const { error, data } = await Article.getRecentArticles({});
       setRecentData(data?.results || []);
+      setTotalArticles(data?.count || 0);
       setLoading(false);
       if (error) {
       }
@@ -52,6 +70,27 @@ const LandingPage = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  const handleMore = async () => {
+    setShowItems(showItems + 10);
+    if (showItems % 90 && nextData) {
+      try {
+        setLoading(true);
+        const { error, data } = await Article.getNextArticles({
+          nextUrl: nextData,
+        });
+        setRecentData([...recentData, ...data.results]);
+        setNextData(data.next);
+        setLoading(false);
+        if (error) {
+          setPageError(error.message);
+        }
+      } catch (error) {
+        setPageError(error.message);
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <>
@@ -117,12 +156,22 @@ const LandingPage = () => {
                 <Skeleton key={item.id} loading={loading} active></Skeleton>
               ))
             : recentData
-                .slice(8)
+                .slice(8, 10)
                 .map((item) => (
                   <TextSection key={item.id} {...item} mt="9" mtM="8" />
                 ))}
         </Col>
       </Row>
+      {showItems > 10 && (
+        <Articles articles={recentData.slice(10, showItems)} />
+      )}
+      {showItems < totalArticles && (
+        <S.LoadMore onClick={() => handleMore()}>
+          <T.P mt="5" underline>
+            Load more...
+          </T.P>
+        </S.LoadMore>
+      )}
     </>
   );
 };

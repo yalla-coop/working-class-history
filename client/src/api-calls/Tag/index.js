@@ -32,6 +32,7 @@ export const getTagsByCategory = async ({ category, options }) => {
     const { data } = await axios.get(
       `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true&filter__${apiData.COLUMNS.CATEGORY}__single_select_equal=${category}`
     );
+
     return { data };
   } catch (error) {
     const err = handleError(error, options);
