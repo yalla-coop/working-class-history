@@ -39,3 +39,39 @@ export const getTagsByCategory = async ({ category, options }) => {
     return { error: err };
   }
 };
+
+export const getTagsByCategoryForSearch = async ({
+  category,
+  options,
+  search,
+}) => {
+  try {
+    if (search) {
+      const { data } = await axios.get(
+        `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true&filter__${apiData.COLUMNS.CATEGORY}__single_select_equal=${category}&search=${search}`
+      );
+      return { data };
+    } else {
+      const { data } = await axios.get(
+        `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true&filter__${apiData.COLUMNS.CATEGORY}__single_select_equal=${category}`
+      );
+
+      return { data };
+    }
+  } catch (error) {
+    const err = handleError(error, options);
+    return { error: err };
+  }
+};
+
+export const getNextTags = async ({ nextUrl, options = {} }) => {
+  try {
+    // need to do this so we can use https base for CORS purposes
+    const cleanUrl = nextUrl.replace('http://api.baserow.io/api', '');
+    const { data } = await axios.get(cleanUrl);
+    return { data };
+  } catch (error) {
+    const err = handleError(error, options);
+    return { error: err };
+  }
+};
