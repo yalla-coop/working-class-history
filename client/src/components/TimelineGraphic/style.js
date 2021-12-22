@@ -6,10 +6,11 @@ export const Wrapper = styled.aside`
   top: 0;
   pointer-events: none;
   z-index: -1;
+  height: 100vh;
 `;
 
 export const Container = styled.div`
-  position: fixed;
+  /* position: fixed; */
   display: block;
   z-index: -1;
   ${({ theme }) => theme.media.tablet} {
@@ -18,10 +19,16 @@ export const Container = styled.div`
 `;
 
 export const NumberContainer = styled(T.H0)`
-  position: fixed;
+  position: absolute;
   top: 104px;
   font-size: 120px !important;
   font-family: 'Zilla Slab', serif;
-  position: fixed;
+  /* position: fixed; */
   z-index: -1;
+`;
+
+export const Float = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;

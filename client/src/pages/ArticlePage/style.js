@@ -22,7 +22,7 @@ export const SocialLinksWrapper = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  left: -55px;
+  left: -45px;
   top: ${({ hasMedia }) => (hasMedia ? '36px' : '-6px')};
   svg {
     margin-top: ${({ theme }) => theme.spacings[4]};
@@ -34,6 +34,7 @@ export const SocialLinksWrapper = styled.div`
     width: 90px;
     justify-content: space-between;
     svg {
+      margin-top: ${({ theme }) => theme.spacings[5]};
       margin-bottom: ${({ theme }) => theme.spacings[1]};
       margin-right: ${({ theme }) => theme.spacings[4]};
     }

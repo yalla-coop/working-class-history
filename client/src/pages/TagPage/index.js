@@ -31,7 +31,7 @@ const Articles = ({ articles }) => {
 const TagPage = () => {
   const [tagData, setTagData] = useState({});
   const [articles, setArticles] = useState([]);
-
+  const [nextData, setNextData] = useState('');
   const [showItems, setShowItems] = useState(10);
   const [pageError, setPageError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -43,6 +43,7 @@ const TagPage = () => {
       try {
         setLoading(true);
         const { error, data } = await Tag.getTagById({ id: tagId });
+
         setTagData(data);
         setLoading(false);
         if (error) {
@@ -59,17 +60,18 @@ const TagPage = () => {
     const getArticlesData = async () => {
       try {
         setLoading(true);
-        const { error, data } = await Article.getAllArticles({});
-        const filteredArticles = data.results.filter((art) =>
-          tagData.articles.find((t) => t.id === Number(art.id))
-        );
-        setArticles(filteredArticles);
+        const { error, data } = await Article.getAllArticlesByTag({
+          tagId: tagData.id,
+        });
+        setArticles(data.results);
+        setNextData(data.next);
         setLoading(false);
         if (error) {
           setPageError(error.message);
         }
       } catch (error) {
         setPageError(error.message);
+        setLoading(false);
       }
     };
 
@@ -77,6 +79,27 @@ const TagPage = () => {
       getArticlesData();
     }
   }, [tagData.articles, tagData.id]);
+
+  const handleMore = async () => {
+    setShowItems(showItems + 10);
+    if (showItems % 90 && nextData) {
+      try {
+        setLoading(true);
+        const { error, data } = await Article.getNextArticles({
+          nextUrl: nextData,
+        });
+        setArticles([...articles, ...data.results]);
+        setNextData(data.next);
+        setLoading(false);
+        if (error) {
+          setPageError(error.message);
+        }
+      } catch (error) {
+        setPageError(error.message);
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <>
@@ -131,8 +154,8 @@ const TagPage = () => {
           </Col>
         </Row>
       )}
-      {articles.length > showItems && (
-        <S.LoadMore onClick={() => setShowItems((old) => old + 6)}>
+      {(articles.length > showItems || nextData) && (
+        <S.LoadMore onClick={() => handleMore()}>
           <T.P underline>Load more...</T.P>
         </S.LoadMore>
       )}

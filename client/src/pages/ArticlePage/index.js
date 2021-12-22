@@ -392,7 +392,7 @@ const ArticlePage = () => {
         </>
       )}
 
-      <TimelineGraphic type="short" number={data?.year} />
+      <TimelineGraphic number={data?.year} />
     </>
   );
 };

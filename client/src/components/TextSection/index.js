@@ -16,7 +16,6 @@ const TextSection = ({
   description,
   ...props
 }) => {
-  console.log('content', props);
   return (
     <S.Wrapper {...props}>
       <T.P size="small" weight="medium" color="neutral">
