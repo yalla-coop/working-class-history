@@ -126,6 +126,7 @@ const ArticlePage = () => {
       setLoading(false);
     }
   };
+
   return (
     <>
       {loading ? (
@@ -153,8 +154,12 @@ const ArticlePage = () => {
             />
 
             <Image src={data?.media} mt="36px" mtT="2" />
-            <T.P mt="5">{data?.media_caption}</T.P>
-            <T.P mb="2">{data?.media_credit}</T.P>
+            <T.P size="small" mt="3" style={{ width: '100%' }}>
+              {data?.media_caption}
+            </T.P>
+            <T.P size="small" mb="2" mt="1">
+              Credit: {data?.media_credit}
+            </T.P>
             <Row mt="9">
               <Col w={[4, 10, 10]}>
                 <S.RichText
@@ -304,6 +309,34 @@ const ArticlePage = () => {
               {pageError}
             </T.P>
           )}
+
+          {data?.extra_media && (
+            <>
+              <Row mt="9">
+                <T.H3 mb="4" color="neutral" style={{ width: '100%' }}>
+                  Further images
+                </T.H3>
+              </Row>
+              <Row inner>
+                {data.extra_media.map((media, index) => (
+                  <Col w={[4, 6, 6]} mb="2">
+                    {console.log('ex', data.extra_media_media[index])}
+                    <Image
+                      src={data.extra_media_media[index]?.value}
+                      mt="36px"
+                    />
+                    <T.P size="small" mt="3" style={{ width: '100%' }}>
+                      {data.extra_media_caption[index]?.value}
+                    </T.P>
+                    <T.P size="small" mt="1" mb="2">
+                      Credit: {data.extra_media_credit[index]?.value}
+                    </T.P>
+                  </Col>
+                ))}
+              </Row>
+            </>
+          )}
+
           {!hasAccess && (
             <Row mt="9">
               <Col w={[4, 7, 7]}>
