@@ -5,7 +5,6 @@ import {
   Grid,
   Image,
   Tags,
-  MoreInformation,
   Button,
   TimelineGraphic,
 } from '../../components';
@@ -126,6 +125,7 @@ const ArticlePage = () => {
       setLoading(false);
     }
   };
+
   return (
     <>
       {loading ? (
@@ -150,11 +150,21 @@ const ArticlePage = () => {
             <SocialSection
               url={window.location.href}
               hasMedia={Boolean(data?.media)}
+              title={data?.title}
+              image={data?.media}
             />
 
-            <Image src={data?.media} mt="36px" mtT="2" />
-            <T.P mt="5">{data?.media_caption}</T.P>
-            <T.P mb="2">{data?.media_credit}</T.P>
+            {data?.media && <Image src={data.media} mt="36px" mtT="2" />}
+            {data?.media_caption && (
+              <T.P size="small" mt="3" style={{ width: '100%' }}>
+                {data.media_caption}
+              </T.P>
+            )}
+            {data?.media_credit && (
+              <T.P size="small" mb="2" mt="1">
+                Credit: {data.media_credit}
+              </T.P>
+            )}
             <Row mt="9">
               <Col w={[4, 10, 10]}>
                 <S.RichText
@@ -168,7 +178,7 @@ const ArticlePage = () => {
           </S.MapSection>
 
           <Row mt="9">
-            <T.H3 mb="5" color="neutral">
+            <T.H3 mb="5" color="neutral" style={{ widt: '100%' }}>
               More information
             </T.H3>
             <Col w={[4, 10, 10]} mb="2">
@@ -183,17 +193,22 @@ const ArticlePage = () => {
           </Row>
 
           {data?.sources && (
-            <MoreInformation
-              mt="9"
-              mb="8"
-              title="Sources"
-              subtitle={data.sources
-                .split(' ')
-                .filter((str) => !str.startsWith('http'))}
-              link={data.sources
-                .split(' ')
-                .find((str) => str.startsWith('http'))}
-            />
+            <Row mt="9" mb="8">
+              <T.H3 mb="5" color="neutral" style={{ width: '100%' }}>
+                Sources
+              </T.H3>
+              {data.sources.split(' | ').map((source, index) => (
+                <Col w={[4, 10, 10]} mb="2">
+                  {source.startsWith('http') ? (
+                    <T.Link to={source.split(' ')[0]} external>
+                      <T.P>{source}</T.P>
+                    </T.Link>
+                  ) : (
+                    <T.P>{source}</T.P>
+                  )}
+                </Col>
+              ))}
+            </Row>
           )}
           <ArticleTag
             shape="triangle"
@@ -304,6 +319,33 @@ const ArticlePage = () => {
               {pageError}
             </T.P>
           )}
+
+          {data?.extra_media && (
+            <>
+              <Row mt="9">
+                <T.H3 mb="4" color="neutral" style={{ width: '100%' }}>
+                  Further images
+                </T.H3>
+              </Row>
+              <Row inner>
+                {data.extra_media.map((media, index) => (
+                  <Col w={[4, 6, 6]} mb="2">
+                    <Image
+                      src={data.extra_media_media[index]?.value}
+                      mt="36px"
+                    />
+                    <T.P size="small" mt="3" style={{ width: '100%' }}>
+                      {data.extra_media_caption[index]?.value}
+                    </T.P>
+                    <T.P size="small" mt="1" mb="2">
+                      Credit: {data.extra_media_credit[index]?.value}
+                    </T.P>
+                  </Col>
+                ))}
+              </Row>
+            </>
+          )}
+
           {!hasAccess && (
             <Row mt="9">
               <Col w={[4, 7, 7]}>
@@ -350,7 +392,7 @@ const ArticlePage = () => {
         </>
       )}
 
-      <TimelineGraphic type="short" number={data?.year} />
+      <TimelineGraphic number={data?.year} />
     </>
   );
 };

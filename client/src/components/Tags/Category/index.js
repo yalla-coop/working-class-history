@@ -27,7 +27,7 @@ const Category = ({
         <S.Center>
           <Shape shape={shape} shapeColor={shapeColor} size={size} />
 
-          <T.H4 color="neutral" weight="bold" ml="2">
+          <T.H4 color="neutral" weight="bold" ml="5">
             {title}
           </T.H4>
         </S.Center>

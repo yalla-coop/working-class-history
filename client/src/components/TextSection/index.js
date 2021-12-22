@@ -13,6 +13,7 @@ const TextSection = ({
   year,
   day,
   month,
+  description,
   ...props
 }) => {
   return (
@@ -44,7 +45,7 @@ const TextSection = ({
           symbol: ' ',
         }}
       >
-        {preview_text || 'N/A'}
+        {preview_text || description?.split('>')[1]?.split('<')[0] || 'N/A'}
       </T.P>
       <S.ReadMore
         to={

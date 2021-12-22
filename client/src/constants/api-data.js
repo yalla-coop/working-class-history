@@ -26,6 +26,7 @@ const COLUMNS = {
   CATEGORY: 'field_177168',
   EMAIL: 'field_177159',
   PIN: 'field_177161',
+  TAGS: 'field_184121',
 };
 
 export { TABLES, CATEGORIES, STATUS, COLUMNS };
