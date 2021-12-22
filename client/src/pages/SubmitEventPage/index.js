@@ -1,8 +1,10 @@
 import * as S from './style';
 import { Typography as T } from '../../components';
 import { GENERAL } from '../../constants/nav-routes';
+import * as colors from '../../theme/colors';
 
 const SubmitEventPage = () => {
+  console.log('S', colors.default);
   return (
     <S.Wrapper>
       <T.H1 mt="0" mtM="6" color="white">
@@ -15,8 +17,8 @@ const SubmitEventPage = () => {
         style={{
           maxWidth: 400,
           paddingRight: '32px',
-          position: 'relative',
-          mixBlendMode: 'difference',
+          backgroundColor: colors.default.tertiaryMain,
+          boxShadow: `3px 3px 1px ${colors.default.tertiaryMain}`,
         }}
       >
         Thanks for contributing. we'll give your article a review. Our article
