@@ -4,24 +4,14 @@ import * as S from './style';
 import * as T from '../Typography';
 
 const modules = {
-  toolbar: [
-    [{ header: '1' }, { header: '2' }, { font: [] }],
-    [{ size: [] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [
-      { list: 'ordered' },
-      { list: 'bullet' },
-      { indent: '-1' },
-      { indent: '+1' },
-    ],
-    ['link'],
-  ],
+  toolbar: [['bold', 'italic', 'underline', 'blockquote'], ['link'], ['clean']],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
     matchVisual: false,
   },
 };
 
+//  have kept formats that are not in the toolbar so we're aware of them if we want to add them in the future
 const formats = [
   'header',
   'font',
@@ -36,6 +26,7 @@ const formats = [
   'indent',
   'link',
   'image',
+  'clean',
 ];
 
 const Editor = ({
