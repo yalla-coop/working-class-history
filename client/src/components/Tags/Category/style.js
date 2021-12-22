@@ -36,11 +36,11 @@ export const Triangle = styled.div`
   width: 0;
   height: 0;
   border-top: ${({ size }) =>
-    size === 'small' ? '6px solid transparent' : '10px solid transparent'};
+    size === 'small' ? '8px solid transparent' : '10px solid transparent'};
   border-bottom: ${({ size }) =>
-    size === 'small' ? '6px solid transparent' : '10px solid transparent'};
+    size === 'small' ? '8px solid transparent' : '10px solid transparent'};
   border-left: ${({ theme, shapeColor, size }) => {
-    const width = size === 'small' ? '12px' : '20px';
+    const width = size === 'small' ? '16px' : '20px';
     return `${width} solid ${
       shapeColor ? theme.colors[shapeColor] || shapeColor : theme.colors.neutral
     }`;
@@ -48,8 +48,8 @@ export const Triangle = styled.div`
 `;
 
 export const Circle = styled.div`
-  width: ${({ size }) => (size === 'small' ? '12px' : '20px')};
-  height: ${({ size }) => (size === 'small' ? '12px' : '20px')};
+  width: ${({ size }) => (size === 'small' ? '16px' : '20px')};
+  height: ${({ size }) => (size === 'small' ? '16px' : '20px')};
   background: ${({ theme, shapeColor }) =>
     shapeColor
       ? theme.colors[shapeColor] || shapeColor
@@ -58,8 +58,8 @@ export const Circle = styled.div`
 `;
 
 export const Square = styled.div`
-  width: ${({ size }) => (size === 'small' ? '12px' : '20px')};
-  height: ${({ size }) => (size === 'small' ? '12px' : '20px')};
+  width: ${({ size }) => (size === 'small' ? '16px' : '20px')};
+  height: ${({ size }) => (size === 'small' ? '16px' : '20px')};
   background: ${({ theme, shapeColor }) =>
     shapeColor
       ? theme.colors[shapeColor] || shapeColor
