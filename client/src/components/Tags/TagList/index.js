@@ -1,11 +1,39 @@
-import { useState } from 'react';
-
 import * as S from './style';
 import * as T from '../../Typography';
 import { GENERAL } from '../../../constants/nav-routes';
+import * as Tag from '../../../api-calls/Tag';
 
-const TagList = ({ tagsList = [], ...props }) => {
-  const [showItems, setShowItems] = useState(50);
+const TagList = ({
+  tagsList = [],
+  nextData,
+  setNextData,
+  setTags,
+  setLoading,
+  setPageError,
+  showItems,
+  setShowItems,
+  ...props
+}) => {
+  const handleMore = async () => {
+    setShowItems(showItems + 10);
+    if (showItems % 90 && nextData) {
+      try {
+        setLoading(true);
+        const { error, data } = await Tag.getNextTags({
+          nextUrl: nextData,
+        });
+        setTags((recentData) => [...recentData, ...data.results]);
+        setNextData(data.next);
+        setLoading(false);
+        if (error) {
+          setPageError(error.message);
+        }
+      } catch (error) {
+        setPageError(error.message);
+        setLoading(false);
+      }
+    }
+  };
   return (
     <S.Wrapper {...props}>
       {tagsList.slice(0, showItems).map((tag, index) => (
@@ -22,8 +50,8 @@ const TagList = ({ tagsList = [], ...props }) => {
           {index !== tagsList.length - 1 && <S.Edge />}
         </>
       ))}
-      {tagsList.length > showItems && (
-        <S.LoadMore onClick={() => setShowItems((old) => old + 20)}>
+      {tagsList.length >= showItems && (
+        <S.LoadMore onClick={handleMore}>
           <T.P underline>Load more...</T.P>
         </S.LoadMore>
       )}

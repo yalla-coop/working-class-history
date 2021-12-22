@@ -31,8 +31,9 @@ const decideCategory = (type) => {
 
 const CategoryPage = () => {
   const [tags, setTags] = useState([]);
+  const [nextData, setNextData] = useState('');
+  const [showItems, setShowItems] = useState(100);
 
-  const [filteredTags, setFilteredTags] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const [pageError, setPageError] = useState('');
@@ -47,6 +48,7 @@ const CategoryPage = () => {
           category: decideCategory(categoryName),
         });
         setTags(data.results);
+        setNextData(data.next);
         setLoading(false);
         if (error) {
         }
@@ -58,12 +60,22 @@ const CategoryPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChange = (value) => {
-    const filteredData = tags?.filter((tag) =>
-      tag.Title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
-    );
+  const handleChange = async (value) => {
     setSearch(value);
-    setFilteredTags(filteredData);
+    try {
+      setLoading(true);
+      const { error, data } = await Tag.getTagsByCategoryForSearch({
+        category: decideCategory(categoryName),
+        search: value,
+      });
+      setTags(data.results);
+      setNextData(data.next);
+      setLoading(false);
+      if (error) {
+      }
+    } catch (error) {
+      setPageError(error.message);
+    }
   };
 
   return (
@@ -102,9 +114,16 @@ const CategoryPage = () => {
         </Row>
       ) : (
         <TagList
-          tagsList={filteredTags.length ? filteredTags : tags}
+          tagsList={tags}
           mt="10"
           mtT="5"
+          nextData={nextData}
+          setNextData={setNextData}
+          setTags={setTags}
+          setLoading={setLoading}
+          setPageError={setPageError}
+          showItems={showItems}
+          setShowItems={setShowItems}
         />
       )}
     </>
