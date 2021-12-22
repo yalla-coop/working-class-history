@@ -9,10 +9,15 @@ const SubmitEventPage = () => {
         Amazing!
       </T.H1>
       <T.P
-        mt="9"
+        mt="7"
         mtM="5"
         color="white"
-        style={{ maxWidth: 470, paddingRight: 16 }}
+        style={{
+          maxWidth: 400,
+          paddingRight: '32px',
+          position: 'relative',
+          mixBlendMode: 'difference',
+        }}
       >
         Thanks for contributing. we'll give your article a review. Our article
         curation is run by volunteers but we’ll do our best to email you with
