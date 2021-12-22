@@ -320,7 +320,6 @@ const ArticlePage = () => {
               <Row inner>
                 {data.extra_media.map((media, index) => (
                   <Col w={[4, 6, 6]} mb="2">
-                    {console.log('ex', data.extra_media_media[index])}
                     <Image
                       src={data.extra_media_media[index]?.value}
                       mt="36px"

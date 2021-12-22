@@ -23,7 +23,12 @@ const ArticleTag = ({
     <S.Wrapper {...props}>
       <Shape shape={shape} shapeColor={shapeColor} />
       <S.ContentWrapper>
-        <T.H4 color="neutral" weight="bold" ml="5">
+        <T.H4
+          color="neutral"
+          weight="bold"
+          ml="5"
+          style={{ minWidth: '100px' }}
+        >
           {label}
         </T.H4>
         {value && (
