@@ -4,7 +4,6 @@ import { GENERAL } from '../../constants/nav-routes';
 import * as colors from '../../theme/colors';
 
 const SubmitEventPage = () => {
-  console.log('S', colors.default);
   return (
     <S.Wrapper>
       <T.H1 mt="0" mtM="6" color="white">
