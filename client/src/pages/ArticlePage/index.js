@@ -5,7 +5,6 @@ import {
   Grid,
   Image,
   Tags,
-  MoreInformation,
   Button,
   TimelineGraphic,
 } from '../../components';
@@ -153,13 +152,17 @@ const ArticlePage = () => {
               hasMedia={Boolean(data?.media)}
             />
 
-            <Image src={data?.media} mt="36px" mtT="2" />
-            <T.P size="small" mt="3" style={{ width: '100%' }}>
-              {data?.media_caption}
-            </T.P>
-            <T.P size="small" mb="2" mt="1">
-              Credit: {data?.media_credit}
-            </T.P>
+            {data?.media && <Image src={data.media} mt="36px" mtT="2" />}
+            {data?.media_caption && (
+              <T.P size="small" mt="3" style={{ width: '100%' }}>
+                {data.media_caption}
+              </T.P>
+            )}
+            {data?.media_credit && (
+              <T.P size="small" mb="2" mt="1">
+                Credit: {data.media_credit}
+              </T.P>
+            )}
             <Row mt="9">
               <Col w={[4, 10, 10]}>
                 <S.RichText
@@ -173,7 +176,7 @@ const ArticlePage = () => {
           </S.MapSection>
 
           <Row mt="9">
-            <T.H3 mb="5" color="neutral">
+            <T.H3 mb="5" color="neutral" style={{ widt: '100%' }}>
               More information
             </T.H3>
             <Col w={[4, 10, 10]} mb="2">
@@ -188,17 +191,22 @@ const ArticlePage = () => {
           </Row>
 
           {data?.sources && (
-            <MoreInformation
-              mt="9"
-              mb="8"
-              title="Sources"
-              subtitle={data.sources
-                .split(' ')
-                .filter((str) => !str.startsWith('http'))}
-              link={data.sources
-                .split(' ')
-                .find((str) => str.startsWith('http'))}
-            />
+            <Row mt="9" mb="8">
+              <T.H3 mb="5" color="neutral" style={{ width: '100%' }}>
+                Sources
+              </T.H3>
+              {data.sources.split(' | ').map((source, index) => (
+                <Col w={[4, 10, 10]} mb="2">
+                  {source.startsWith('http') ? (
+                    <T.Link to={source.split(' ')[0]} external>
+                      <T.P>{source}</T.P>
+                    </T.Link>
+                  ) : (
+                    <T.P>{source}</T.P>
+                  )}
+                </Col>
+              ))}
+            </Row>
           )}
           <ArticleTag
             shape="triangle"
