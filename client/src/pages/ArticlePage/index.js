@@ -150,6 +150,8 @@ const ArticlePage = () => {
             <SocialSection
               url={window.location.href}
               hasMedia={Boolean(data?.media)}
+              title={data?.title}
+              image={data?.media}
             />
 
             {data?.media && <Image src={data.media} mt="36px" mtT="2" />}
