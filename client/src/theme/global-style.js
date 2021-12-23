@@ -48,10 +48,14 @@ const style = css`
   h5,
   h6,
   p,
-  a,
   button {
     margin: 0;
     font-family: 'Zilla Slab', serif;
+  }
+
+  a {
+    margin: 0;
+    font-family: 'Roboto', sans-serif !important;
   }
 
   code {

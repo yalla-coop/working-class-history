@@ -130,6 +130,7 @@ export const Link = styled(AntdLink)`
   font-size: 16px !important;
   line-height: 210% !important;
   font-weight: ${({ weight }) => (weight ? weights[weight] : '300 !important')};
+  font-family: 'Roboto', sans-serif !important;
 
   text-decoration: ${({ underline }) =>
     underline ? 'underline' : 'none'} !important;
