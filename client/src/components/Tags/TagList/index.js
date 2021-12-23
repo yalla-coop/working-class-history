@@ -15,7 +15,7 @@ const TagList = ({
   ...props
 }) => {
   const handleMore = async () => {
-    setShowItems(showItems + 10);
+    setShowItems(showItems + 50);
     if (showItems % 90 && nextData) {
       try {
         setLoading(true);
