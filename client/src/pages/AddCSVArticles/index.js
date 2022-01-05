@@ -3,7 +3,6 @@ import CsvReader from '../../components/CsvReader';
 
 const AddCSVArticles = () => {
   const [startSend, setStartSend] = useState(false);
-  const [sendedArr, setSendedArr] = useState(0);
   const [newArticles, setNewArticles] = useState([]);
 
   return (
@@ -11,8 +10,6 @@ const AddCSVArticles = () => {
       <CsvReader
         startSend={startSend}
         setStartSend={setStartSend}
-        sendedArr={sendedArr}
-        setSendedArr={setSendedArr}
         newArticles={newArticles}
         setNewArticles={setNewArticles}
       />
