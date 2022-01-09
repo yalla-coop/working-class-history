@@ -55,7 +55,7 @@ const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
       author_name: author,
       author_url,
       author_email: author_url,
-      status: apiData.STATUS.pending,
+      status: apiData.STATUS.published,
       media,
       media_caption,
       media_credit,
