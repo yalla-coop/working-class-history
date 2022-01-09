@@ -67,7 +67,6 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
         date,
         description: cleanText(description),
         moreInfo,
-        previewText,
         sources,
         latitude,
         longitude,
@@ -104,7 +103,6 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
         time,
         description: state.description,
         more_info: state.moreInfo,
-        preview_text: state.previewText,
         sources: state.sources,
         latitude: state.latitude,
         longitude: state.longitude,
@@ -186,18 +184,6 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
             value={sources}
             handleChange={(input) => setState({ sources: input })}
             error={validationErrs.sources}
-          />
-        </Col>
-      </Row>
-      <Row mt="8">
-        <Col w={[4, 8, 8]}>
-          <Textarea
-            label="Preview text"
-            placeholder="preview text..."
-            type="text"
-            value={previewText}
-            handleChange={(input) => setState({ previewText: input })}
-            error={validationErrs.previewText}
           />
         </Col>
       </Row>

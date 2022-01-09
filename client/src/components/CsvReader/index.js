@@ -46,7 +46,6 @@ const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
       time,
       description: text,
       more_info: more_information,
-      preview_text: title,
       sources,
       latitude,
       longitude,
@@ -99,7 +98,6 @@ const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
     console.log('##########');
     console.log(arr);
     setNewArticles(arr);
-    // TagsArr(arr);
     console.log('######');
   };
 
