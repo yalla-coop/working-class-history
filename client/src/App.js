@@ -21,6 +21,11 @@ function App() {
           <Switch>
             <Route
               exact
+              path={navRoutes.GENERAL.ADD_NEW_ARTICLES}
+              Component={Pages.AddCSVArticles}
+            />
+            <Route
+              exact
               path={navRoutes.GENERAL.STORIES}
               Component={Pages.LandingPage}
               layout="general"

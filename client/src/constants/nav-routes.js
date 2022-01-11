@@ -15,6 +15,7 @@ const GENERAL = {
   CONTRIBUTE: '/contribute',
   SUCCESS_EVENT_SUBMIT: '/success-submit',
   CATEGORY: '/category/:categoryName',
+  ADD_NEW_ARTICLES: '/add-new-articles',
 };
 
 const admin = '/admin';

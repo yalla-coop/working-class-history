@@ -3,11 +3,28 @@ import * as T from '../Typography';
 import * as S from './style';
 import { getMonthName } from '../../helpers';
 
+const renderTextPreview = (text) => {
+  const htmlContent = text
+    ?.split('>')
+    ?.map((i) => i.split('<')[0])
+    .filter((i) => !i.includes('=') && i.trim())
+    .join('');
+
+  if (htmlContent) {
+    return htmlContent.length > 200
+      ? `${htmlContent.substring(0, 200)}...`
+      : `${htmlContent}...`;
+  }
+  if (text) {
+    return text.length > 200 ? `${text.substring(0, 200)}...` : `${text}...`;
+  }
+  return 'N/A';
+};
+
 const TextSection = ({
   created_at,
   title,
   content,
-  preview_text,
   id,
   to,
   year,
@@ -45,7 +62,7 @@ const TextSection = ({
           symbol: ' ',
         }}
       >
-        {preview_text || description?.split('>')[1]?.split('<')[0] || 'N/A'}
+        {renderTextPreview(description)}
       </T.P>
       <S.ReadMore
         to={

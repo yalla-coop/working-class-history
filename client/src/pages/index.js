@@ -12,6 +12,7 @@ import EditEventPage from './EditEventPage';
 import SignupPage from './SignupPage';
 import LoginPage from './LoginPage';
 import SuccessSignupPage from './SuccessSignupPage';
+import AddCSVArticles from './AddCSVArticles';
 
 export {
   LandingPage,
@@ -28,4 +29,5 @@ export {
   SignupPage,
   LoginPage,
   SuccessSignupPage,
+  AddCSVArticles,
 };
