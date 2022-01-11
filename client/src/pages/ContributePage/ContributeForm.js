@@ -21,7 +21,7 @@ import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
 
 const { Col, Row } = Grid;
-const { BasicInput, DateInput, Textarea, Select } = Inputs;
+const { BasicInput, DateInput, Select } = Inputs;
 
 const initialState = {
   title: '',
