@@ -21,7 +21,7 @@ import { breakpoints } from '../../theme';
 import { useAuth } from '../../context/auth';
 
 const { Col, Row } = Grid;
-const { BasicInput, DateInput, Textarea } = Inputs;
+const { BasicInput, DateInput } = Inputs;
 
 const cleanText = (txt) => txt.replace(/<\/?[^>]+(>|$)/g, '');
 
