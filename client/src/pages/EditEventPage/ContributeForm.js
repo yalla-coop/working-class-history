@@ -21,7 +21,7 @@ import { breakpoints } from '../../theme';
 import { useAuth } from '../../context/auth';
 
 const { Col, Row } = Grid;
-const { BasicInput, DateInput, Textarea } = Inputs;
+const { BasicInput, DateInput } = Inputs;
 
 const cleanText = (txt) => txt.replace(/<\/?[^>]+(>|$)/g, '');
 
@@ -45,7 +45,6 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
     month,
     day,
     time,
-    previewText,
     validationErrs,
     httpError,
   } = state;
@@ -59,7 +58,7 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
       validateForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, previewText, email]);
+  }, [title, description, email]);
   const validateForm = () => {
     try {
       validate({
@@ -177,12 +176,12 @@ const ContributeForm = ({ state, setState, submitAttempt, articleId }) => {
       </Row>
       <Row mt="8">
         <Col w={[4, 8, 8]}>
-          <Textarea
+          <Editor
             label="Sources (optional)"
             placeholder="Sources..."
-            type="text"
-            value={sources}
-            handleChange={(input) => setState({ sources: input })}
+            editorHtml={sources || ''}
+            setEditorHtml={(input) => setState({ sources: input })}
+            small
             error={validationErrs.sources}
           />
         </Col>
