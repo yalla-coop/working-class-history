@@ -193,21 +193,17 @@ const ArticlePage = () => {
           </Row>
 
           {data?.sources && (
-            <Row mt="9" mb="8">
+            <Row mt="9" mb="9">
               <T.H3 mb="5" color="neutral" style={{ width: '100%' }}>
                 Sources
               </T.H3>
-              {data.sources.split(' | ').map((source, index) => (
-                <Col w={[4, 10, 10]} mb="2">
-                  {source.startsWith('http') ? (
-                    <T.Link to={source.split(' ')[0]} external>
-                      <T.P>{source}</T.P>
-                    </T.Link>
-                  ) : (
-                    <T.P>{source}</T.P>
-                  )}
+              <Row>
+                <Col w={[4, 10, 10]}>
+                  <S.RichText
+                    dangerouslySetInnerHTML={{ __html: data?.sources }}
+                  />
                 </Col>
-              ))}
+              </Row>
             </Row>
           )}
           <ArticleTag
@@ -320,7 +316,7 @@ const ArticlePage = () => {
             </T.P>
           )}
 
-          {data?.extra_media && (
+          {data?.extra_media?.length > 0 && (
             <>
               <Row mt="9">
                 <T.H3 mb="4" color="neutral" style={{ width: '100%' }}>

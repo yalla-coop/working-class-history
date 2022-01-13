@@ -21,13 +21,12 @@ import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../theme';
 
 const { Col, Row } = Grid;
-const { BasicInput, DateInput, Textarea, Select } = Inputs;
+const { BasicInput, DateInput, Select } = Inputs;
 
 const initialState = {
   title: '',
   date: null,
   description: '',
-  previewText: '',
   sources: '',
   latitude: '',
   longitude: '',
@@ -66,7 +65,6 @@ const ContributeForm = () => {
     date,
     description,
     moreInfo,
-    previewText,
     sources,
     latitude,
     longitude,
@@ -94,7 +92,7 @@ const ContributeForm = () => {
       validateForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, previewText, email]);
+  }, [title, description, email]);
 
   const validateForm = () => {
     try {
@@ -198,18 +196,6 @@ const ContributeForm = () => {
         </Col>
       </Row>
       <Row mt="8">
-        <Col w={[4, 8, 8]}>
-          <Textarea
-            label="Preview text"
-            placeholder="preview text..."
-            type="text"
-            value={previewText}
-            handleChange={(input) => setState({ previewText: input })}
-            error={validationErrs.previewText}
-          />
-        </Col>
-      </Row>
-      <Row mt="8">
         <Col w={[4, 12, 12]}>
           <Editor
             label="More information (optional, Max 1800 characters)"
@@ -226,7 +212,6 @@ const ContributeForm = () => {
           <Editor
             label="Sources (optional)"
             placeholder="Sources..."
-            type="text"
             editorHtml={sources || ''}
             setEditorHtml={(input) => setState({ sources: input })}
             error={validationErrs.sources}

@@ -22,31 +22,40 @@ const ContributePage = () => {
       <Row>
         <Col w={[4, 12, 12]} mt="8">
           <T.P>
-            This is a crowd-sourced project and we’re always looking for people
-            to help. We are looking for:
+            Working Class History is a collaborative, crowd-sourced project and
+            we are always looking for more contributions. If you would like to
+            support us financially,{' '}
+            <T.Link
+              to="https://workingclasshistory.com/support/"
+              underline
+              color="secondaryMid"
+            >
+              see this page
+            </T.Link>
+            . Otherwise, here are some other ways you can contribute:
           </T.P>
         </Col>
       </Row>
       <Reason
         mt="8"
-        title="Reason 1: "
-        text=" lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+        title="If you would like to contribute stories to our archive map, "
+        text=" please click the Submit an event button below and complete the relevant fields. If you are historian, a member of a local history group, or would like to contribute multiple stories, we have a simpler way for you to do this, so please send us an email to discuss: info@workingclasshistory.com."
       />
 
       <Reason
         mt="8"
         shape="triangle"
         shapeColor="neutral"
-        title="Reason 2: "
-        text=" lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+        title="If you would like to volunteer as a reviewer, "
+        text=" to fact-check and review contributions of others, please click the Become a reviewer button below to apply."
       />
 
       <Reason
         mt="8"
         shape="circle"
         shapeColor="tertiaryMain"
-        title="Reason 3: "
-        text=" lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem  ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+        title="If you would like to contribute translations to the project,"
+        text=" please send us an email: info@workingclasshistory.com."
       />
       {!showForm && (
         <Row mt="10">
