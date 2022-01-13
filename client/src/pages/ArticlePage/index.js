@@ -345,14 +345,29 @@ const ArticlePage = () => {
           {!hasAccess && (
             <Row mt="9">
               <Col w={[4, 7, 7]}>
-                <a href={EXTERNAL.SUPPORT} target="_blank" rel="noreferrer">
+                <S.SupportUsWrapper
+                  href={EXTERNAL.SUPPORT}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <Button
                     bgColor="neutral"
                     textColor="primaryMain"
                     text="Support us"
                   />
-                </a>
+                </S.SupportUsWrapper>
               </Col>
+              {user?.Approved && data?.status?.id === apiData.STATUS.published && (
+                <Col w={[4, 7, 4]} mt="0" mtT="7" mtM="3">
+                  <Button
+                    bgColor="neutral"
+                    to={ADMIN.EDIT_ARTICLE.replace(':articleId', data?.id)}
+                    textColor="white"
+                    text="Edit"
+                    loading={loading}
+                  />
+                </Col>
+              )}
             </Row>
           )}
           {hasAccess && (
