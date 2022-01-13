@@ -81,3 +81,10 @@ export const RichText = styled.div`
     font-family: 'Roboto', sans-serif;
   }
 `;
+
+export const SupportUsWrapper = styled.a`
+  width: auto;
+  ${({ theme }) => theme.media.tablet} {
+    width: 100%;
+  }
+`;
