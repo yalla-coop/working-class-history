@@ -12,6 +12,7 @@ import {
 } from '../../components';
 
 import { GENERAL } from '../../constants/nav-routes';
+import { MAP } from '../../constants/api-data';
 import * as Article from '../../api-calls/Article';
 const { Col, Row } = Grid;
 
@@ -137,7 +138,16 @@ const LandingPage = () => {
       </Row>
       <S.MapSection mt="11" id="map">
         <S.MapWrapper>
-          <Image image="map" width="100%" />
+          <iframe
+            width="100%"
+            height="100%"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+            title="WCH-map"
+            src={MAP.GENERAL}
+          ></iframe>
         </S.MapWrapper>
       </S.MapSection>
       {loading ? (

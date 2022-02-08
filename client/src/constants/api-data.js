@@ -29,4 +29,11 @@ const COLUMNS = {
   TAGS: 'field_184121',
 };
 
-export { TABLES, CATEGORIES, STATUS, COLUMNS };
+const MAP = {
+  GENERAL:
+    'https://arcgis.com/apps/webappviewer/index.html?id=919bf8b088394c358e7f6889b70213cd',
+  SPECIFIC:
+    'https://arcgis.com/apps/webappviewer/index.html?id=919bf8b088394c358e7f6889b70213cd',
+};
+
+export { TABLES, CATEGORIES, STATUS, COLUMNS, MAP };
