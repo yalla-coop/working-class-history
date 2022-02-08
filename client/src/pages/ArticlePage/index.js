@@ -7,6 +7,7 @@ import {
   Tags,
   Button,
   TimelineGraphic,
+  Map,
 } from '../../components';
 import { Skeleton } from 'antd';
 
@@ -173,11 +174,15 @@ const ArticlePage = () => {
               </Col>
             </Row>
           </S.ArticleContent>
-          <S.MapSection mt="11" mb="3">
-            <Image image="map" width="100%" />
-          </S.MapSection>
+          <Row>
+            <Col w={[4, 10, 10]}>
+              <S.MapSection mt="8" mb="6">
+                <Map type="specific" id={id} />
+              </S.MapSection>
+            </Col>
+          </Row>
 
-          <Row mt="9">
+          <Row mt="11">
             <T.H3 mb="5" color="neutral" style={{ widt: '100%' }}>
               More information
             </T.H3>

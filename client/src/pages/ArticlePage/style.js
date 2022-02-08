@@ -5,17 +5,12 @@ export const Div = styled.div``;
 
 export const MapSection = styled.section`
   ${setMargin};
-
   position: relative;
-  width: calc(
+  min-width: calc(
     100% - ${({ theme }) => theme.constants.gridGutter.desktop / 2}px
   );
   height: 510px;
   display: flex;
-  padding-right: ${({ theme }) => theme.constants.gridGutter.desktop / 2}px;
-  ${({ theme }) => theme.media.tablet} {
-    display: none;
-  }
 `;
 
 export const SocialLinksWrapper = styled.div`

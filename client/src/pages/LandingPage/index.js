@@ -9,6 +9,7 @@ import {
   Image,
   Card,
   ArticlesSection,
+  Map,
 } from '../../components';
 
 import { GENERAL } from '../../constants/nav-routes';
@@ -135,10 +136,8 @@ const LandingPage = () => {
           </Card>
         </Col>
       </Row>
-      <S.MapSection mt="11" id="map">
-        <S.MapWrapper>
-          <Image image="map" width="100%" />
-        </S.MapWrapper>
+      <S.MapSection mt="11" mtM="8" mbT="7" id="map">
+        <Map />
       </S.MapSection>
       {loading ? (
         Array.from([{ id: 1 }, { id: 2 }, { id: 3 }]).map((item) => (

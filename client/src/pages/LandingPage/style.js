@@ -11,18 +11,17 @@ export const MapSection = styled.section`
   );
   height: 836px;
   display: flex;
-  padding-right: ${({ theme }) => theme.constants.gridGutter.desktop / 2}px;
   ${({ theme }) => theme.media.tablet} {
-    display: none;
+    height: 600px;
+  }
+  ${({ theme }) => theme.media.mobile} {
+    height: 400px;
   }
 `;
 
 export const MapWrapper = styled.div`
   width: 100%;
-  width: calc(100% + 20.416vw);
   height: 100%;
-  position: absolute;
-  left: -20.416vw;
 `;
 
 export const HashRoute = styled(HashLink)`

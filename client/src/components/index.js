@@ -14,6 +14,7 @@ import * as Tags from './Tags';
 import MoreInformation from './MoreInformation';
 import TimelineGraphic from './TimelineGraphic';
 import Editor from './Editor';
+import Map from './Map';
 
 export {
   Button,
@@ -32,4 +33,5 @@ export {
   MoreInformation,
   TimelineGraphic,
   Editor,
+  Map,
 };
