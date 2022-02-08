@@ -32,8 +32,7 @@ const COLUMNS = {
 const MAP = {
   GENERAL:
     'https://arcgis.com/apps/webappviewer/index.html?id=919bf8b088394c358e7f6889b70213cd',
-  SPECIFIC:
-    'https://arcgis.com/apps/webappviewer/index.html?id=919bf8b088394c358e7f6889b70213cd',
+  SPECIFIC: `https://arcgis.com/apps/webappviewer/index.html?id=919bf8b088394c358e7f6889b70213cd&query=Events,ObjectId,:id`,
 };
 
 export { TABLES, CATEGORIES, STATUS, COLUMNS, MAP };
