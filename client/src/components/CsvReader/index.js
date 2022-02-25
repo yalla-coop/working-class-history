@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { CSVReader } from 'react-papaparse';
 import { createArticle } from '../../api-calls/Article';
+import { createUpdateTagsAutomatically } from '../../api-calls/Tag';
 import { apiData } from '../../constants/index';
 
 const buttonRef = React.createRef();
@@ -15,7 +16,7 @@ const formatKey = (str) =>
     .replace('-', '_');
 
 const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
-  const sendArticle = (article) => {
+  const sendArticle = async (article) => {
     console.log({ article });
     const {
       title,
@@ -37,9 +38,14 @@ const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
       media,
       media_caption,
       media_credit,
+      people,
+      topics,
+      organisations,
+      city,
+      country,
     } = article;
 
-    createArticle({
+    const { data } = await createArticle({
       title,
       year,
       month,
@@ -56,18 +62,30 @@ const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
       author_name,
       author_url,
       author_email,
-      status: apiData.STATUS.pending,
+      status: apiData.STATUS.published,
       media,
       media_caption,
       media_credit,
     });
+
+    // if created, now create a tag
+    if (data.id) {
+      createUpdateTagsAutomatically({
+        articleId: data.id,
+        people: people?.split(','),
+        topics: topics?.split(','),
+        organisations: organisations?.split(','),
+        city: city?.split(','),
+        country: country?.split(','),
+      });
+    }
   };
   useEffect(() => {
     if (startSend) {
       for (let i = 0; i < newArticles.length; i++) {
         let currentArr = newArticles[i];
-        setTimeout(() => {
-          sendArticle(currentArr);
+        setTimeout(async () => {
+          await sendArticle(currentArr);
         }, i * 1000);
       }
     }

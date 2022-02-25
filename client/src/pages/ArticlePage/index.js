@@ -204,9 +204,15 @@ const ArticlePage = () => {
               </T.H3>
               <Row>
                 <Col w={[4, 10, 10]}>
-                  <S.RichText
-                    dangerouslySetInnerHTML={{ __html: data?.sources }}
-                  />
+                  {data?.sources.includes('<p>') ? (
+                    <S.RichText
+                      dangerouslySetInnerHTML={{ __html: data?.sources }}
+                    />
+                  ) : (
+                    data?.sources
+                      .split('; ')
+                      .map((source) => <T.P mb="2">{source}</T.P>)
+                  )}
                 </Col>
               </Row>
             </Row>

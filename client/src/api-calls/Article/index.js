@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import handleError from '../format-error';
 import { apiData } from '../../constants/index';
@@ -123,5 +124,29 @@ export const getNextArticles = async ({ nextUrl, options = {} }) => {
   } catch (error) {
     const err = handleError(error, options);
     return { error: err };
+  }
+};
+
+export const deleteAllArticles = async () => {
+  try {
+    const { data } = await axios.get(
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true`
+    );
+    for (let i = 0; i < data.count; i++) {
+      setTimeout(async () => {
+        const res = await axios.delete(
+          `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/${
+            data.results[0].id + i
+          }/`
+        );
+        console.log('res', res, data.results[i]);
+      }, i * 500);
+    }
+
+    return;
+  } catch (error) {
+    console.log('err', error);
+    // const err = handleError(error, options);
+    return { error: error };
   }
 };
