@@ -27,6 +27,7 @@ const COLUMNS = {
   EMAIL: 'field_177159',
   PIN: 'field_177161',
   TAGS: 'field_184121',
+  TAG_TITLE: 'field_177167',
 };
 
 const MAP = {
