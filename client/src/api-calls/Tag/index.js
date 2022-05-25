@@ -182,7 +182,7 @@ export const createUpdateTagsAutomatically = async ({
               );
               console.log('update', res, i);
             }
-          }, i * 500);
+          }, i * 1000);
         }
       }
     }

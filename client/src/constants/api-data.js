@@ -31,9 +31,8 @@ const COLUMNS = {
 };
 
 const MAP = {
-  GENERAL:
-    'https://arcgis.com/apps/webappviewer/index.html?id=919bf8b088394c358e7f6889b70213cd',
-  SPECIFIC: `https://arcgis.com/apps/webappviewer/index.html?id=919bf8b088394c358e7f6889b70213cd&query=Events,ObjectId,:id`,
+  GENERAL: 'https://willjfield.github.io/WCH_Map',
+  SPECIFIC: `https://willjfield.github.io/WCH_Map/?event=:id#%26map=9/:lat/:long`,
 };
 
 export { TABLES, CATEGORIES, STATUS, COLUMNS, MAP };

@@ -41,8 +41,11 @@ const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
       people,
       topics,
       organisations,
-      city,
+      city_area,
       country,
+      podcast_url,
+      books_url,
+      merch_url,
     } = article;
 
     const { data } = await createArticle({
@@ -66,20 +69,24 @@ const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
       media,
       media_caption,
       media_credit,
+      podcast_url,
+      books_url,
+      merch_url,
     });
 
     // if created, now create a tag
-    if (data.id) {
+    if (data && data.id) {
       createUpdateTagsAutomatically({
         articleId: data.id,
         people: people?.split(','),
         topics: topics?.split(','),
         organisations: organisations?.split(','),
-        city: city?.split(','),
+        city: city_area?.split(','),
         country: country?.split(','),
       });
     }
   };
+
   useEffect(() => {
     if (startSend) {
       for (let i = 0; i < newArticles.length; i++) {

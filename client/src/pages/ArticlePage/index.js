@@ -177,7 +177,12 @@ const ArticlePage = () => {
           <Row>
             <Col w={[4, 10, 10]}>
               <S.MapSection mt="8" mb="6">
-                <Map type="specific" id={id} />
+                <Map
+                  type="specific"
+                  id={id}
+                  longitude={data?.longitude}
+                  latitude={data?.latitude}
+                />
               </S.MapSection>
             </Col>
           </Row>
