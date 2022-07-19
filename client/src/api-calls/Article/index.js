@@ -79,6 +79,17 @@ export const updateArticleStatus = async ({
 
 export const createArticle = async (body) => {
   try {
+    // check it already exists
+    if (body?.spreadsheet_ref) {
+      const { data } = await axios.get(
+        `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&filter__field_398055__contains=${body?.spreadsheet_ref}`
+      );
+      if (data?.results?.length) {
+        console.log('data', data?.results[0]);
+        return { data: data.results[0] };
+      }
+    }
+
     // "https://api.baserow.io/api/database/rows/table/33215/?user_field_names=true"
     const { data } = await axios.post(
       `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true`,
@@ -94,7 +105,7 @@ export const createArticle = async (body) => {
 export const getRecentArticles = async ({ options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
     );
     return { data };
   } catch (error) {

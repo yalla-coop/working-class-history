@@ -84,6 +84,14 @@ const Footer = () => {
             height={iconDimensions}
           />
         </S.IconLink>
+        <S.IconLink mr="4" to={{ pathname: EXTERNAL.SPOTIFY }} target="_blank">
+          <Icon
+            icon="spotify"
+            color="white"
+            width={iconDimensions}
+            height={iconDimensions}
+          />
+        </S.IconLink>
       </S.IconsWrapper>
     </S.Wrapper>
   );

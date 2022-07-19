@@ -12,7 +12,7 @@ import {
   Map,
 } from '../../components';
 
-import { GENERAL } from '../../constants/nav-routes';
+import { GENERAL, EXTERNAL } from '../../constants/nav-routes';
 import * as Article from '../../api-calls/Article';
 const { Col, Row } = Grid;
 
@@ -36,7 +36,6 @@ const randomImage = () => {
     'landingPage_3',
     'landingPage_4',
     'landingPage_5',
-    'haitianRevolution',
   ];
   return images[Math.floor(Math.random() * images.length)];
 };
@@ -59,7 +58,7 @@ const LandingPage = () => {
       setLoading(true);
       const { error, data } = await Article.getRecentArticles({});
       setRecentData(data?.results || []);
-      setNextData(data.next);
+      setNextData(data?.next || '');
       setTotalArticles(data?.count || 0);
       setLoading(false);
       if (error) {
@@ -75,14 +74,14 @@ const LandingPage = () => {
 
   const handleMore = async () => {
     setShowItems(showItems + 10);
-    if (showItems % 90 && nextData) {
+    if (showItems % 90 && nextData?.length) {
       try {
         setLoading(true);
         const { error, data } = await Article.getNextArticles({
           nextUrl: nextData,
         });
         setRecentData([...recentData, ...data.results]);
-        setNextData(data.next);
+        setNextData(data?.next || '');
         setLoading(false);
         if (error) {
           setPageError(error.message);
@@ -116,7 +115,9 @@ const LandingPage = () => {
                 ))}
         </Col>
         <Col w={[4, 6, 6]} mt="6" mtM="9">
-          <Image image="latest" />
+          <a href={`${EXTERNAL.BOOK_SHOP}`} target="_blank" rel="noreferrer">
+            <Image image="latest" />
+          </a>
           <Card mt="5">
             <T.H4>What is Working Class History | Stories?</T.H4>
             <T.P weight="light" mt="3">
@@ -146,7 +147,7 @@ const LandingPage = () => {
       ) : (
         <ArticlesSection articles={recentData.slice(3, 8)} />
       )}
-      <Row jc="space-between">
+      <Row jc="space-between" inner mt={2}>
         <Col w={[4, 6, 6]} mt="6" mtM="8">
           <Image image={imageSrc} />
         </Col>

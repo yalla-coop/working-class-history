@@ -136,55 +136,68 @@ export const createUpdateTagsAutomatically = async ({
       },
     ];
 
+    const delay = async () =>
+      setTimeout(() => {
+        return;
+      }, 2300);
+
     for (let h = 0; h < catData.length; h++) {
       if (catData[h].data.length > 0) {
         for (let i = 0; i < catData[h].data.length; i++) {
-          setTimeout(async () => {
-            // check if tag already exists
-            const { data } = await axios.get(
-              `${DB_ROWS_TABLE}/${
-                apiData.TABLES.tags
-              }/?user_field_names=true&filter__${
-                apiData.COLUMNS.TAG_TITLE
-              }__equal=${catData[h].data[i].trim()}&filter__${
-                apiData.COLUMNS.CATEGORY
-              }__single_select_equal=${h.dbID}`
-            );
+          // setTimeout(async () => {
+          // check if tag already exists
+          const { data } = await axios.get(
+            `${DB_ROWS_TABLE}/${
+              apiData.TABLES.tags
+            }/?user_field_names=true&filter__${
+              apiData.COLUMNS.TAG_TITLE
+            }__equal=${catData[h].data[i].trim()}&filter__${
+              apiData.COLUMNS.CATEGORY
+            }__single_select_equal=${h.dbID}`
+          );
 
-            if (data.count === 0) {
-              // create tag
-              const res = await axios.post(
-                `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true`,
-                {
-                  Title: catData[h].data[i].trim(),
-                  Category: catData[h].dbId,
-                  Active: true,
-                  articles: [articleId],
-                }
-              );
-              console.log('create', res, i);
-            } else {
-              const existingArticleIds = data.results[0].articles.map(
-                (a) => a.id
-              );
-              // update tag to link to new article
-              const res = await axios.patch(
-                `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/${data.results[0].id}/?user_field_names=true`,
-                {
-                  Title: catData[h].data[i].trim(),
-                  Category: catData[h].dbId,
-                  Active: true,
-                  articles:
-                    existingArticleIds.length > 0
-                      ? [...existingArticleIds, articleId]
-                      : [articleId],
-                }
-              );
-              console.log('update', res, i);
-            }
-          }, i * 1000);
+          if (data.count === 0) {
+            const res2 = await delay();
+            console.log('create2', res2, i);
+
+            // create tag
+            const res = await axios.post(
+              `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true`,
+              {
+                Title: catData[h].data[i].trim(),
+                Category: catData[h].dbId,
+                Active: true,
+                articles: [articleId],
+              }
+            );
+            console.log('create', res, i);
+          } else {
+            const existingArticleIds = data.results[0].articles.map(
+              (a) => a.id
+            );
+            const res2 = await delay();
+            console.log('update2', res2, i);
+
+            // update tag to link to new article
+            const res = await axios.patch(
+              `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/${data.results[0].id}/?user_field_names=true`,
+              {
+                Title: catData[h].data[i].trim(),
+                Category: catData[h].dbId,
+                Active: true,
+                articles:
+                  existingArticleIds.length > 0
+                    ? [...existingArticleIds, articleId]
+                    : [articleId],
+              }
+            );
+            console.log('update', res, i);
+          }
+          // }, i * 1000);
         }
       }
+      const res3 = await delay();
+      console.log('res3', res3);
     }
 
     return;

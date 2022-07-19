@@ -43,6 +43,9 @@ const EXTERNAL = {
   SIGN_UP: 'https://workingclasshistory.com/sign-up/',
   SUPPORT: 'https://workingclasshistory.com/support/',
   TIKTOK: 'https://tiktok.com/@workingclasshistory',
+  SPOTIFY: 'https://open.spotify.com/show/3dqQUrBAmXgoU1Q6hcUnBX',
+  BOOK_SHOP:
+    'https://shop.workingclasshistory.com/products/working-class-history-everyday-acts-resistance-rebellion-book',
 };
 
 export { GENERAL, EXTERNAL, ADMIN };
