@@ -19,7 +19,7 @@ export const getTagById = async ({ id, options = {} }) => {
 export const getTags = async () => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.tags}?user_field_names=true`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true`
     );
     return { data };
   } catch (error) {
@@ -80,7 +80,7 @@ export const getNextTags = async ({ nextUrl, options = {} }) => {
 export const deleteAllTags = async () => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.tags}?user_field_names=true`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.tags}/?user_field_names=true`
     );
     console.log('COUNT', data.count);
     for (let i = 0; i < data.count; i++) {

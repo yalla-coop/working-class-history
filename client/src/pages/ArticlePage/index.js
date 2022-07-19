@@ -12,7 +12,6 @@ import {
 import { Skeleton } from 'antd';
 
 import { getArticleById, updateArticleStatus } from '../../api-calls/Article';
-import * as Tag from '../../api-calls/Tag';
 
 import SocialSection from './SocialSection';
 import { useHistory, useParams } from 'react-router';
@@ -26,11 +25,9 @@ const { ArticleTag, Category } = Tags;
 
 const filterTags = (relatedTags, allTags, category) => {
   if (relatedTags?.length && allTags?.length) {
-    const _relatedTags = relatedTags?.map((item) => item.id) || [];
-    return allTags.filter(
-      (item) =>
-        _relatedTags.includes(item.id) && category === item.Category.value
-    );
+    return allTags
+      .filter((item) => category === item?.data?.Category.value)
+      .map((item) => item.data);
   }
   return [];
 };
@@ -50,11 +47,17 @@ const ArticlePage = () => {
     const getData = async () => {
       try {
         setLoading(true);
-        const { error, data } = await getArticleById({ id });
+        const { error, data, tagsWithData } = await getArticleById({ id });
         setHasAccess(() => {
           return user?.Approved && data.status.id === apiData.STATUS.pending;
         });
         setData(data);
+        if (tagsWithData) {
+          const tidiedTags = tagsWithData.filter(
+            (item) => item?.data?.Title?.length > 0
+          );
+          setTags(tidiedTags);
+        }
         setLoading(false);
         if (error) {
           setPageError(error.message);
@@ -67,25 +70,6 @@ const ArticlePage = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    const getAllTags = async () => {
-      try {
-        setLoading(true);
-        const { error, data } = await Tag.getTags();
-        setTags(data.results);
-        setLoading(false);
-        if (error) {
-        }
-      } catch (error) {
-        setPageError(error.message);
-      }
-    };
-    if (data.created_at) {
-      getAllTags();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data?.created_at]);
 
   const onReject = async () => {
     setLoading(true);
@@ -308,6 +292,7 @@ const ArticlePage = () => {
                     />
                   </Col>
                 )}
+
                 {filterTags(data.tags, tags, 'organisation').length > 0 && (
                   <Col w={[4, 12, 6]} mt="6">
                     <Category
