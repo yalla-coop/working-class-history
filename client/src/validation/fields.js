@@ -2,6 +2,7 @@ import { string, number, boolean, array, object, date } from 'yup';
 import * as errMsgs from './err-msgs';
 import './custom-functions';
 
+// eslint-disable-next-line prettier/prettier
 const URLregex = /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#.-]+)*\/?(\?[a-zA-Z0-9-_.-]+=[a-zA-Z0-9-%?&=.-]+&?)?$/;
 
 export const requiredText = string()

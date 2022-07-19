@@ -66,7 +66,8 @@ export const updateArticleStatus = async ({
 }) => {
   try {
     const {
-      data,
+      // eslint-disable-next-line prettier/prettier
+      data
     } = await axios.patch(
       `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/${id}/?user_field_names=true`,
       { status, reviwer_id: [reviewerId], ...rest }
