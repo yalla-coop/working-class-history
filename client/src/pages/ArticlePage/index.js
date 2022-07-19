@@ -261,7 +261,7 @@ const ArticlePage = () => {
                       shapeColor="primaryMain"
                       size="small"
                       title="City/Area"
-                      to={GENERAL.CATEGORY.replace(':categoryName', 'area')}
+                      to={GENERAL.CATEGORY.replace(':categoryName', 'areas')}
                       relatedTags={filterTags(data.tags, tags, 'city_area')}
                     />
                   </Col>
@@ -272,8 +272,8 @@ const ArticlePage = () => {
                       shape="circle"
                       shapeColor="tertiaryMain"
                       size="small"
-                      title="Topic"
-                      to={GENERAL.CATEGORY.replace(':categoryName', 'topic')}
+                      title="Topics"
+                      to={GENERAL.CATEGORY.replace(':categoryName', 'topics')}
                       relatedTags={
                         tags.length ? filterTags(data.tags, tags, 'topic') : []
                       }
@@ -287,7 +287,10 @@ const ArticlePage = () => {
                       shapeColor="tertiaryMain"
                       size="small"
                       title="Country"
-                      to={GENERAL.CATEGORY.replace(':categoryName', 'country')}
+                      to={GENERAL.CATEGORY.replace(
+                        ':categoryName',
+                        'countries'
+                      )}
                       relatedTags={filterTags(data.tags, tags, 'country')}
                     />
                   </Col>
@@ -302,7 +305,7 @@ const ArticlePage = () => {
                       title="Organisation"
                       to={GENERAL.CATEGORY.replace(
                         ':categoryName',
-                        'organisation'
+                        'organisations'
                       )}
                       relatedTags={filterTags(data.tags, tags, 'organisation')}
                     />
