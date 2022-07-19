@@ -2,6 +2,7 @@
 import axios from 'axios';
 import handleError from '../format-error';
 import { apiData } from '../../constants/index';
+import { getTagById } from '../Tag/index';
 const DB_ROWS_TABLE = 'database/rows/table';
 
 export const approveArticle = ({ id }) => {
@@ -11,7 +12,7 @@ export const approveArticle = ({ id }) => {
 export const getAllArticles = async ({ options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
     );
     return { data };
   } catch (error) {
@@ -23,7 +24,7 @@ export const getAllArticles = async ({ options = {} }) => {
 export const getAllArticlesByTag = async ({ tagId, options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-year,-month,-day,-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}&filter__${apiData.COLUMNS.TAGS}__link_row_has=${tagId}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true&order_by=-year,-month,-day,-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}&filter__${apiData.COLUMNS.TAGS}__link_row_has=${tagId}`
     );
 
     return { data };
@@ -36,7 +37,7 @@ export const getAllArticlesByTag = async ({ tagId, options = {} }) => {
 export const getPendingArticles = async () => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.pending}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.pending}`
     );
     return { data };
   } catch (error) {
@@ -48,7 +49,7 @@ export const getPendingArticles = async () => {
 export const getArticles = async ({ options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
     );
     return { data };
   } catch (error) {
@@ -65,7 +66,8 @@ export const updateArticleStatus = async ({
 }) => {
   try {
     const {
-      data,
+      // eslint-disable-next-line prettier/prettier
+      data
     } = await axios.patch(
       `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/${id}/?user_field_names=true`,
       { status, reviwer_id: [reviewerId], ...rest }
@@ -79,6 +81,17 @@ export const updateArticleStatus = async ({
 
 export const createArticle = async (body) => {
   try {
+    // check it already exists
+    if (body?.spreadsheet_ref) {
+      const { data } = await axios.get(
+        `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true&filter__field_398055__contains=${body?.spreadsheet_ref}`
+      );
+      if (data?.results?.length) {
+        console.log('data', data?.results[0]);
+        return { data: data.results[0] };
+      }
+    }
+
     // "https://api.baserow.io/api/database/rows/table/33215/?user_field_names=true"
     const { data } = await axios.post(
       `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true`,
@@ -94,7 +107,7 @@ export const createArticle = async (body) => {
 export const getRecentArticles = async ({ options = {} }) => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true&order_by=-created_at&filter__${apiData.COLUMNS.STATUS}__single_select_equal=${apiData.STATUS.published}`
     );
     return { data };
   } catch (error) {
@@ -108,7 +121,13 @@ export const getArticleById = async ({ id, options = {} }) => {
     const { data } = await axios.get(
       `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/${id}/?user_field_names=true`
     );
-    return { data };
+
+    const tagsWithData = await Promise.all(
+      data?.tags?.map(async (tag) => await getTagById({ id: tag?.id }))
+    );
+    console.log('tags', tagsWithData);
+
+    return { data, tagsWithData };
   } catch (error) {
     const err = handleError(error, options);
     return { error: err };
@@ -130,7 +149,7 @@ export const getNextArticles = async ({ nextUrl, options = {} }) => {
 export const deleteAllArticles = async () => {
   try {
     const { data } = await axios.get(
-      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}?user_field_names=true`
+      `${DB_ROWS_TABLE}/${apiData.TABLES.articles}/?user_field_names=true`
     );
     for (let i = 0; i < data.count; i++) {
       setTimeout(async () => {

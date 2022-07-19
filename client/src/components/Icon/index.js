@@ -19,6 +19,7 @@ import FacebookShare from './icons/FacebookShare';
 import EmailShare from './icons/EmailShare';
 import TwitterShare from './icons/TwitterShare';
 import TikTok from './icons/TikTok';
+import Spotify from './icons/Spotify';
 
 export const IconMap = {
   goBack: GoBack,
@@ -35,6 +36,7 @@ export const IconMap = {
   emailShare: EmailShare,
   twitterShare: TwitterShare,
   tikTok: TikTok,
+  spotify: Spotify,
 };
 
 const Icon = (props) => {

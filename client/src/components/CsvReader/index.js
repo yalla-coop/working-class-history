@@ -17,7 +17,7 @@ const formatKey = (str) =>
 
 const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
   const sendArticle = async (article) => {
-    console.log({ article });
+    console.log('sending...', { article });
     const {
       title,
       year,
@@ -41,8 +41,12 @@ const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
       people,
       topics,
       organisations,
-      city,
+      city_area,
       country,
+      podcast_url,
+      books_url,
+      merch_url,
+      spreadsheet_ref,
     } = article;
 
     const { data } = await createArticle({
@@ -66,29 +70,44 @@ const CSVReaderComponent = ({ startSend, newArticles, setNewArticles }) => {
       media,
       media_caption,
       media_credit,
+      podcast_url,
+      books_url,
+      merch_url,
+      spreadsheet_ref,
     });
 
     // if created, now create a tag
-    if (data.id) {
-      createUpdateTagsAutomatically({
+    if (data && data.id) {
+      await createUpdateTagsAutomatically({
         articleId: data.id,
         people: people?.split(','),
         topics: topics?.split(','),
         organisations: organisations?.split(','),
-        city: city?.split(','),
+        city: city_area?.split(','),
         country: country?.split(','),
       });
     }
   };
+
+  const delay = async () =>
+    setTimeout(() => {
+      return;
+    }, 3000);
+
   useEffect(() => {
-    if (startSend) {
-      for (let i = 0; i < newArticles.length; i++) {
-        let currentArr = newArticles[i];
-        setTimeout(async () => {
-          await sendArticle(currentArr);
-        }, i * 1000);
+    const handleSubmit = async () => {
+      if (startSend) {
+        for (let i = 0; i < newArticles.length; i++) {
+          let currentArr = newArticles[i];
+          const res2 = await delay();
+          console.log('res2', res2, i);
+          const res = await sendArticle(currentArr);
+          console.log('res', res, i);
+        }
       }
-    }
+    };
+    handleSubmit();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startSend]);
 
