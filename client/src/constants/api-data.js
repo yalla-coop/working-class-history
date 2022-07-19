@@ -31,8 +31,8 @@ const COLUMNS = {
 };
 
 const MAP = {
-  GENERAL: 'https://willjfield.github.io/WCH_Map',
-  SPECIFIC: `https://willjfield.github.io/WCH_Map/?event=:id#%26map=9/:lat/:long`,
+  GENERAL: 'https://map.workingclasshistory.com/',
+  SPECIFIC: `https://map.workingclasshistory.com/?event=:id#%26map=9/:lat/:long`,
 };
 
 export { TABLES, CATEGORIES, STATUS, COLUMNS, MAP };
