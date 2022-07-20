@@ -12,8 +12,7 @@ const IndexPage = () => {
       <Row>
         <Col w={[4, 12, 8]}>
           <T.P mt="6" color="neutral">
-            Lorem ipsum some information about how you can click each tag below
-            to discover articles for that specifc
+            Click each tag below to discover articles for that specifc category.
           </T.P>
         </Col>
       </Row>
