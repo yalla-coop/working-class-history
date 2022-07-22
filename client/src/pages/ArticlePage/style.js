@@ -56,6 +56,10 @@ export const RichText = styled.div`
     font-size: 16px;
     line-height: 210%;
     font-weight: 300;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
     pre {
       background: none;
       border: none;
@@ -74,6 +78,10 @@ export const RichText = styled.div`
     text-align: left !important;
     text-decoration: underline;
     font-family: 'Roboto', sans-serif;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
   }
 `;
 
