@@ -46,6 +46,7 @@ const EXTERNAL = {
   SPOTIFY: 'https://open.spotify.com/show/3dqQUrBAmXgoU1Q6hcUnBX',
   BOOK_SHOP:
     'https://shop.workingclasshistory.com/products/working-class-history-everyday-acts-resistance-rebellion-book',
+  MAP: 'https://map.workingclasshistory.com/',
 };
 
 export { GENERAL, EXTERNAL, ADMIN };
