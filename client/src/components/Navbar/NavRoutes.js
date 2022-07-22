@@ -30,14 +30,16 @@ const Routes = ({ setOpen }) => {
             Index
           </T.P>
         </S.MenuLink>
-        <S.MenuHashLink
-          to={`${GENERAL['LandingPage']}#map`}
+        <S.MenuLink
+          to={{ pathname: EXTERNAL.MAP }}
+          target="_blank"
           onClick={() => handleClick(setOpen)}
         >
           <T.P weight="regular" color="neutral">
             Map
           </T.P>
-        </S.MenuHashLink>
+        </S.MenuLink>
+
         <S.MenuLink
           to={{ pathname: EXTERNAL.PODCAST }}
           target="_blank"
@@ -56,7 +58,6 @@ const Routes = ({ setOpen }) => {
             Sign Up
           </T.P>
         </S.MenuLink>
-
         <S.MenuLink
           to={{ pathname: EXTERNAL.SUPPORT }}
           target="_blank"

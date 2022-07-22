@@ -36,6 +36,10 @@ const commonStyle = ({ theme, color, caps, ta }) => `
   color: ${theme.colors[color] || color || theme.colors.neutral} !important;
   text-transform: ${caps ? 'uppercase' : 'initial'} !important;
   text-align: ${ta || 'left'} !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
 `;
 
 export const H0 = styled((props) => <Paragraph {...props} />)`

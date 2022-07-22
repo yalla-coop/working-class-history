@@ -1,7 +1,7 @@
 import { GENERAL } from '../../constants/nav-routes';
 import * as T from '../Typography';
 import * as S from './style';
-import { getMonthName } from '../../helpers';
+import { formatDate } from '../../helpers';
 
 const renderTextPreview = (text) => {
   const htmlContent = text
@@ -36,9 +36,7 @@ const TextSection = ({
   return (
     <S.Wrapper {...props}>
       <T.P size="small" weight="medium" color="neutral">
-        {year && month && day
-          ? `${getMonthName(month)} ${day}, ${year}`
-          : 'N/A'}
+        {year ? formatDate(year, month, day) : 'N/A'}
       </T.P>
       <S.ReadMore
         to={
