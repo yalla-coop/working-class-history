@@ -18,7 +18,7 @@ import { useHistory, useParams } from 'react-router';
 import { ADMIN, GENERAL, EXTERNAL } from '../../constants/nav-routes';
 import { useAuth } from '../../context/auth';
 import { apiData } from '../../constants/index';
-import { getMonthName } from '../../helpers';
+import { formatDate } from '../../helpers';
 
 const { Col, Row } = Grid;
 const { ArticleTag, Category } = Tags;
@@ -125,9 +125,7 @@ const ArticlePage = () => {
             shapeColor="primaryMain"
             label="Date"
             value={
-              data.year && data.month && data.day
-                ? `${data.day} ${getMonthName(data.month)} ${data.year}`
-                : 'N/A'
+              data.year ? formatDate(data.year, data.month, data.day) : 'N/A'
             }
             mt="30px"
           />
