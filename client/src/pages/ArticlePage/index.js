@@ -191,7 +191,9 @@ const ArticlePage = () => {
               </T.H3>
               <Row>
                 <Col w={[4, 10, 10]}>
-                  {data?.sources.includes('<p>') ? (
+                  {data?.sources.includes('<p>') ||
+                  data?.sources.includes('<ul>') ||
+                  data?.sources.includes('<div>') ? (
                     <S.RichText
                       dangerouslySetInnerHTML={{ __html: data?.sources }}
                     />
